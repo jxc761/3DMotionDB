@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Readme</title>
+</head>
+
+<body>
+<h1>Description</h1>
+<p>This is an annotation tool for 3d motion data generation. The major function is to annotate the location of camera and its focal points. In each scene, there is no more than one camera. </p>
+<p>The component to mark the camera is &quot;nplab_camera&quot; as shown below</p>
+<p><img src="images/nplab_camera.png" width="269" height="128" alt="nplab_camera" /></p>
+<p>The component to mark the focal point is &quot;nplab_target&quot; as shown below</p>
+<p><img src="images/nplab_target.png" width="269" height="128" /></p>
+<h1>Tools</h1>
+
+
+<table width="119%" border="2">
+  <tr>
+    <td width="150px" align="center" valign="middle"><img src="../icons/reset_all.png" alt="reset_all" name="reset_tool" width="128" height="128" id="reset_tool" /></td>
+    <td width="77%" align="left" valign="middle">Clear all instances of compenent &quot;nplab_camera&quot; and all instances of &quot;nplab_target&quot;.</td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle"><img src="../icons/add_camera.png" alt="set camera" name="set_camera_tool" width="128" height="128" id="set_camera_tool" /></td>
+    <td align="left" valign="middle">Double click any place in the scene. It will place an instance of compenent &quot;nplab_camera&quot; there.</td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle"><img src="../icons/add_target.png" alt="add target" name="add_target_tool" width="128" height="128" id="add_target_tool" /></td>
+    <td align="left" valign="middle">Double click any face in the scene. It will add an instance of component &quot;nplab_target&quot; glue to the face.</td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle"><img src="../icons/save_setting_as.png" name="save_setting_as_tool" width="128" height="128" id="save_setting_as_tool" /></td>
+    <td align="left" valign="middle"><p>Save the annotation to a file</p></td>
+  </tr>
+</table>
+
+<h1>Workflow</h1>
+<p>A normal workflow to use this tool is as following:</p>
+<ol>
+  <li>use <img src="../icons/reset_all.png" alt="reset_all" name="reset_tool" width="25" height="25" id="reset_tool2" /> tool to clear the model</li>
+  <li>use  <img src="../icons/add_camera.png" alt="set camera" name="set_camera_tool" width="24" height="24" id="set_camera_tool2" /> tool to set up the camera</li>
+  <li>use <img src="../icons/add_target.png" alt="add target" name="add_target_tool" width="23" height="24" id="add_target_tool2" /> tool to set focal points</li>
+  <li>use <img src="../icons/save_setting_as.png" name="save_setting_as_tool" width="24" height="24" id="save_setting_as_tool2" /> tool to save setting</li>
+  <li>repeat this process to set up another camera for the scene</li>
+</ol>
+
+</body>
+</html>
