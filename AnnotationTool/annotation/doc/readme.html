@@ -15,22 +15,60 @@
 <h1>Tools</h1>
 
 
-<table width="119%" border="2">
+<table border="2">
   <tr>
-    <td width="150px" align="center" valign="middle"><img src="../icons/reset_all.png" alt="reset_all" name="reset_tool" width="128" height="128" id="reset_tool" /></td>
-    <td width="77%" align="left" valign="middle">Clear all instances of compenent &quot;nplab_camera&quot; and all instances of &quot;nplab_target&quot;.</td>
+    <td align="center" valign="middle"><img src="../icons/reset_all.png" alt="reset_all" name="reset_tool" width="128" height="128" id="reset_tool" /></td>
+    <td align="left" valign="middle"><ul>
+      <li>Clear all annotation.</li>
+    </ul></td>
   </tr>
   <tr>
     <td align="center" valign="middle"><img src="../icons/add_camera.png" alt="set camera" name="set_camera_tool" width="128" height="128" id="set_camera_tool" /></td>
-    <td align="left" valign="middle">Double click any place in the scene. It will place an instance of compenent &quot;nplab_camera&quot; there.</td>
+    <td align="left" valign="middle"><ul>
+      <li>Click the position where you want to put the camera.  This tool will place an instance of compenent &quot;nplab_camera&quot; there.</li>
+      <li>ESC to deactivate this tool.</li>
+    </ul></td>
   </tr>
   <tr>
     <td align="center" valign="middle"><img src="../icons/add_target.png" alt="add target" name="add_target_tool" width="128" height="128" id="add_target_tool" /></td>
-    <td align="left" valign="middle">Double click any face in the scene. It will add an instance of component &quot;nplab_target&quot; glue to the face.</td>
+    <td align="left" valign="middle"><ul>
+      <li>Select this tool. The view will change to the status - &quot;looking around&quot;.</li>
+      <li>Click the position that you want to pick as a focal point. This tool will add an instance of component &quot;nplab_target&quot; there.
+        
+        <br />
+      </li>
+    </ul><table border="1" align="center">
+          <tr>
+            <td>COMMAND + Mouse move </td>
+            <td> rotate view around the camera</td>
+          </tr>
+          <tr>
+            <td>COMMAND + OPTION + Mouse move</td>
+            <td>horizontally rotate the view around the camera</td>
+          </tr>
+          <tr>
+            <td>COMMAND + SHIFT + Mouse move</td>
+            <td> vertically rotate the view around the camera</td>
+          </tr>
+          <tr>
+            <td>COMMAND + UP</td>
+            <td>zoom out</td>
+          </tr>
+          <tr>
+          	<td> COMMAND + DOWN </td>
+            <td> zoom in </td> 
+          </tr>
+            <tr>
+          	<td> LEFT/RIGHT/UP/DOWN </td>
+            <td> rotate left/right/up/down </td> 
+          </tr>
+    </table></td>
   </tr>
   <tr>
     <td align="center" valign="middle"><img src="../icons/save_setting_as.png" name="save_setting_as_tool" width="128" height="128" id="save_setting_as_tool" /></td>
-    <td align="left" valign="middle"><p>Save the annotation to a file</p></td>
+    <td align="left" valign="middle"><ul>
+      <li>Save the annotation to a file</li>
+    </ul></td>
   </tr>
 </table>
 

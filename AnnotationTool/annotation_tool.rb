@@ -4,8 +4,8 @@ module NPLAB_UI
 	Sketchup.send_action("showRubyPanel:")
 	
 	cmd_reset= UI::Command.new("Reset Annotation") {
-		Sketchup.active_model.select_tool(nil)
 		ui_reset_tool_status()
+		Sketchup.active_model.select_tool(nil)
 	}
 	
 	cmd_reset.small_icon = "./annotation/icons/reset_16.png"
@@ -33,9 +33,9 @@ module NPLAB_UI
 	cmd_add_target.status_bar_text = "Double click"
 	
 	cmd_save_setting_as= UI::Command.new("save setting as") {
-		Sketchup.active_model.select_tool(nil)
+		#Sketchup.active_model.select_tool(nil)
 		ui_save_setting_as()
-		Sketchup.active_model.active_view.refresh
+		#Sketchup.active_model.active_view.refresh
 	}
 	cmd_save_setting_as.small_icon = "./annotation/icons/save_setting_as_16.png"
 	cmd_save_setting_as.large_icon = "./annotation/icons/save_setting_as_24.png"
@@ -49,9 +49,9 @@ module NPLAB_UI
 
 	annotation_toolbar.add_item(cmd_save_setting_as)
 	
-	if annotation_toolbar.get_last_state == 1
+	#if annotation_toolbar.get_last_state == 1
 		annotation_toolbar.show
-	end
+	#end
 	
 #	annotation_toolbar.add_item(cmd_look_through)
 #	walkman_toolbar.add_item(cmd_export)

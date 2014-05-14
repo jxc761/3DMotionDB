@@ -30,7 +30,7 @@ module NPLAB_UI
 			clayer.visible=true
 		end
 	
-		def onLButtonDoubleClick(flags, x, y, view)
+		def onLButtonUp(flags, x, y, view)
 			status = Sketchup.active_model.start_operation('set_camera', true)
 		
 			transformation = NPLAB_UI.get_transf(x, y, view)

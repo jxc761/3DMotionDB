@@ -27,7 +27,7 @@ def draw_camera_group(options)
   base_center = [0, 0, 0]
   circle_edge = base.entities.add_circle(base_center, [0, 0, 1], max_r, numsegs)
   circle_face = base.entities.add_face(circle_edge)
-  circle_face.pushpull 0.05.m
+  circle_face.pushpull -0.05.m
   
   # draw the upper part
   upper_center = [0, 0, height]
