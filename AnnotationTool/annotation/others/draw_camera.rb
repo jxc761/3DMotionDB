@@ -8,55 +8,50 @@ def draw_camera_group(options)
   group.name= "nplab_camera"
   entities  = group.entities 
   
-  core_sz   = options[:core_sz]  == nil ? 0.12.m  : options[:core_sz] 
-  #radiuses = [0.5.m, 1.5.m, 2.0.m]
-  radiuses  = options[:radiuses] == nil ? [1.5.m] : options[:radiuses]
-  xscale    = options[:xscale]   == nil ? 1       : options[:xscale]
-  yscale    = options[:yscale]   == nil ? 1       : options[:yscale]
-  zscale    = options[:zscale]   == nil ? 0.75    : options[:zscale] 
-  height    = options[:height]   == nil ? 1.65.m  : options[:height]
-  
-  
-  alpha     = 0.75
+  alpha     = 0.9
   numsegs   = 24
+  height    = 1.65.m
+  
   
   # add a material to model
   material = model.materials.add('nplab_camera_material')
-  material.color= Sketchup::Color.new(220, 220, 120)      # light yellow 
+  material.color= Sketchup::Color.new(239, 255, 255)      # light yellow 
   material.alpha= alpha
   
+  max_r = 2.0.m
+  core_sz = 0.1.m
+  head_move_r = 0.5.m
   # draw circles at the bottom
   base = entities.add_group
   base.name="nplab_camera_base"
   base_center = [0, 0, 0]
-  radiuses[0...-1].each{|radius|
-    base.entities.add_circle(base_center, [0, 0, 1], radius, numsegs)
-  }
-  circle_edge = base.entities.add_circle(base_center, [0, 0, 1], radiuses[-1], numsegs)
-  circle_face = base.entities.add_face(circle_edge)  
-  t = Geom::Transformation.scaling  base_center, xscale, yscale, zscale #transformation
-  base.transform! t
+  circle_edge = base.entities.add_circle(base_center, [0, 0, 1], max_r, numsegs)
+  circle_face = base.entities.add_face(circle_edge)
+  circle_face.pushpull 0.05.m
   
   # draw the upper part
   upper_center = [0, 0, height]
   
-  # draw a core
+  # draw a ball to identicate the range of the head movement 
   core = entities.add_group
   core.name = "nplab_camera_core"
-  draw_camera(core.entities, upper_center, core_sz)
+  draw_ball(core.entities, upper_center, core_sz)
+  core.material= material  
+  
   
   #draw the motion boundary around the core 
   camera_bounds = entities.add_group
   camera_bounds.name = "nplab_camera_bounds"
-  radiuses.each{|radius|
-    draw_ball(camera_bounds.entities, upper_center, radius, 24)
-  }
-  t = Geom::Transformation.scaling  upper_center, xscale, yscale, zscale
-  camera_bounds.transform! t
-  camera_bounds.material=material
+  draw_ball(camera_bounds.entities, upper_center, head_move_r)
+   
+  #bound = camera_bounds.entities.add_circle(upper_center, [0, 0, 1], max_r, numsegs)
+  #bound_face = camera_bounds.entities.add_face(bound)
   
   #draw a line connecting the base and the camera
   entities.add_line(base_center, upper_center)
+  
+  group.material=material
+  
 end
 
 def draw_camera(entities, center, sz)
