@@ -8,18 +8,9 @@ require "#{File.dirname(__FILE__)}/ui_small_tools.rb"
 # it will just working on the first camera
 module NPLAB_UI
 	class CTargetTool
-		def is_ok()
-			model = Sketchup.active_model
-			definition = model.definitions[NPLAB::CN_CAMERA] 
-			if definition != nil && definition.instances.size == 1
-				return true
-			end
-			return false
-		end
-		
 		def activate()
 			@is_active = true
-			if !is_ok()
+			if NPLAB_UI.get_camera_number() !=1
 				@is_active = false
 				UI.messagebox("The number of camera must be 1.")
 				Sketchup.active_model.select_tool(nil)
@@ -142,6 +133,7 @@ module NPLAB_UI
 				view.refresh
 			end
 		end
+
 		
 		#--------------------------------------------------------------------------------
 		# store the status

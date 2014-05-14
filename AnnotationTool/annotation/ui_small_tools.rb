@@ -21,6 +21,17 @@ module NPLAB_UI
 		return transformation
 	end
 	
+	def self.get_camera_number()
+		model = Sketchup.active_model
+		definition = model.definitions[NPLAB::CN_CAMERA] 
+		
+		if definition != nil 
+			return definition.instances.size
+		end
+		
+		return 0
+	end
+	
 	def self.reset_tool_status()
 		model = Sketchup.active_model
 	
@@ -56,13 +67,30 @@ module NPLAB_UI
 		Sketchup.active_model.active_view.refresh
 	end
 	
-	def self.ui_flip_camera_v()
+	def self.ui_flip_camera_validation()
+		
 		model = Sketchup.active_model
 		selection = model.selection
-		selection.each { |instance| 		
-			if instance.typename=="ComponentInstance" && instance.name== NPLAB::CN_CAMERA
-			end
-		}
+		if model.selection.length != 1
+			return MF_GRAYED
+		end
+		
+		puts model.selection[0].typename
+		puts	model.selection[0].definition.name
+		puts NPLAB::CN_CAMERA
+		if model.selection[0].typename != "ComponentInstance" || model.selection[0].definition.name != NPLAB::CN_CAMERA
+			return MF_GRAYED
+		end
+		
+		return MF_ENABLED
+	end
+	
+	def self.ui_flip_camera()
+		model = Sketchup.active_model
+		instance= model.selection[0]	
+		orgt = instance.transformation
+		newt = Geom::Transformation.new(orgt.origin, Geom::Vector3d.new([0,0,0]) - orgt.zaxis)
+		instance.transformation= newt
 	end
 	
 	def self.flip_instance(instance)
@@ -72,5 +100,8 @@ module NPLAB_UI
 		newt = Geom::Transformation.new(origin, zaxis) 
 		instance.transformation= newt	
 	end
+	
+	
+	
 end
 

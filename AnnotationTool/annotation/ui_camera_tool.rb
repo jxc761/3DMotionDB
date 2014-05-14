@@ -1,6 +1,5 @@
 require "#{File.dirname(__FILE__)}/annotation.rb"
 require "#{File.dirname(__FILE__)}/ui_small_tools.rb"
-# load("/Users/Jing/Library/Application Support/SketchUp 2013/SketchUp/Plugins/annotation/ui_camera_tool.rb")
 
 module NPLAB_UI
 	

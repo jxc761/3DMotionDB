@@ -1,6 +1,6 @@
 
 require "#{File.dirname(__FILE__)}/annotation.rb"
-#load('/Users/Jing/Library/Application Support/SketchUp 2013/SketchUp/Plugins/annotation/ui_save_setting.rb')
+
 module NPLAB_UI
 	#----------------------------------------------------------------
 	#
@@ -17,16 +17,15 @@ module NPLAB_UI
 		Sketchup.set_status_text "The setting have been saved to #{filename}"
 	end
 
+	#----------------------------------------------------------------
+	#
+	#----------------------------------------------------------------
+	def self.ui_save_setting_validation()
+		status = Sketchup.active_model.path == "" ? MF_GRAYED : MF_ENABLED
+	end
+	
 	def self.ui_save_setting()
 		model = Sketchup.active_model
-		while model.path == ""
-			path_to_save_to = UI.savepanel("Save Model", "./", "model.skp")
-			if path_to_save_to == nil
-				Sketchup.set_status_text "The setting can not be saved before the model is saved"
-				return 
-			end
-		end	
-	
 		filename = gen_file_name(model, ext="txt")
 		save_setting(model, filename)
 		Sketchup.set_status_text "The setting have been saved to #{filename}"
