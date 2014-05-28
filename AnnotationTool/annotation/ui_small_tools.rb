@@ -75,9 +75,6 @@ module NPLAB_UI
 			return MF_GRAYED
 		end
 		
-		puts model.selection[0].typename
-		puts	model.selection[0].definition.name
-		puts NPLAB::CN_CAMERA
 		if model.selection[0].typename != "ComponentInstance" || model.selection[0].definition.name != NPLAB::CN_CAMERA
 			return MF_GRAYED
 		end

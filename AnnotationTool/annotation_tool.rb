@@ -67,7 +67,7 @@ module NPLAB_UI
 	  context_menu.set_validation_proc(item){NPLAB_UI.ui_flip_camera_validation}
     end
 	
-
+	
 end	
 
 file_loaded( __FILE__ )

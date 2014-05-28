@@ -21,6 +21,10 @@ module NPLAB_UI
 	#
 	#----------------------------------------------------------------
 	def self.ui_save_setting_validation()
+		if Sketchup.active_model==nil 
+			return MF_GRAPYED
+		end
+		
 		status = Sketchup.active_model.path == "" ? MF_GRAYED : MF_ENABLED
 	end
 	

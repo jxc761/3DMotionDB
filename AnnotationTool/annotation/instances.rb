@@ -44,6 +44,11 @@ module NPLAB
     return inst
   end
 
+  # Get instance_id 
+  def self.get_id(inst)
+	 return inst.get_attribute(DICT_NAME, AN_ID, Time.now.to_i.to_s)	   
+  end
+  
   # Find the instance with the given id
   #
   def self.find_instance(model, component_name, id)

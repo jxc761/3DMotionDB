@@ -9,28 +9,32 @@ module NPLAB
     # load 
     #----------------------------------------------------------------
     def self.load_from_txt(model, filename)
-      file = file.open(filename, "r")
-      lines = file.readlines(filepath)
+      file = File.open(filename, "r")
+      lines = file.readlines()
       file.close()
-  
+
       # load camera
       camera_part = load_part(lines, TN_CAMERAS)
       camera_definition = self.get_definition(model, CN_CAMERA, FN_CAMERA)
-      part.each{ |line|
-        instance_from_s(model, camera_definition, LN_CAMERA, line)
+      camera_part.each{ |line|
+        instance_from_s(model, camera_definition, LN_CAMERAS, line)
       }
-      
+	  
       #load targets
       target_part = load_part(lines, TN_TARGETS)
       target_definition = self.get_definition(model, CN_TARGET, FN_TARGET)
-      part.each{ |line|
+      target_part.each{ |line|
         instance_from_s(model, target_definition, LN_TARGETS, line)
       }
       target_definition = self.get_definition(model, CN_TARGET, FN_TARGET)
-      
+	  
       #load pairs
-      pair_part = load_part(lines, TN_TARGETS)
-      model.set_attribute(DICT_NAME, AN_PAIRS, pair_part)
+      pair_part = load_part(lines, TN_PAIRS)
+	  pairs = ""
+	  pair_part.each{ |line|
+		  pairs << line
+	  }
+      model.set_attribute(DICT_NAME, AN_PAIRS, pairs)
     end
 
     def self.instance_from_s(model, definition, layer_name, s)
@@ -39,8 +43,8 @@ module NPLAB
       substrs[1..-1].each{|v| ta << v.to_f }   
       hash = {:id=> substrs[0], :transformation => ta}
       id =  substrs[0]
-      transformation = Sketchup::Geom::Transformation(ta)
-      new_instance(model, definition, transformation, id, layer_name)
+      transformation = Geom::Transformation.new(ta)
+      new_instance(model, definition, transformation, layer_name, id)
     end
     
    
@@ -48,11 +52,12 @@ module NPLAB
     def self.load_part(lines, tagName)
       part = []
       status = 0
+
       lines.each{ |line|
-        if line == "=begin_" + tagName
+        if line.strip == ("=begin_" + tagName)
         	status = 1 #beginning
         	next
-        elsif line == "=end_" + tagName
+        elsif line.strip == ("=end_" + tagName)
         	# status = 0 #end
         	# next
         	break

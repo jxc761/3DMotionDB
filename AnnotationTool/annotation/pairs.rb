@@ -11,12 +11,13 @@ module NPLAB
   
    def self.str_to_pairs(model, s)
     substrs=s.split("\r\n")
-
+	pairs = []
     substrs.each{|substr|
+	  substr.strip!
       next if substr== ""
       ids = substr.split(":")
-      camera = find_instance(model, ids[0])
-      target = find_instance(model, ids[1])
+      camera = find_instance(model, CN_CAMERA, ids[0])
+      target = find_instance(model, CN_TARGET, ids[1])
       pairs << [camera, target]
     }
     
@@ -40,7 +41,7 @@ module NPLAB
   # 
   def self.get_pairs(model)
     attr = model.get_attribute(DICT_NAME, AN_PAIRS, "")
-    return str_to_pairs(model, s)
+    return str_to_pairs(model, attr)
   end
   
   def self.set_pairs(model, pairs)
