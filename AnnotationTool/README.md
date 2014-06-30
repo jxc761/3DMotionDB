@@ -1,7 +1,7 @@
 AnnotationTool
 ==============
 
-A tool to set up a camera in Sketchup scene.
+A tool to set the camera for a SketchUp scene.
 
 =================
 Install
