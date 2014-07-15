@@ -30,10 +30,10 @@ module NPLAB
 	  
       #load pairs
       pair_part = load_part(lines, TN_PAIRS)
-	  pairs = ""
-	  pair_part.each{ |line|
-		  pairs << line
-	  }
+	    pairs = ""
+	    pair_part.each{ |line|
+		    pairs << line
+	    }
       model.set_attribute(DICT_NAME, AN_PAIRS, pairs)
     end
 
