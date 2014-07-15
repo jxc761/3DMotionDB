@@ -1,7 +1,7 @@
 module NPLAB
 	# two speeds, 12 directions
-	def self.generate_small_mts(pairs)
-		ranges	= [[0.125.m/120, 0.125.m/120], [0.25.m/120, 0.25.m/120]]
+	def self.generate_small_mts(pairs, fps=120)
+		ranges	= [[0.125.m/fps, 0.125.m/fps], [0.25.m/fps, 0.25.m/fps]]
 		mts 	= []
 		pairs.each{|pair|
 			ta = pair[0].transformation

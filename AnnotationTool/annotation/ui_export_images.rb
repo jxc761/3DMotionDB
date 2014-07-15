@@ -2,14 +2,10 @@
 
 require "#{File.dirname(__FILE__)}/annotation.rb"
 #load("/Users/Jing/Library/Application Support/SketchUp 2013/SketchUp/Plugins/annotation/ui_export_images.rb")
-
-
-
 class FixationAnimation
 	def initialize(export_opts)
 		model=Sketchup.active_model
 		view = model.active_view
-		
 		
 		@image_width        = export_opts["width"]
 		@image_height       = export_opts["height"]
@@ -78,7 +74,9 @@ class FixationAnimation
 
 	def nextFrame(view)
 		# if all animations are finished or no connection need to be animated, return false
-		if @cur_frame_index >= @nframes || @cur_mts_index >= @cur_mts.size || @cur_connection_index >= @connections.size 
+		if @cur_frame_index >= @nframes || @cur_mts_index >= @cur_mts.size || @cur_connection_index >= @connections.size
+			NPLAB_UI.reset_tool_status()
+			exec("ps -clx | grep -i 'sketchup' | awk '{print $2}' | head -1 | xargs kill -9")
 			return false
 		end
 		
@@ -129,4 +127,14 @@ class FixationAnimation
 		end     
 		return true
 	end
+	
+	def stop()
+		
+		#@stop_time += 1
+		if @cur_frame_index >= @nframes && @cur_mts_index >= @cur_mts.size && @cur_connection_index >= @connections.size
+			#puts("to quit")
+			exec("ps -clx | grep -i 'sketchup' | awk '{print $2}' | head -1 | xargs kill -9")
+		end
+	end
+	
 end

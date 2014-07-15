@@ -3,8 +3,8 @@ module NPLAB
 	
 	# generate walking motion transformation for a pair
 	# srand(@seed)
-	def self.generate_walking_mts(pairs)
-		ranges	= [[0.25.m/120, 0.25.m/120],[0.5.m/120, 0.5.m/120], [1.0.m/120, 1.0.m/120]]
+	def self.generate_walking_mts(pairs, fps=120)
+		ranges	= [[0.25.m/fps, 0.25.m/fps],[0.5.m/120, 0.5.m/fps], [1.0.m/120, 1.0.m/fps]]
 		mts 	= []
 		pairs.each{|pair|
 			ta = pair[0].transformation
