@@ -94,4 +94,9 @@ module NPLAB
     return t.origin
   end
   
+  def self.get_target_up(target)
+    t = target.transformation
+    return t.zaxis
+  end
+  
 end

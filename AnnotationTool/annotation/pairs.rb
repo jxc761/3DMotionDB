@@ -59,6 +59,19 @@ module NPLAB
     }
     set_pairs(model, new_pairs)
   end
-
+  
+  
+  def self.get_pairs_idx(model)
+    s = model.get_attribute(DICT_NAME, AN_PAIRS, "")
+    substrs=s.split("\r\n")
+    pairs = []
+    substrs.each{|substr|
+    substr.strip!
+      next if substr== ""
+      ids = substr.split(":")
+      pairs << {"camera_id" => ids[0], "target_id" => ids[1] }
+    }
+    return pairs
+  end
   
 end

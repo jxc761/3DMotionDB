@@ -1,0 +1,17 @@
+# The format file to specify cameras and targets for a scene
+
+{
+cameras:[
+{id:<camera_id>, position:[x,y,z]}, up:[x, y, z]
+],
+
+targets:[
+{id:target_id, position:[x, y, z]}, zaxis:[x, y, z]
+
+] 
+
+pairs:[
+{camera_id:<camera_id>, target_id:<target_id>},
+]
+}
+
