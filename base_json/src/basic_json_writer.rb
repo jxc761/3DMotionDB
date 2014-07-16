@@ -21,7 +21,7 @@ module NPLAB
     # Convert the object to json string
     # OBJ must be an instance of array of hash
     # return the string of json
-    def to_json(obj)
+    def self.to_json(obj)
       case obj
       when Array
         jstr = array_to_json(obj)
