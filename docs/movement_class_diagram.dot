@@ -1,0 +1,82 @@
+digraph G {
+  fontname = "Bitstream Vera Sans"
+  fontsize = 8
+  
+  
+  # b [fillcolor=yellow fixedsize=true label="a very long label"]
+  # d [fixedsize=shape label="an even longer label"]
+     
+     
+     
+  graph[labelloc="t" ]
+  node [
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    shape = "record"
+  ]
+  
+  edge [
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+  ]
+  
+  rankdir = "BT"
+  
+  BasicMovement [
+  label = "{CBasicMovement|
+  + init_position: Transformatoin\l
+  + init_velocity: Vector3d\l|
+  + position(t): Transformation\l
+  + init_speed():float\l
+  + init_speed=(speed):void\l
+  + init_direction():Vector3d\l
+  + init_location():Vector3d\l
+  + location(t):Vector3d\l
+  + xaxis(t):Vector3d\l
+  + yaxis(t):Vector3d\l
+  + zaxis(t):Vector3d\l
+  }"
+  ]
+  
+
+
+
+
+  LinearMovement [
+   
+  label = "{CLinearMovement|
+  + acceleration\l |
+  + position(t): Transformation\l
+  }"
+  ]
+
+  CircularMovement [
+
+  label = "{CCircularMovement | 
+
+  - origin : Point3d \l
+  - center : Point3d \l|
+
+  + origin() : Point3d \l
+  + center() : Point3d \l
+  + init_angular_speed() : float \l
+  + init_angular_speed=(w): void \l
+  + init_veloctiy=(v0):Vector3d \l
+  + rotation_radius():float\l
+  + radius: float\l
+  + rotation_axis:Vector3d\l
+  + position(t):Transformation\l
+
+  - project_v0(v0): Vector3d\l
+
+  }"
+  ] 
+  
+
+  
+  edge [arrowhead = "empty"]
+
+  LinearMovement -> BasicMovement
+  CircularMovement -> BasicMovement
+  { rank = same; LinearMovement; CircularMovement}
+}

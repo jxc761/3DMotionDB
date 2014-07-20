@@ -1,6 +1,7 @@
 
 
-require "/Users/Jing/OneDrive/3DMotionDB/tools/base_json/src/basic_json.rb"
+require "#{File.dirname(__FILE__)}/libs.rb"
+
 
 module NPLAB
     JSON_IO="json_io"
@@ -8,8 +9,14 @@ module NPLAB
     # load the setting from a file
     #
     def self.load_from_json(model, filename)
-      
+      hash 
       raise "No implemention"
+    end
+    
+    
+    def self.load_json(filename)
+      hash = BasicJson.load_from_json(filename) 
+      return hash
     end
     # 
     # save the setting to a file
@@ -36,9 +43,14 @@ module NPLAB
           
           id        = inst.get_attribute(DICT_NAME, AN_ID, Time.now.to_i.to_s)
           position  = get_eye_position(inst)
-          up        = get_up(inst)
+          transf    = inst.transformation
+          origin    = transf.origin
+          xaxis     = transf.xaxis
+          yaxis     = transf.yaxis
+          zaxis     = transf.zaxis
           
-          camera  =  {"id" => id, "position"=> to_m(position), "up"=>to_m(up)}
+          camera  =  {"id" => id, "position"=> to_m(position), "origin" => to_m(origin),
+            "xaxis" => to_m(xaxis), "yaxis" => to_m(yaxis), "zaxis"=>to_m(zaxis)}
           cameras << camera
         }
       end
@@ -51,8 +63,16 @@ module NPLAB
         instances.each{ |inst|
           id        = inst.get_attribute(DICT_NAME, AN_ID, Time.now.to_i.to_s)
           position  = get_target_position(inst)
-          up        = get_target_up(inst)
-          target = {"id" => id, "position" => to_m(position), "up"=> to_m(up)}
+          
+          transf    = inst.transformation
+          origin    = transf.origin
+          xaxis     = transf.xaxis
+          yaxis     = transf.yaxis
+          zaxis     = transf.zaxis
+          
+          target = {"id" => id, "position" => to_m(position), "origin" => to_m(origin),
+            "xaxis" => to_m(xaxis), "yaxis" => to_m(yaxis), "zaxis"=>to_m(zaxis)}
+            
           targets << target
         }
       end
@@ -60,7 +80,6 @@ module NPLAB
       # pair information
       pairs = get_pairs_idx(model)
       
-        
       hash = {"cameras"=>cameras, "targets"=>targets, "pairs"=>pairs}
 
     end

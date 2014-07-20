@@ -1,5 +1,7 @@
 require "#{File.dirname(__FILE__)}/annotation/annotation_ui.rb"
 
+require "#{File.dirname(__FILE__)}/annotation/movement/movement.rb"
+
 module NPLAB_UI
   #Sketchup.send_action("showRubyPanel:")
 
