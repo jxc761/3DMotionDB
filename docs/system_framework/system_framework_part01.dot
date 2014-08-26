@@ -1,0 +1,121 @@
+digraph system_framework_part1{
+rankdir="LR"
+subgraph cluster_object_level_scene_generation_components{
+style ="rounded"
+fillcolor = "#e0e0ff"
+rank="same"
+constraint=false
+fontname = "helvetica"
+fontsize = 12
+
+node [shape=none]
+
+objects [
+label=< <table width="1" fixedsize="true" border="0" title="objects">
+<tr><td> objects </td></tr>
+<tr><td height="1" fixedsize="true"><img scale="both" src="./images/object01.jpg" /></td></tr> 
+<tr><td height="1" fixedsize="true">.<BR/>.<BR/>.<BR/>
+</td></tr> 
+</table> >
+]
+
+film_studio[ 
+
+label=< <table width="0.1" fixedsize="true" border="0" >
+<tr><td>studio </td> </tr>
+<tr><td height="1"><img scale="both" src="./images/studio01.png" /></td></tr> 
+<tr><td height="1">.<BR/>.<BR/>.<BR/>
+</td></tr> 
+</table> >
+]
+
+object_assemble_conf[ 
+label= <
+<table border="0" >
+<tr><td><img src="./images/json_file_icon.png" /></td></tr>
+<tr><td>the configuration <BR />of assembler</td></tr>
+</table> >
+]
+
+objects_assembly_plant[
+style="rounded"
+color=blue
+shape=box 
+height="2"
+label="objects assembler"
+]
+
+
+object_level_scenes[ 
+shape= none
+label = <
+<table border="0" >
+<tr><td><img src="./images/sketchup_file_icon.png" /></td></tr>
+<tr><td>object level <BR /> scenes</td></tr>
+</table>>
+]
+
+object_assemble_info[ 
+label= <
+<table border="0" >
+<tr><td><img src="./images/json_file_icon.png" /></td></tr>
+<tr><td>information <BR /> of object assembling</td></tr>
+</table> >
+]
+
+
+camera_target_info[ 
+label= <
+<table border="0" >
+<tr><td><img src="./images/json_file_icon.png" /></td></tr>
+<tr><td>camera-target<BR/> setting</td></tr>
+</table> >
+]
+
+
+autofocus_tool[
+style="rounded"
+color=blue
+shape=box 
+height="2"
+label="autofocus tool"
+]
+
+
+
+subgraph cluster_object_generation_inputs{
+style=  "dashed"
+color = "orange"
+objects 
+film_studio
+object_assemble_conf
+}
+
+subgraph cluster_object_generation_outputs{
+style=  "dashed"
+color = "orange"
+objects_assembly_plant
+object_level_scenes
+object_assemble_info
+autofocus_tool
+}
+subgraph cluster_outputs{
+style=  "dashed"
+color = "orange"
+camera_target_info
+}
+
+objects               -> objects_assembly_plant[lhead=cluster_object_generation_inputs]
+film_studio           -> objects_assembly_plant[lhead=cluster_object_generation_inputs]
+object_assemble_conf  -> objects_assembly_plant[lhead=cluster_object_generation_inputs]
+
+objects_assembly_plant -> object_assemble_info
+objects_assembly_plant -> object_level_scenes
+
+object_assemble_info -> autofocus_tool[weight=1.0]
+object_level_scenes -> autofocus_tool
+
+autofocus_tool -> camera_target_info
+
+}
+}

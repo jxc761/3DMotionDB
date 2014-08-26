@@ -1,0 +1,50 @@
+digraph class_diagram{
+rankdir= LR
+node [shape=record]
+CDirectionsGenerator[
+
+label="{{CDirectionsGenerator|
++ generate_directions(coordinate_system:Transformation) : Array\l
+}}"
+
+]
+
+
+  BasicMovement [
+  
+  label = "{{CBasicMovement|
+  + init_position: Transformatoin\l 
+  + init_velocity: Vector3d\l|
+  + position(t): Transformation\l
+  + init_speed():float\l
+  + init_speed=(speed):void\l
+  + init_direction():Vector3d\l
+  + init_location():Vector3d\l
+  + location(t):Vector3d\l
+  + xaxis(t):Vector3d\l
+  + yaxis(t):Vector3d\l
+  + zaxis(t):Vector3d\l
+  }}"
+  ]
+  
+  CSpeedGenerator[
+  label = "{{CSpeedGenerator|
+  +generate_speeds():Array\l
+  }}"
+  ]
+
+build_speeds_generator -> CSpeedGenerator[weight=100]
+build_directions_generator ->  CDirectionsGenerator[weight=100]
+build_mover-> BasicMovement[weight=100]
+
+
+subgraph c1{
+rank=same
+CDirectionsGenerator ->CSpeedGenerator -> BasicMovement[style="invis" weight=100]
+}
+subgraph c2
+{
+  rank=same
+build_directions_generator ->build_speeds_generator -> build_mover[style="invis" weight=100]
+}
+}

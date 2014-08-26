@@ -1,7 +1,10 @@
 module NPLAB
   module BasicJson
+    def self.load(filename)
+      parse(filename)
+    end
     
-   
+
     #------------------------------------------------------------
     # parse
     #------------------------------------------------------------

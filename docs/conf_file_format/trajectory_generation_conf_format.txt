@@ -1,0 +1,54 @@
+
+THE FILE FORMAT OF TRAJECTORIES GENERATION CONFIGURATION FILE
+
+<configuration> | [<configuration:object>(, <configuration>)*]
+
+
+<configuration:object> 
+{ 
+  "motion_types" : <motion_types> | "motion_type" : <motion_type> ,
+  "directions"   : <directions>   | "direction"   : <dirction>    ,
+  "speeds"       : <speeds>       | "speed"       : <speed>       ,
+  "duration"     : int
+  "sample_rate"  : int   
+}
+
+
+<motion_types:array> 
+  [ <motion_type>(, <motion_type>)*]
+
+<motion_type:string>
+  "linear_movement|rotation_around_target|rotation_around_up_axis|walking"
+
+<directions: array>
+   [<direction> (,<direction>)* ]
+
+<direction: object>
+{<direction_specifier>, <direction_options>}
+
+<speeds: array>
+  [<speed>(, <speed>)*]
+  
+<speed: array|float>
+  [min_speed:float, (middle_speed:float,)* max_speed:float] | speed:float
+  
+
+{<direction_specifier : string>, <direction_options: object>}
+  (1) rand_directions_in_space  
+      "direction_specifier" : "rand_directions_in_space", options: { "ndirections": 4|6|8|12|20} 
+  
+  (2) rand_directions_on_plane
+      "direction_specifier": "rand_directions_on_plane", options: { "plane": "xy|yz|zx", "ndirections":int} 
+  
+  (3) regular_directions_in_space
+      "direction_specifier": regular_directions_in_space", options:{"ndirections" : 4|6|8|12|20}
+  
+  (4) regular_directions_in_plane
+     "direction_specifier": "regular_directions_in_plane", options: { "plane": "xy|yz|zx", "ndirections":int} 
+  
+  (5) special_direction
+      "direction_specifier":"special_directions", 
+      options:{"directions" : [[Vx:float, Vy:float, Vz: float]| "left|right|up|down|forward|backward"]}
+
+
+  

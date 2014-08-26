@@ -1,7 +1,10 @@
 module NPLAB
   module BasicJson
     
-   
+    def self.save(filename, json)
+      write_to_json(filename, json)
+    end
+    
     #------------------------------------------------------------
     # save the internal structure to json file
     #------------------------------------------------------------

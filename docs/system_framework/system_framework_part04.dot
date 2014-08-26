@@ -1,0 +1,76 @@
+digraph system_framework_part1{
+rankdir="LR"
+
+subgraph cluster_motion_generation{
+style ="rounded"
+fillcolor = "#e0e0ff"
+
+constraint=false
+fontname = "helvetica"
+fontsize = 12
+
+node [shape=none]
+
+
+skp_models[ 
+shape= none
+label = <
+<table border="0" >
+<tr><td><img src="./images/sketchup_file_icon.png" /></td></tr>
+<tr><td>Sketchup<BR />models</td></tr>
+</table>>
+]
+
+
+trajectory_info[ 
+label= <
+<table border="0" >
+<tr><td><img src="./images/json_file_icon.png" /></td></tr>
+<tr><td>Trajectory</td></tr>
+</table> >
+]
+
+render_conf[ 
+label= <
+<table border="0" >
+<tr><td><img src="./images/json_file_icon.png" /></td></tr>
+<tr><td>Render<BR/> Configuration</td></tr>
+</table> >
+]
+
+render[
+style="rounded"
+color=blue
+shape=box 
+height="1"
+label="Render"
+]
+
+images[ 
+style="filled,rounded"
+fillcolor="#e0e0ff"
+label= <
+<table border="0" >
+<tr><td><img src="./images/images.png" /></td></tr>
+<tr><td>images</td></tr>
+</table> >
+]
+
+
+
+skp_models -> render
+trajectory_info->render
+render_conf-> render
+render->images
+/*
+subgraph cluster_inputs{
+rank="same"
+style="dashed"
+color="orange"
+skp_models
+trajectory_info
+render_conf
+}
+*/
+}
+}

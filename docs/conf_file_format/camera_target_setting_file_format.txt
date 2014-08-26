@@ -1,0 +1,32 @@
+# The format file to specify cameras and targets for a scene
+
+{
+  cameras:[ 
+    {
+      "id"        : <camera_id>, 
+      "position"  : <position> 
+    }, 
+  ],
+
+  targets:[ 
+    {
+      "id"        : <target_id>, 
+      "position"  : <position> 
+    }, 
+  ] 
+
+  pairs:[ 
+    [
+      <camera_id> : <target_id>
+    ]
+  ]
+}
+
+
+<position> :
+  {
+    "origin" :[x, y, z]
+    "xaxis"  :[x, y, z]
+    "yaxis"  :[x, y, z]
+    "zaxis"  :[x, y, z]
+  }

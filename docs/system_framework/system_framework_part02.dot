@@ -1,0 +1,56 @@
+digraph system_framework_part1{
+rankdir="LR"
+subgraph cluster_object_level_scene_generation_components{
+style ="rounded"
+fillcolor = "#e0e0ff"
+rank="same"
+constraint=false
+fontname = "helvetica"
+fontsize = 12
+
+node [shape=none]
+skp_models[ 
+shape= none
+label = <
+<table border="0" >
+<tr><td><img src="./images/sketchup_file_icon.png" /></td></tr>
+<tr><td>Sketchup<BR /> models</td></tr>
+</table>>
+]
+
+person[
+label = <
+<table border="0" >
+<tr><td><img src="./images/user.png" /></td></tr>
+<tr><td>users</td></tr>
+</table> >
+]
+
+
+camera_target_info[ 
+label= <
+<table border="0" >
+<tr><td><img src="./images/json_file_icon.png" /></td></tr>
+<tr><td>camera-target<BR/> setting information</td></tr>
+</table> >
+]
+
+annotation_tool[
+style="rounded"
+color=blue
+shape=box 
+height="1"
+label="Annotation tool"
+]
+//person -> skp_models [rotate=90  orientation="landscape" labelangle="120" label="Collect" labeldistance="5" labelfloat="false"]
+person -> annotation_tool[label="Use"]
+skp_models->annotation_tool[weight=1000]
+annotation_tool -> camera_target_info
+
+subgraph inputs{
+rank="same"
+annotation_tool
+person
+}
+}
+}

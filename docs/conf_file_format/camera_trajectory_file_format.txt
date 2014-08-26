@@ -1,0 +1,24 @@
+=============================
+ShootScript File Format
+==============================
+
+{
+  "target"  : {
+    "id"        : <target_id>, 
+    "position"  : <position>
+  }
+  
+  "camera" : {
+    "id"        : <camera_id>
+    "position"  : <camera_position>
+  }
+    
+  "camera_trajectory"  : {
+    "motion"      : <motion>
+    "duration"    : <duration>
+    "sample_rate" : <sample_rate>
+    "trace"       : <trace> 
+  }
+}
+
+

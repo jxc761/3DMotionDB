@@ -1,0 +1,81 @@
+digraph system_framework_part1{
+rankdir="LR"
+
+subgraph cluster_motion_generation{
+style ="rounded"
+fillcolor = "#e0e0ff"
+
+constraint=false
+fontname = "helvetica"
+fontsize = 12
+
+node [shape=none]
+
+
+skp_models[ 
+shape= none
+label = <
+<table border="0" >
+<tr><td><img src="./images/sketchup_file_icon.png" /></td></tr>
+<tr><td>Sketchup<BR />models</td></tr>
+</table>>
+]
+
+camera_target_info[ 
+label= <
+<table border="0" >
+<tr><td><img src="./images/json_file_icon.png" /></td></tr>
+<tr><td>camera-target<BR/> setting information</td></tr>
+</table> >
+]
+
+motion_generation_conf[ 
+label= <
+<table border="0" >
+<tr><td><img src="./images/json_file_icon.png" /></td></tr>
+<tr><td>Motion generation<BR/> configuration</td></tr>
+</table> >
+]
+
+trajectory_info[ 
+style="filled,rounded"
+fillcolor="#e0e0ff"
+label= <
+<table border="0" >
+<tr><td><img src="./images/json_file_icon.png" /></td></tr>
+<tr><td>Trajectory</td></tr>
+</table> >
+]
+
+trajectory_generator[
+style="rounded"
+color=blue
+shape=box 
+height="1"
+label="Trajectory generator"
+]
+
+trajectory_validator[
+style="rounded"
+color=blue
+shape=box 
+height="0.75"
+label="Trajectory validator"
+]
+skp_models -> trajectory_generator[style="invis"]
+camera_target_info -> trajectory_generator
+motion_generation_conf -> trajectory_generator
+trajectory_generator -> trajectory_info[weight=100]
+trajectory_validator-> trajectory_info
+trajectory_info->trajectory_validator
+skp_models -> trajectory_validator
+
+
+subgraph va{
+rank="same"
+trajectory_validator
+trajectory_info
+
+}
+}
+}
