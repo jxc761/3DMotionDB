@@ -105,7 +105,7 @@ module NPLAB
   		prefix = model.path.sub(/\.skp$/,"")
   		i = 1
   		while true
-  			filename = prefix + "." + i.to_s + "." + ext
+  			filename = prefix + "_" + i.to_s + "." + ext
   			if !File.file?(filename)
   				break
   			end
