@@ -1,0 +1,5 @@
+require "#{File.dirname(__FILE__)}/util.rb"
+require "#{File.dirname(__FILE__)}/direction_generator.rb"
+require "#{File.dirname(__FILE__)}/speed_generator.rb"
+require "#{File.dirname(__FILE__)}/generator_builder.rb"
+require "#{File.dirname(__FILE__)}/shoot_script_generator.rb"
