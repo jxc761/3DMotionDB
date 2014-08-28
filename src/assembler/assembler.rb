@@ -7,41 +7,9 @@ module NPLAB
     GN_OBJECTS  = "nplab_objects_group"       # GN: group name
     LN_OBJECTS  = "nplab_objects_layer"       # LN: layer name
     
+  
     
-    def self.assemble_scenes(fn_studio, dn_objects, dn_outputs, nscenes, nobjects)
-      status = Sketchup.open_file(fn_studio)
-      unless status
-        raise "Cannot open file: #{fn_studio}"
-      end
-      studio_name = File.basename(fn_studio).sub(/.skp$/, "")
-      
-      model = Sketchup.active_model
-      model.active_view.camera.fov=45
-     
-      (0...nscenes).each{|s|
-        puts "scene: #{s}....."
-        fn_output_spots = File.join(dn_outputs, "#{studio_name}_#{s}.json")
-        fn_output_skp   = File.join(dn_outputs, "#{studio_name}_#{s}.skp")
-        fn_output_img   = File.join(dn_outputs, "#{studio_name}_#{s}.jpg")
-        
-        objects = assemble_in_model(model, dn_objects, nobjects)
-      
-        spots = CoreIO::CSpots.from_instances(objects)
-        CoreIO.set_spotted_objects(model, spots)
-        spots.save(fn_output_spots)
-        
-        model.save(fn_output_skp)
-        model.active_view.write_image(fn_output_img, 256, 256, true, 1.0)
-        
-        # clear the model
-        model.entities.erase_entities(objects)
-        model.definitions.purge_unused
-      }
-      
-    end
-    
-    def self.assemble(fn_skp, fn_spots, dn_objects, nobjects)
-
+    def self.assemble(fn_skp, fn_spots, fn_img, dn_objects, nobjects)
       # new model with fn_output_skp    
       status = Sketchup.open_file(fn_skp)
       unless status
@@ -59,8 +27,8 @@ module NPLAB
   
       
       # save the model      
-      Sketchup.active_model.save(fn_skp)
-      
+      model.save(fn_skp)
+      model.active_view.write_image(fn_img, 256, 256, true, 1.0)
     end
 
     def self.assemble_in_model(model, dn_objects, nobjects)
@@ -82,7 +50,6 @@ module NPLAB
       
       # assemble objects
       objects = assemble_objects(model, selected, centers, plane, transf)
-
      
       
       # purge unused
@@ -171,3 +138,39 @@ module NPLAB
 
   end
 end
+
+
+=begin
+    
+    def self.assemble_scenes(fn_studio, dn_objects, dn_outputs, nscenes, nobjects)
+      status = Sketchup.open_file(fn_studio)
+      unless status
+        raise "Cannot open file: #{fn_studio}"
+      end
+      studio_name = File.basename(fn_studio).sub(/.skp$/, "")
+      
+      model = Sketchup.active_model
+      model.active_view.camera.fov=45
+     
+      (0...nscenes).each{|s|
+        puts "scene: #{s}....."
+        fn_output_spots = File.join(dn_outputs, "#{studio_name}_#{s}.json")
+        fn_output_skp   = File.join(dn_outputs, "#{studio_name}_#{s}.skp")
+        fn_output_img   = File.join(dn_outputs, "#{studio_name}_#{s}.jpg")
+        
+        objects = assemble_in_model(model, dn_objects, nobjects)
+      
+        spots = CoreIO::CSpots.from_instances(objects)
+        CoreIO.set_spotted_objects(model, spots)
+        spots.save(fn_output_spots)
+        
+        model.save(fn_output_skp)
+        model.active_view.write_image(fn_output_img, 256, 256, true, 1.0)
+        
+        # clear the model
+        model.entities.erase_entities(objects[0].parent)
+        model.definitions.purge_unused
+      }
+      
+    end
+=end

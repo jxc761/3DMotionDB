@@ -30,12 +30,8 @@ system("rm -r #{dn_outputs}")
 system("mkdir #{dn_outputs}")
 
 studios = Dir[File.join(dn_studios, "*.skp")]
-studios.each{ |fn_studio|
-  args = [fn_studio, dn_objects, dn_outputs, nscenes, nobjects]  
-  CLIUtil.run_file(fn_ruby, args)
-}
 
-=begin
+
 studios.each{ |fn_studio|
   studio_name = File.basename(fn_studio).sub(/.skp$/, "")
   (0...nscenes).each{ |s|
@@ -50,7 +46,10 @@ studios.each{ |fn_studio|
   }  
 }
 
+=begin
+studios.each{ |fn_studio|
+  args = [fn_studio, dn_objects, dn_outputs, nscenes, nobjects]  
+  CLIUtil.run_file(fn_ruby, args)
+}
+
 =end
-
-
-
