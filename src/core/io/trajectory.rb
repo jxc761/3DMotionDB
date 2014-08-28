@@ -6,11 +6,11 @@ module NPLAB
     # sample_rate: int
     # trace      : array
     # trace[i]   : Transformation
-    class CTrajectory  < CJsonObject
+    class CTrajectory  < NPLAB::BasicJson::CJsonObject
      
       attr_accessor :motion_info, :duration, :sample_rate, :trace
      
-      alias up zaxis
+      
      
       def position(id)
         return trace[id]
@@ -30,11 +30,12 @@ module NPLAB
       def zaxis(id)
         return position(id).zaxis
       end
-     
+      alias_method :up, :zaxis
+       
       def length
         @trace.length
       end
-     
+       
      
       def to_json()
         json = {}

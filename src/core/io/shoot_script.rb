@@ -1,7 +1,7 @@
 module NPLAB
   module CoreIO
     
-    class CShootScript < CJsonObject
+    class CShootScript < NPLAB::BasicJson::CJsonObject
       # target : CTarget
       # camera : CCamera
       # camera_tr: Array<Transformation>
@@ -15,9 +15,9 @@ module NPLAB
       
       def to_json()
         json = {  
-          "target" : @target.to_json(),
-          "camera" : @camera.to_json(),
-          "camera_tarjectory" : @camera_tr.to_json()}
+          "target" => @target.to_json(),
+          "camera" => @camera.to_json(),
+          "camera_tarjectory" => @camera_tr.to_json()}
         return json
       end
      

@@ -1,4 +1,4 @@
-
+#!/usr/bin/env ruby
 
 def run_file(fn_ruby, args)
   #temp_parameters

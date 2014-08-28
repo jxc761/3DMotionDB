@@ -1,6 +1,6 @@
 
 module NPLAB
-
+  module ShootScript
   def self.build_shoot_script_generator(conf)
     mover       = build_movers(conf.motion_type)
     director    = build_directions_generators(conf.direction)
@@ -96,5 +96,5 @@ module NPLAB
     end
  
   end
-
+end
 end

@@ -1,7 +1,7 @@
 module NPLAB
   module CoreIO 
     
-    class CPair < CJsonObject
+    class CPair < NPLAB::BasicJson::CJsonObject
       attr_accessor :camera_id, :target_id
       
       def initialize(cid, tid)

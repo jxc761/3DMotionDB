@@ -3,22 +3,23 @@ require "#{File.dirname(File.dirname(__FILE__))}/core.rb"
 module NPLAB
     
   module Autofocus
-    
-    
+
     #
     # require the scene contain the information about the camera information & spots information
     #
-    def self.autofocus(fn_input, fn_output, numb)
+    def self.autofocus(fn_skp, numb)
       # open file
-      %x("cp #{fn_input} #{fn_output}")
-      new_su = Sketchup.open_file(fn_output)
+      status = Sketchup.open_file(fn_skp)
+      unless status
+        raise "Cannot open file: #{fn_skp}"
+      end
       model = new_su.active_model
       
       # autofocus
       cts = autofocus_in_model(model, numb)
       
       # saveout
-      cts.save(fn_output)
+      cts.save(fn_skp)
     end
     
     

@@ -1,9 +1,9 @@
 module NPLAB
   
-  class CRenderSetting < CJsonObject
+  class CRenderSetting < NPLAB::BasicJson::CJsonObject
 
-    alias to_json to_hash
-    alias from_json from_hash
+    #alias to_json to_hash
+    #alias from_json from_hash
   
     def to_hash()
       h = {}
@@ -25,7 +25,7 @@ module NPLAB
     
   end
   
-  class CSURenderSetting < CJsonObject
+  class CSURenderSetting < NPLAB::BasicJson::CJsonObject
     # camera related parameters
     # px, px, mm, degree
     #

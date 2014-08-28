@@ -21,7 +21,7 @@ module NPLAB
     
       def save(filename)
         json = to_json()
-        BasicJson.save(json, filename)
+        BasicJson.save(filename, json)
       end
     
       def to_s()

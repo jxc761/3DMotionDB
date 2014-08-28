@@ -1,8 +1,8 @@
 module NPLAB
   module CoreIO
     
-    class CInstance < CJsonObject
-      attr_accessor: @id, @position
+    class CInstance < NPLAB::BasicJson::CJsonObject
+      attr_accessor :id, :position
       
       def initilize(id, position)
         @id = id
@@ -29,7 +29,7 @@ module NPLAB
       
     end
     
-    alias CCamera CInstance
-    alias CTarget CInstance
+    CCamera=CInstance
+    CTarget=CInstance
   end
 end

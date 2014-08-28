@@ -13,7 +13,7 @@ module NPLAB
     # pairs : [pair, pair, ....]
     #   pair : {"camera_id" : <id>, "target_id" : <id>}
     #
-    class CCameraTargetSetting < CJsonObject
+    class CCameraTargetSetting < NPLAB::BasicJson::CJsonObject
       attr_accessor :cameras, :targets, :pairs
     
       def initialize(cameras, targets, pairs)

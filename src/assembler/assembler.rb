@@ -1,3 +1,4 @@
+require "#{File.dirname(File.dirname(__FILE__))}/core.rb"
 require "#{File.dirname(__FILE__)}/layout.rb"
 
 module NPLAB
@@ -6,53 +7,99 @@ module NPLAB
     GN_OBJECTS  = "nplab_objects_group"       # GN: group name
     LN_OBJECTS  = "nplab_objects_layer"       # LN: layer name
     
-    def self.assemble(fn_studio, dn_objects, fn_output_skp, nobjects)
+    
+    def self.assemble_scenes(fn_studio, dn_objects, dn_outputs, nscenes, nobjects)
+      status = Sketchup.open_file(fn_studio)
+      unless status
+        raise "Cannot open file: #{fn_studio}"
+      end
+      studio_name = File.basename(fn_studio).sub(/.skp$/, "")
+      
+      model = Sketchup.active_model
+      model.active_view.camera.fov=45
+     
+      (0...nscenes).each{|s|
+        puts "scene: #{s}....."
+        fn_output_spots = File.join(dn_outputs, "#{studio_name}_#{s}.json")
+        fn_output_skp   = File.join(dn_outputs, "#{studio_name}_#{s}.skp")
+        fn_output_img   = File.join(dn_outputs, "#{studio_name}_#{s}.jpg")
+        
+        objects = assemble_in_model(model, dn_objects, nobjects)
+      
+        spots = CoreIO::CSpots.from_instances(objects)
+        CoreIO.set_spotted_objects(model, spots)
+        spots.save(fn_output_spots)
+        
+        model.save(fn_output_skp)
+        model.active_view.write_image(fn_output_img, 256, 256, true, 1.0)
+        
+        # clear the model
+        model.entities.erase_entities(objects)
+        model.definitions.purge_unused
+      }
+      
+    end
+    
+    def self.assemble(fn_skp, fn_spots, dn_objects, nobjects)
 
-      # new model with fn_studio
-      %x("cp \"#{fn_studio}\" \#{fn_output_skp}"\"")
-      new_su = Sketchup.open_file(fn_output_skp)
-      model = new_su.active_model
+      # new model with fn_output_skp    
+      status = Sketchup.open_file(fn_skp)
+      unless status
+        raise "Cannot open file: #{fn_skp}"
+      end
+      model = Sketchup.active_model
 
       # assmeble objects
       objects = assemble_in_model(model, dn_objects, nobjects)
-
+     
       # set these objects as the spots
-      spots = CSpots.from_objects(objects)
-      CoreIO.set_spots(model, spots)
-            
+      spots = CoreIO::CSpots.from_instances(objects)
+      CoreIO.set_spotted_objects(model, spots)
+      spots.save(fn_spots)
+  
+      
       # save the model      
-      Sketchup.active_model.save(fn_output_skp)
+      Sketchup.active_model.save(fn_skp)
       
     end
 
     def self.assemble_in_model(model, dn_objects, nobjects)
+      
       fn_objects = Dir[File.join(dn_objects, "*.skp")]
       
       # prepare plane
-      plane = CoreIO.get_table_plane(model)
+      plane, transf = CoreIO.get_table_plane(model)
       
     
       # load in the definitions of objects
-      definitions = fn_objects.collect{ |fn_object|  model.definitions.load(fn_objects)}
- 
+      definitions = fn_objects.collect{ |fn_object|  model.definitions.load(fn_object)}
+     
+      
       # find feasible combination
-      centers = find_fesible_layout(definitions, plane, nobjects)
+      
+      selected, centers = find_fesible_layout(definitions, plane, nobjects)
+ 
       
       # assemble objects
-      assemble_objects(model, definitions, centers, plane.normal)
+      objects = assemble_objects(model, selected, centers, plane, transf)
+
+     
       
       # purge unused
       model.definitions.purge_unused
-
+      
       return objects
       
     end
     
+    def self.clear_assemble(model)
+    
+    end
     
     # ------------------------------------
     # Private
     # ------------------------------------
-    def get_radii(comps)
+    def self.get_radii(comps)
       radii = comps.collect{ |comp|
         bbox = comp.bounds
         w = bbox.width
@@ -62,50 +109,55 @@ module NPLAB
       return radii
     end
     
-    def find_fesible_layout(definitions, plane, nobjects)
+    def self.find_fesible_layout(definitions, plane, nobjects)
       # find feasible combination
       radii = get_radii(definitions)
       
       centers = nil
+      selected = nil
+      
       while centers == nil
         puts "Finding fesible assemble, please wait....."
         
         # random select objects
-        selected = Array.new(nobjects){ radii[rand(definitions.size)]}
+        selected_idx = Array.new(nobjects){ rand(definitions.size) }
         
-        # compute their raddis layout
-        centers = CRandomLayout.place(plane, selected)
-        
+         # compute their raddis layout
+        selected_r = selected_idx.collect{|i| radii[i]}
+        selected = selected_idx.collect{|i| definitions[i]}
+        centers = CRandomLayout.place(plane, selected_r)
+
       end
       
-      return centers
+      return [selected, centers]
     end
     
-    def assemble_objects(model, definitions, centers, normal)
-      
+    def self.assemble_objects(model, definitions, centers, plane, transformation)
+    
       objects  = []
       
       # create group
       group = model.entities.add_group
       group.name= GN_OBJECTS
 
+      
       # add object one by one
       (0...definitions.size).each{ |i|
-        
+     
         # the transformation that put the object at the position
-        transf1 = Geom::Transformation.new(centers[i], normal)
-
+        transf1 = Geom::Transformation.new(centers[i], plane.normal)
+        
         # randomly roation
         angle   = rand() * 2 * Math::PI
-        transf2 = Geom::Transformation.rotation(centers[i], normal, angle)
-        
+        transf2 = Geom::Transformation.rotation(centers[i], plane.normal, angle)
+      
         # the final transformation
-        transf  = transf2 * transf1
+        transf  = transformation * transf2 * transf1
         
         objects << group.entities.add_instance(definitions[i], transf)
+  
       } 
-      
-      
+     
       # set layer
       layer = model.layers[LN_OBJECTS]
       unless layer
@@ -113,6 +165,7 @@ module NPLAB
       end
       group.layer=layer
       
+    
       return objects
     end
 

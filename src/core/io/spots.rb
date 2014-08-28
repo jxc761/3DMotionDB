@@ -1,7 +1,7 @@
 module NPLAB
   module CoreIO
-    
-    class CSpots < CJsonObject
+  
+    class CSpots < NPLAB::BasicJson::CJsonObject
    
       def initialize(spots)  
         @spots = spots
@@ -24,11 +24,12 @@ module NPLAB
       end
     
       def self.from_instances(insts)
+      
         spots = insts.collect{ |obj|
           {"name" => obj.definition.name, "position" => obj.transformation}
         }
+        
         return self.new(spots)
-      
       end
             
     end

@@ -1,7 +1,7 @@
 module NPLAB
   module CoreIO
 
-    class CShootScriptGenerationConf < CJsonObject
+    class CShootScriptGenerationConf < NPLAB::BasicJson::CJsonObject
       attr_accessor :motion_type, :direction, :speed, :duration, :sample_rate
 
       def to_json
@@ -26,7 +26,7 @@ module NPLAB
       
     end
   
-    class CShootScriptGenerationConfs < CJsonObject
+    class CShootScriptGenerationConfs < NPLAB::BasicJson::CJsonObject
       attr_accessor :confs
       
       def initialize()

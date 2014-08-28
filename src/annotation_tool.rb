@@ -1,3 +1,4 @@
+require "#{File.dirname(__FILE__)}/core.rb"
 require "#{File.dirname(__FILE__)}/annotation_tool/annotation_ui.rb"
 
 #require "#{File.dirname(__FILE__)}/annotation/movement/movement.rb"

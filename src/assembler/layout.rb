@@ -59,10 +59,9 @@ module NPLAB
         return true
       end
 
-      def self.notIntersect(c, r, centers, radii, n=-1)
-        if n==-1
-          n=centers.size
-        end
+      def self.notIntersect(c, r, centers, radii)
+        n=centers.size
+       
 
         # test whether circle i intersects other circles
         (0...n).each{ |i|
@@ -85,7 +84,7 @@ module NPLAB
       
       
       def self.place(face, radii, opts={"maxIt"=> 100000})
-    
+   
         maxIt = opts["maxIt"]
     
         # get all bounding vertcies(points)
@@ -98,12 +97,15 @@ module NPLAB
         # arrange objects in order of decreasing size
         idx = (0...n).to_a.sort_by{|i| -radii[i]}
         idx.each{ |i|
+          
+          puts "find a place for #{i}"
+          puts radii[i]
           for it in (0...maxIt)
             # centers[i] = makePosition(points)
-            c = rand_pick(points)
+            c = Utils.rand_pick(points)
         
             # test the circle is in the face or intesects with other circles
-            if ( notOutBound(c, radii[i], points) && notIntersect(c, radii[i], centers, radii, i) )
+            if ( notOutBound(c, radii[i], points) && notIntersect(c, radii[i], centers, radii) )
               centers[i] = c
               break
             end
@@ -115,6 +117,7 @@ module NPLAB
             return nil
           end
         }
+       
         return centers
       end
   

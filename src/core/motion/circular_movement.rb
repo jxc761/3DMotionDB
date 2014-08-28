@@ -24,7 +24,7 @@ module NPLAB
       end
       def to_hash()
         hash = {
-          "motion_type"   => motion_type
+          "motion_type"   => motion_type,
           "init_velocity" => @init_velocity.to_a, 
           "init_position" => Utils.transf_to_hash(@init_position),
           "origin"        => @origin.to_a}
