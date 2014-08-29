@@ -1,0 +1,53 @@
+========================================================
+SHOOT_SCRIPT FILE FORMAT AND THE PATH SETTING
+========================================================
+
+# SHOOT_SCRIPT FILE FORMAT
+
+{
+  “camera” : <camera>,
+  “target” : <target>,
+  “camera_trajectory”:<camera_tr> 
+}
+
+<camera:object>
+{
+  “id”        : <camera_id:string>,
+  “position”  : <position>
+}
+
+<target:object>
+{
+  “id”        : <target_id:string>,
+  “position”  : <position>
+}
+
+<position:object>
+{
+  “origin”    : [x, y, z],
+  “xaxis”     : [x, y, z],
+  “yaxis”     : [x, y, z],
+  “zaxis”     : [x, y, z]
+}
+  
+<camera_tr:object> 
+{
+  “motion_info” : string
+  “duration”    : int
+  “sample_rate” : int
+  “trace”       : [<position> (,<position>)]
+}
+
+# PATH_SETTING
+
+<root_output_dir>
+  <conf>
+    <file>
+      <camera_id>_<target_id>_<direction_id>_<speed_id>.ss.json
+
+
+
+
+
+  
+   
