@@ -12,7 +12,7 @@ module NPLAB
     class CLinearMovement < CBasicMovement
       attr_accessor :acceleration
       def motion_type()
-        return "linear movement"
+        return "linear"
       end
       
       
@@ -23,7 +23,7 @@ module NPLAB
                   "a"      => 0}
         options = defaults.merge(options)   
               
-        reset(options["p0"], options["v0"], options["a"])
+        set(options["p0"], options["v0"], options["a"])
       end
       
       def to_hash()

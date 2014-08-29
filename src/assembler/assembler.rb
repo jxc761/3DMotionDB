@@ -147,7 +147,7 @@ end
       unless status
         raise "Cannot open file: #{fn_studio}"
       end
-      studio_name = File.basename(fn_studio).sub(/.skp$/, "")
+      studio_name = File.basename(fn_studio).sub(/\.skp$/, "")
       
       model = Sketchup.active_model
       model.active_view.camera.fov=45

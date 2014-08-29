@@ -3,43 +3,7 @@ require "#{File.dirname(__FILE__)}/libs.rb"
 module NPLAB
 
   module ShootingScript
-    def self.load_shoot_script_conf(fn_conf)
-        confs = BasicJson.load(fn_conf)
-        unless confs.instance_of?(Array)
-          confs = [confs]
-        end
-        
-        configurations = confs.collect{|conf|
-          unless conf["motion_types"].instanc_of?(Array)
-            conf["motion_types"] = [conf["motion_types"]]
-          end 
-          
-          unless conf["directions"].instance_of?(Array)
-            conf["directions"] = [conf["directions"]]
-          end
-          
-          unless conf["speeds"].instance_of?(Array)
-            conf["speeds"] = [conf["speeds"]]
-          end 
-          
-          mover     = build_mover(conf["motion_typ"])                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-          director  = build_director(conf["dirction"]["direction_specifier"])
-          speedor   = build_speedor(conf["speed"])
-        }
-        
-        return configurations
-        
-    end
-        def from_hash(conf)
-        @motion_types = conf["motion_types"]
-        @directions   = conf["directions"]
-        @speeds       = conf["speeds"]
-        @duration     = conf["duration"]
-        @sample_rate  = conf["sample_rate"]
-        @seed         = conf["seed"]
-        @dn_output    = conf["dn_path"]
-      end 
-      
+   
       
     class CShootingScriptConf
       attr_accessor :motion_types, :directions, :speeds, :duration, :sample_rate, :seed
@@ -212,7 +176,7 @@ module NPLAB
     end
 
       def generate_trajectories(c, c_up, target, dn_output)
-        ccs = build_coordinate_system(c, c_up, target) # camera_coordinate_system
+        ccs = CShootingScriptGenerator.build_coordinate_system(c, c_up, target) # camera_coordinate_system
         directions = @m_directors.get_directions(ccs)
         trajectories = []
         directions.each{ |d0|
@@ -302,3 +266,44 @@ module NPLAB
 
   end
 end
+
+
+=begin
+    def self.load_shoot_script_conf(fn_conf)
+        confs = BasicJson.load(fn_conf)
+        unless confs.instance_of?(Array)
+          confs = [confs]
+        end
+        
+        configurations = confs.collect{|conf|
+          unless conf["motion_types"].instanc_of?(Array)
+            conf["motion_types"] = [conf["motion_types"]]
+          end 
+          
+          unless conf["directions"].instance_of?(Array)
+            conf["directions"] = [conf["directions"]]
+          end
+          
+          unless conf["speeds"].instance_of?(Array)
+            conf["speeds"] = [conf["speeds"]]
+          end 
+          
+          mover     = build_mover(conf["motion_typ"])                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          director  = build_director(conf["dirction"]["direction_specifier"])
+          speedor   = build_speedor(conf["speed"])
+        }
+        
+        return configurations
+        
+    end
+        def from_hash(conf)
+        @motion_types = conf["motion_types"]
+        @directions   = conf["directions"]
+        @speeds       = conf["speeds"]
+        @duration     = conf["duration"]
+        @sample_rate  = conf["sample_rate"]
+        @seed         = conf["seed"]
+        @dn_output    = conf["dn_path"]
+      end 
+      
+=end

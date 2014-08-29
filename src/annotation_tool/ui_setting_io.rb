@@ -54,8 +54,9 @@ module NPLAB
     end
     
 		model     = Sketchup.active_model
-		filename  = gen_file_name(model, "json")
-    
+		# filename  = gen_file_name(model, "json")
+    # filename = get_default_filename(model, "json")
+    filename = model.path.sub(/\.skp$/,".cts.json")
     
     NPLAB.full_pairs(model)
 		save_setting_to_json(model, filename)
@@ -99,7 +100,6 @@ module NPLAB
     
 		Sketchup.set_status_text "The setting have been saved to: #{filename}"    
   end
-  
   
   def self.gen_file_name(model, ext="txt")
   		prefix = model.path.sub(/\.skp$/,"")

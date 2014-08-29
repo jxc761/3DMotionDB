@@ -15,7 +15,7 @@ module NPLAB
                   
         options = defaults.merge(options)
         
-        reset(options["p0"], options["v0"], options["origin"], options["axis"])
+        set(options["p0"], options["v0"], options["origin"], options["axis"])
       end
       
       
@@ -131,16 +131,16 @@ module NPLAB
      
     end # end class
     
-    class CRoateAroudPoint < CCircularMovement 
+    class CRotateAroudPoint < CCircularMovement 
       def motion_type()
-        return "rotation around point"
+        return "rotation_around_point"
       end
       
     end
-    
-    class CRoateAroundAxis < CCircularMovement
+
+    class CRotateAroundAxis < CCircularMovement
       def motion_type()
-        return "rotation around axis"
+        return "rotation_around_axis"
       end
     end
   

@@ -27,7 +27,7 @@ module NPLAB
         
         cs = json["cameras"].collect{ |camera| CCamera.from_json(camera)}
         ts = json["targets"].collect{ |target| CTarget.from_json(target)}
-        ps = CPair.from_json(json["pairs"])
+        ps = json["pairs"].collect{|pair| CPair.from_json(pair)}
       
         return self.new(cs, ts, ps)
       end
@@ -43,6 +43,31 @@ module NPLAB
 
         json = {"cameras" => cs, "targets" => ts, "pairs" => ps }
         return json
+      end
+      
+      def get_pairs()
+        ps = @pairs.collect{ |p|
+          [get_camera(p.camera_id), get_target(p.target_id)]
+        }
+        return ps
+      end
+      
+      def get_camera(id)
+        @cameras.each{|camera| 
+          if camera.id == id
+            return camera
+          end
+        }
+        return nil
+      end
+      
+      def get_target(id)
+        @targets.each{ |target|
+          if target.id == id
+            return target
+          end
+        }
+        return nil
       end
     
     end

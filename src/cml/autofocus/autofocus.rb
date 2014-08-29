@@ -29,7 +29,7 @@ fn_ruby = File.join( File.dirname(File.absolute_path(__FILE__)), "su_autofocus.r
 
 skps = Dir[File.join(dn_inputs, "*.skp")]
 skps.each{ |fn_skp|
-  skp_name = File.basename(fn_skp).sub(/.skp$/, "")
+  skp_name = File.basename(fn_skp).sub(/\.skp$/, "")
   fn_cts  = File.join(dn_outputs, "#{skp_name}.cts.json")
   args=[fn_skp, fn_cts, numb]
   CLIUtil.run_file(fn_ruby, args)

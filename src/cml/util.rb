@@ -67,8 +67,8 @@ module CLIUtil
   
   def self.run_file(fn_ruby, args)
     #temp_parameters
-    fn_tmp  = File.join(File.dirname(fn_ruby), "parameters.txt")
-    file =  File.open(fn_tmp, "w")
+    fn_tmp= File.join(File.dirname(fn_ruby), "parameters.txt")
+    file=File.open(fn_tmp, "w")
     args.each{|a| file.puts a}
     file.close
 

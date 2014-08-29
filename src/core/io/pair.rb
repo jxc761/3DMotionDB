@@ -10,8 +10,9 @@ module NPLAB
       end
       
       def self.from_json(json)
-        @camera_id = json["camera_id"]
-        @target_id = json["target_id"]
+        cid = json["camera_id"]
+        tid = json["target_id"]
+        return self.new(cid, tid)
       end
       
       def to_json()

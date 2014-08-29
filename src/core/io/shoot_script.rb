@@ -10,7 +10,7 @@ module NPLAB
       def initialize(c, t, tr)
         @target = t
         @camera = c
-        @trace = tr
+        @camera_tr = tr
       end  
       
       def to_json()
@@ -22,10 +22,9 @@ module NPLAB
       end
      
       def self.from_json(json)
-        o = self.new()
-        t = CTarget.from_json(json["target"])
-        c = CCamera.from_json(json["camera"])
-        tr = CTrajectory.from_json(json["camera_trajectory"])
+        t   = CTarget.from_json(json["target"])
+        c   = CCamera.from_json(json["camera"])
+        tr  = CTrajectory.from_json(json["camera_trajectory"])
         return self.new(c, t, tr)
       end
      

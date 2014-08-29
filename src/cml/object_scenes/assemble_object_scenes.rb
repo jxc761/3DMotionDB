@@ -91,7 +91,7 @@ nscenes     = ARGV[3].to_i
 nobjects    = ARGV[4].to_i
 
 fn_studios.each{ |fn_studio|
-  studio_name = File.basename(fn_studio).sub(/.skp$/, "")
+  studio_name = File.basename(fn_studio).sub(/\.skp$/, "")
   
   (0...nscenes).each{ |s|
     # prameter for one-time run

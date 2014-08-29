@@ -1,9 +1,21 @@
 module NPLAB
-  module Motion
+  module ShootScriptGenerator
+
     
+    def self.build_shoot_script_generator(conf)
+      
+      mover       = build_mover(conf.motion_type)
+      director    = build_direction_generator(conf.direction)
+      speedor     = build_speed_generator(conf.speed)
+      duration    = conf.duration
+      sample_rate = conf.sample_rate
+      generator   = CShootScriptGenerator.new( mover, director, speedor, duration, sample_rate)
+      return generator
+    end 
+  
     # build movers
     def self.build_movers(types)
-      movments = types.collect{ |type|
+      movements = types.collect{ |type|
         build_mover(type)
       }
       return movements
@@ -11,12 +23,12 @@ module NPLAB
     
     def self.build_mover(type)
       case type
-      when "linear_motion"
-        mover = CLinearMovement.new
+      when "linear"
+        mover = NPLAB::Motion::CLinearMovement.new
       when "rotation_around_target"
-        mover = CRoateAroudPoint.new
+        mover = NPLAB::Motion::CRoateAroudPoint.new
       when "rotation_around_axis"
-        mover = CRoateAroudAxis.new
+        mover = NPLAB::Motion::CRoateAroudAxis.new
       else
         raise "unkown motion type"
       end
@@ -27,7 +39,7 @@ module NPLAB
     # build directions generators
     def self.build_direction_generators(conf_directions)
       generators = conf_directions.collect{ |conf|
-        build_directions_generator(conf)
+        build_direction_generator(conf)
       }
       return generators
     end
@@ -49,7 +61,7 @@ module NPLAB
         generator = CSpecificDirectionsGenerator.new(opts)
       end
       return generator
-    end #end build_directions_generator
+    end #end build_direction_generator
     
     
     # build speed generators

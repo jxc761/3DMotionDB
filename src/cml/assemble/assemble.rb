@@ -33,7 +33,7 @@ studios = Dir[File.join(dn_studios, "*.skp")]
 
 
 studios.each{ |fn_studio|
-  studio_name = File.basename(fn_studio).sub(/.skp$/, "")
+  studio_name = File.basename(fn_studio).sub(/\.skp$/, "")
   (0...nscenes).each{ |s|
     
     fn_output_skp = File.join(dn_outputs, "#{studio_name}_#{s}.skp")

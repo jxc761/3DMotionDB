@@ -9,9 +9,13 @@ module NPLAB
     class CTrajectory  < NPLAB::BasicJson::CJsonObject
      
       attr_accessor :motion_info, :duration, :sample_rate, :trace
-     
-      
-     
+      def initialize(m, d, sr, tr)
+        @motion_info = m
+        @duration  = d
+        @sample_rate = sr
+        @trace = tr
+        
+      end
       def position(id)
         return trace[id]
       end
@@ -47,12 +51,12 @@ module NPLAB
       end
      
       def self.from_json(json)
-        tr = self.new()
-        tr.motion_info     = json["motion_info"]
-        tr.duration        = json["duration"]
-        tr.sample_rate     = json["sample_rate"]
-        tr.trace           = json["trace"].collect{|position| Utils.hash_to_transf(position)}
-        return tr
+
+        m  = json["motion_info"]
+        d  = json["duration"]
+        sr = json["sample_rate"]
+        tr = json["trace"].collect{|position| Utils.hash_to_transf(position)}
+        return self.new(m, d, sr, tr)
       end
      
     end

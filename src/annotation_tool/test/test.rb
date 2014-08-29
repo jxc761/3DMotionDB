@@ -6,7 +6,7 @@ def test()
    Sketchup.active_model.materials.purge_unused
    
     model = Sketchup.active_model 
-	filename = model.path.sub(/.skp/,".txt")
+	filename = model.path.sub(/\.skp$/,".txt")
     # call:
     #   get_definition
     #   new_instance
@@ -29,7 +29,7 @@ def test()
      
     NPLAB.set_pairs(model, pairs)
     
-    #filename = model.path.sub(/.skp/,".txt")
+    #filename = model.path.sub(/\.skp$/,".txt")
 	filename = '/users/Jing/test.txt'
     NPLAB.save_to_txt(model, filename)
 

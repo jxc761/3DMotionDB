@@ -1,5 +1,5 @@
 module NPLAB
-  module ShootScriptUtil
+  module ShootScriptGenerator
     
     def self.get_tetrahedron_vetices()
       inv_sqrt_2 = 1.0/Math.sqrt(2)
