@@ -4,7 +4,7 @@ require "#{File.dirname(__FILE__)}/annotation_tool/annotation_ui.rb"
 #require "#{File.dirname(__FILE__)}/annotation/movement/movement.rb"
 
 module NPLAB
-  Sketchup.send_action("showRubyPanel:")
+  #Sketchup.send_action("showRubyPanel:")
 
   #---------------------------------------------------
   # clear annotation

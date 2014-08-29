@@ -15,7 +15,7 @@ module NPLAB
       end
       
       def to_json()
-        return {"camera_id"=> @camera_id, "target_id"=>"target_id"}
+        return {"camera_id"=> @camera_id, "target_id"=> @target_id}
       end
       
     end

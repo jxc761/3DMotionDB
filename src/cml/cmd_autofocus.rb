@@ -56,7 +56,7 @@ module NPLAB
       cameras = []
       instances.each{ |inst|
         id = inst.get_attribute(NPLAB::DICT_NAME, NPLAB::AN_ID, Time.now.to_i.to_s)
-        position = to_camera_centered_transformation(inst.transformation)
+        position = Utils.to_camera_centered_transformation(inst.transformation)
         cameras << {"id" => id, "position" => position}
       }
       return cameras

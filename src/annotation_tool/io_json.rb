@@ -17,7 +17,7 @@ module NPLAB
     json.each{ |j|
       id     = j["id"]
       tr     = Utils.hash_to_transf(j["position"])
-      transf = to_instance_transformation(tr)
+      transf = Utils.to_instance_transformation(tr)
       new_instance(model, camera_definition, transf, LN_CAMERAS, id)
     }
   end
@@ -62,7 +62,7 @@ module NPLAB
       instances.each{ |inst|
         
         id        = inst.get_attribute(DICT_NAME, AN_ID, Time.now.to_i.to_s)
-        transf    = to_camera_centered_transformation(inst.transformation)
+        transf    = Utils.to_camera_centered_transformation(inst.transformation)
         camera    =  {"id" => id, "position"=> Utils.transf_to_hash(transf)}
         cameras   << camera
       }

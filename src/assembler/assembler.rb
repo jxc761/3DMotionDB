@@ -20,9 +20,8 @@ module NPLAB
       # assmeble objects
       objects = assemble_in_model(model, dn_objects, nobjects)
      
-      # set these objects as the spots
-      spots = CoreIO::CSpots.from_instances(objects)
-      CoreIO.set_spotted_objects(model, spots)
+      # set these objects as the spots and save the information out
+      spots = CoreIO::CSpots.from_instances(objects)   
       spots.save(fn_spots)
   
       
@@ -44,13 +43,14 @@ module NPLAB
      
       
       # find feasible combination
-      
       selected, centers = find_fesible_layout(definitions, plane, nobjects)
  
       
       # assemble objects
       objects = assemble_objects(model, selected, centers, plane, transf)
      
+      # set spots 
+      CoreIO.set_spotted_objects(model, objects)
       
       # purge unused
       model.definitions.purge_unused

@@ -7,7 +7,7 @@ module NPLAB
     end
     
     def self.from_json(json)
-      return parse(input)
+      return parse(json)
     end
     
 

@@ -4,7 +4,7 @@ module NPLAB
     class CInstance < NPLAB::BasicJson::CJsonObject
       attr_accessor :id, :position
       
-      def initilize(id, position)
+      def initialize(id, position)
         @id = id
         @position = position
       end

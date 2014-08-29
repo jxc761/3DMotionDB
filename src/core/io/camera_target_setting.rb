@@ -19,27 +19,29 @@ module NPLAB
       def initialize(cameras, targets, pairs)
         @cameras = cameras  # cameras[i]  : CInstance
         @targets = targets  # targets[i]  : CInstance
-        @pairs   = pairs    # pairs[i]    : pair
+        @pairs   = pairs    # pairs[i]    : CPair
       end
 
       def self.from_json(json)
-        cameras = json["cameras"].each{ |camera| CCamera.from_json(camera)}
-        targets = json["targets"].each{ |target| CTarget.from_json(target)}
-        pairs   = CPair.from_json(json["pairs"])
+        
+        
+        cs = json["cameras"].collect{ |camera| CCamera.from_json(camera)}
+        ts = json["targets"].collect{ |target| CTarget.from_json(target)}
+        ps = CPair.from_json(json["pairs"])
       
-        return self.new(cameras, targets, pairs)
+        return self.new(cs, ts, ps)
       end
     
     
       def to_json()
-        cameras = @cameras.each{ |camera| camera.to_json() }
+
+        cs = @cameras.collect{ |camera| camera.to_json() }
       
-        targets = @targets.each{ |target| target.to_json() }
+        ts = @targets.collect{ |target| target.to_json() }
         
-        pairs   = @pairs.to_json()
-        
-        json = {"cameras" => cameras, "targets" => targets, "pairs" => pairs }
-      
+        ps = @pairs.collect{|pair| pair.to_json() }
+
+        json = {"cameras" => cs, "targets" => ts, "pairs" => ps }
         return json
       end
     

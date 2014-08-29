@@ -2,15 +2,14 @@ module NPLAB
   module CoreIO
   
     class CSpots < NPLAB::BasicJson::CJsonObject
-   
+      attr_accessor :spots
       def initialize(spots)  
         @spots = spots
       end
 
       def self.from_json(json)
-        array = BasicJson.form_json(json)
-        spots = array.collect{ |a|
-          {"name" => a[name], "position" => Utils.hash_to_transf(a["position"])}
+        spots = json.collect{ |a|
+          {"name" => a["name"], "position" => Utils.hash_to_transf(a["position"])}
         }
         return self.new(spots)
       end
@@ -30,6 +29,13 @@ module NPLAB
         }
         
         return self.new(spots)
+      end
+      
+      def get_names()
+        names = @spots.collect{ |s| 
+          s["name"]
+        }
+        return names
       end
             
     end

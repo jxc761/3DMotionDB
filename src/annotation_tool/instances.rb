@@ -81,19 +81,7 @@ module NPLAB
   
   
   ####################################################
-  def self.to_camera_centered_transformation(t) 
-    offset = t.zaxis.clone
-    offset.length= 1.7.m
-    new_origin = t.origin + offset
-    return Geom::Transformation.new(t.xaxis, t.yaxis, t.zaxis, new_origin)
-  end
-  
-  def self.to_instance_transformation(t)
-    offset = t.zaxis.clone
-    offset.length= 1.7.m
-    new_origin = t.origin - offset
-    return Geom::Transformation.new(t.xaxis, t.yaxis, t.zaxis, new_origin)
-  end
+
   ####################################################
   
   
