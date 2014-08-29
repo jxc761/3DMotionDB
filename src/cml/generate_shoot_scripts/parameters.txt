@@ -1,3 +1,0 @@
-/Users/Jing/OneDrive/exps/20140827/scripts/shoot_script_conf.json
-/Users/Jing/OneDrive/exps/20140827/cts
-/Users/Jing/OneDrive/exps/20140827/shoot_scripts
