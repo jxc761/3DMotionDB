@@ -23,27 +23,13 @@ module NPLAB
         @cur_frame    = 0
         
         
-        hide_annotation()
+        NPLAB::Utils.hide_annotation()
         set_render_env()
         
         Sketchup.active_model.active_view.animation= self
       end
 
-      def hide_annotation()
-        model = Sketchup.active_model
-        
-        layer = model.layers["nplab_cameras"]
-        if layer 
-          layer.visible = false
-        end
-        
-        layer = model.layers["nplab_targets"]
-        if layer
-          layer.visible = false
-        end
-        
-      end
-      
+  
       def set_render_env()
         model = Sketchup.active_model
         

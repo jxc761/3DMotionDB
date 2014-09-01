@@ -1,5 +1,6 @@
 module NPLAB
   module Utils
+    
     def self.linear_combination(weights, points)
       result = Geom::Point3d.new(0, 0, 0)
       nK = weights.size
