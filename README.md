@@ -27,4 +27,16 @@ Generate a motion dataset based on 3D models
     
         require "<path_to_plugins>"
     
-   
+  
+  
+##Play with the scripts
+=======================
+1) Go to ./test/scripts
+
+2) Run s1 to s4 step by step
+
+	./s1_assemble.sh	
+	./s2_autofocus.sh			
+	./s3_generate_shoot_scripts.sh
+    ./s4_render.sh
+
