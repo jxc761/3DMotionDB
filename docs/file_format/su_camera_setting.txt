@@ -1,0 +1,12 @@
+=============================================================
+THE FILE FORMAT OF SU RENDER SETTING 
+=============================================================
+
+{
+"image_width"   : int   (px),
+"image_height"  : int   (px),
+"film_width"    : float (mm), 
+"fov"           : float (degrees),
+"render_options": {},
+"shadow_info"   : {}
+}

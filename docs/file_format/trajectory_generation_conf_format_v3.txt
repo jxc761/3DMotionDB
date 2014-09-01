@@ -17,7 +17,7 @@ THE FILE FORMAT OF TRAJECTORIES GENERATION CONFIGURATION FILE
 }
 
 <motion_type:string>
-  "linear_movement|rotation_around_target|rotation_around_up_axis|walking"
+  "linear|rotation_around_target|rotation_around_up_axis|walking"
 
 <direction: object>
 {<direction_specifier>, <direction_options>}
@@ -40,7 +40,7 @@ THE FILE FORMAT OF TRAJECTORIES GENERATION CONFIGURATION FILE
       "options"             : {"ndirections" : 4|6|8|12|20}
   
   (4) regular_directions_in_plane
-     "direction_specifier"  : "regular_directions_in_plane", 
+     "direction_specifier"  : "regular_directions_on_plane", 
      "options"              : { "plane": "xy|yz|zx", "ndirections":int} 
   
   (5) special_direction

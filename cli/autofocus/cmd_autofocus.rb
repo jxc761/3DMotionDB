@@ -5,7 +5,7 @@ require "#{File.dirname(File.dirname(File.absolute_path(__FILE__)))}/util.rb"
 def print_usage
   cmd_name = File.basename(__FILE__)
   puts "./#{cmd_name} -c <fn_setting>"
-  puts "./#{cmd_name} <dn_inputs> <dn_outputs> <number>  "
+  puts "./#{cmd_name} <dn_inputs> <dn_outputs> <number>"
 end
 
 # 
@@ -13,16 +13,18 @@ end
 # 
 required = ["dn_inputs", "dn_outputs", "numb"]
 
-args = CLIUtil.parse_args(requried, ARGV)
+args = CLIUtil.parse_args(required, ARGV)
 unless args
   print_usage()
   exit()
 end
-
+args.each_pair{ |key, value|
+  puts "#{key}:#{value}"
+}
 
 dn_inputs = args["dn_inputs"]
 dn_outputs = args["dn_outputs"]
-numb = args[numb].to_i
+numb = args["numb"].to_i
 
 #
 # begin processing

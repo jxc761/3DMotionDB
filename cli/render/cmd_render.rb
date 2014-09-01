@@ -13,12 +13,14 @@ end
 # 
 required = ["fn_render_conf", "dn_skps", "dn_root_scripts", "dn_root_outputs"]
 
-args = CLIUtil.parse_args(requried, ARGV)
+args = CLIUtil.parse_args(required, ARGV)
 unless args
   print_usage()
   exit()
 end
-
+args.each_pair{ |key, value|
+  puts "#{key}:#{value}"
+}
 
 
 fn_render_conf  = args["fn_render_conf"]

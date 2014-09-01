@@ -1,4 +1,8 @@
 require "#{File.dirname(File.dirname(__FILE__))}/include_nplab_plugins.rb"
+fn = "/Users/Jing/OneDrive/3DMotionDB/cli/assemble/parameters.txt"
+file = File.open(fn, "r")
+args = file.readlines.collect{ |line| line.strip}
+file.close
 
 file = File.open("#{File.dirname(__FILE__)}/parameters.txt", "r")
 args = file.readlines.collect{ |line| line.strip}

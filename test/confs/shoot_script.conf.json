@@ -1,0 +1,25 @@
+[
+
+  { 
+    "motion_type"   : "linear" ,
+    "direction"     : {
+                        "direction_specifier" : "rand_directions_in_space",
+                         "options"            : { "ndirections": 4}    
+                      },
+    "speed"         : [0.5, 1.0, 2.0],
+    "duration"      : 1           ,
+    "sample_rate"   : 30          
+  },
+
+  { 
+    "motion_type"   : "linear" ,
+    "direction"     : {
+                        "direction_specifier" : "regular_directions_on_plane", 
+                         "options"            : {  "plane": "yz", "ndirections": 4}    
+                      },
+    "speed"         : [0.5, 1.0, 2.0],
+    "duration"      : 1           ,
+    "sample_rate"   : 30          
+  }
+  
+]

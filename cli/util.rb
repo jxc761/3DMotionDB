@@ -81,7 +81,7 @@ module CLIUtil
   
 
   
-  def self.parse_args(requried, real_args)
+  def self.parse_args(required, real_args)
     
     args = {}
     

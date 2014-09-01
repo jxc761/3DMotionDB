@@ -36,7 +36,7 @@ module NPLAB
         hash={"u"=>"x", "v" => "y", "w"=> "z"}
         @plane  = options["plane"].gsub(/u|v|w/){|m| hash[m]}
     
-        @canonical_directions  = get_directions_on_plane()
+        @canonical_directions  = CDirectionsGeneratorOnPlane.get_directions_on_plane(@ndirections)
       end
     
       def get_canonical_directions()
@@ -54,11 +54,11 @@ module NPLAB
         cs = coordinate_system
         origin = coordinate_system.origin
         case @plane
-        when "xy"| "yx"
+        when "xy", "yx"
           transf = Geom::Transformation.new(origin, cs.xaxis, cs.yaxis )
-        when "yz"| "zy"
+        when "yz", "zy"
           transf = Geom::Transformation.new(origin, cs.yaxis, cs.zaxis )
-        when "xz"| "zx"
+        when "xz", "zx"
           transf = Geom::Transformation.new(origin, cs.zaxis, cs.xaxis )
         else 
           raise "unkown directions"
@@ -68,7 +68,7 @@ module NPLAB
 
 
       def self.get_directions_on_plane(nDirections)
-        d_rad = 2 * Math::PI / nSamples
+        d_rad = 2 * Math::PI / nDirections
     
         directions = (0...nDirections).collect{ |ni|
           a = d_rad * ni  # angle
