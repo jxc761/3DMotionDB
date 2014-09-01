@@ -1,0 +1,1 @@
+require "#{File.dirname(File.dirname(__FILE__))}/su_include/nplab_plugins.rb"

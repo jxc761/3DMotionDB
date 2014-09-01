@@ -5,7 +5,6 @@ module NPLAB
     
     class CSURender 
       
-      private 
       # Attributes: 
       # CShootScript script
       # CSURenderSetting setting
@@ -18,13 +17,19 @@ module NPLAB
         @script       = scr
         @dn_output    = dn
         @cur_frame    = 0
-        
-        
-        clear_annotation()
       end
       
+      def render()
+        @cur_frame    = 0
+        
+        
+        hide_annotation()
+        set_render_env()
+        
+        Sketchup.active_model.active_view.animation= self
+      end
 
-      def clear_annotation()
+      def hide_annotation()
         model = Sketchup.active_model
         
         layer = model.layers["nplab_cameras"]
@@ -32,13 +37,27 @@ module NPLAB
           layer.visible = false
         end
         
-        layer = model.layer["nplab_targets"]
+        layer = model.layers["nplab_targets"]
         if layer
           layer.visible = false
         end
         
       end
-    
+      
+      def set_render_env()
+        model = Sketchup.active_model
+        
+  
+        @conf.render_options.each_pair{ |key, value|
+          model.rendering_options[key] = value
+        }
+        
+        @conf.shadow_info.each_pair{ |key, value|
+          model.shadow_info[key] = value
+        }
+        
+      end
+      
       def nextFrame(view)
         camera_tr = @script.camera_tr
       
@@ -63,7 +82,7 @@ module NPLAB
         view.write_image(filename, @conf.image_width, @conf.image_height, true, 1.0)
 
         # update
-        cur_frame += 1
+        @cur_frame += 1
         return true
       end
 

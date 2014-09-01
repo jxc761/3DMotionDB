@@ -13,7 +13,6 @@ require "#{File.dirname(__FILE__)}/io/spots.rb"
 
 require "#{File.dirname(__FILE__)}/io/trajectory.rb"
 require "#{File.dirname(__FILE__)}/io/shoot_script.rb"
-require "#{File.dirname(__FILE__)}/io/shoot_script_confs.rb"
 
 
 require "#{File.dirname(__FILE__)}/io/studio.rb"

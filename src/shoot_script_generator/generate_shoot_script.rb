@@ -3,7 +3,7 @@ module NPLAB
     def self.generate_shoot_scripts(fn_conf, dn_cts, dn_outputs)
 
 
-      confs = NPLAB::CoreIO::CShootScriptGenerationConfs.load(fn_conf).confs
+      confs = CShootScriptGenerationConfs.load(fn_conf).confs
       cts_files = Dir[File.join(dn_cts, "*.cts.json")]
 
       confs.each_index{ |cid|

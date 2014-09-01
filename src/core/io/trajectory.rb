@@ -51,7 +51,6 @@ module NPLAB
       end
      
       def self.from_json(json)
-
         m  = json["motion_info"]
         d  = json["duration"]
         sr = json["sample_rate"]

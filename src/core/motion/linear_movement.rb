@@ -57,9 +57,9 @@ module NPLAB
           return @init_position
         end
         
-        v0   = init_speed()
+        v0 = init_speed()
         d  = init_direction()   
-        s   = v0 * t + 0.5 * @acceleration * t * t
+        s  = v0 * t + 0.5 * @acceleration * t * t
         d.length= s
         offset = Geom::Transformation.new(d)
         return offset * @init_position

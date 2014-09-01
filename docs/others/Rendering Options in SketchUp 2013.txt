@@ -1,0 +1,52 @@
+====================================
+Rendering Options in SketchUp 2013
+====================================
+
+
+#======#
+# EDGE #
+#======#
+
+
+if EdgeType==0
+
+Edges&Back Edges    |on & on/off         |EdgeDisplayMode   | 1
+                    |off & on/off        |EdgeDisplayMode   | 0
+                    
+
+
+Porfiles            |on/off         |DrawSilhouettes        |true/false
+Depth Cue           |on/off         |DrawDepthQue           |true/false
+Extension           |on/off         |ExtendLines            |true/false
+EndPoints           |on/off         |DrawLineEnds           |true/false
+Jitter              |on/off         |JitterEdges            |true/false
+
+
+#======#
+# FACE #
+#======#
+
+                      |RenderMode   |Texture
+Wireframe             |0            |true/false
+HiddenLine            |1            |true/false       
+Shaded                |2            |false     
+Shaded With Textures  |2            |true
+Monochrome            |5            |true/false
+
+
+
+                                    |ModelTransparency
+X-ray                 |on           |true
+X-ray                 |off          |false
+
+
+                                    |MaterialTransparency
+Enable Transparency   |on           |true
+Enable Transparency   |off          |false
+
+                                    |TransparencySort
+Transparency quality  |Fast         |0
+                      |Medium       |1
+                      |Nicer        |2 
+                      
+          

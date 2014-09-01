@@ -18,7 +18,8 @@ module NPLAB
         speeds = (1...nIntervals).collect{ |i|
           s_min = @intervals[i-1]
           s_max = @intervals[i]
-          s_min + rand() * (s_min - s_max)
+          speed = s_min + rand() * (s_min - s_max)
+          speed.m
         }
       end
     end

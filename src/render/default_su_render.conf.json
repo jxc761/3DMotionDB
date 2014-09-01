@@ -1,0 +1,37 @@
+{
+  "image_width"     :256,
+  "image_height"    :256,
+  "film_width"      :35,
+  "fov"             :35,
+  
+  "render_options"  :{
+    
+    "DisplayWatermarks"       : false,
+    "DrawHidden"              : false,
+
+
+    "EdgeType"                : 0,
+    
+    "EdgeDisplayMode"         : 0,
+    
+    "DrawSilhouettes"         : false,
+    "DrawDepthQue"            : false,
+    "ExtendLines"             : false,
+    "DrawLineEnds"            : false,   
+    "JitterEdges"             : false,
+
+    
+    
+    "RenderMode"              : 2,
+    "Texture"                 : true, 
+    "ModelTransparency"       : false,
+    "MaterialTransparency"    : true,
+    "TransparencySort"        : 2    
+  },
+  
+  
+  "shadow_info"    :{
+    "DisplayShadows"         : false
+  }
+  
+}

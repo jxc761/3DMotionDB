@@ -87,7 +87,7 @@ module NPLAB
       
         n  = duration * sample_rate + 1
         dt = 1.0 / sample_rate
-        trace =(0...n).collect{ |i| mover.position(dt * n) }   
+        trace =(0...n).collect{ |i| mover.position(dt * i) }   
         return NPLAB::CoreIO::CTrajectory.new(motion_info, duration, sample_rate, trace)
       end
  

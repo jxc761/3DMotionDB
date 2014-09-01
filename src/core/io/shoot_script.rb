@@ -17,7 +17,7 @@ module NPLAB
         json = {  
           "target" => @target.to_json(),
           "camera" => @camera.to_json(),
-          "camera_tarjectory" => @camera_tr.to_json()}
+          "camera_trajectory" => @camera_tr.to_json()}
         return json
       end
      
