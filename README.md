@@ -19,7 +19,7 @@ Generate a motion dataset based on 3D models
   	
   		./su_include/nplab_plugins.rb
   		   
-    Let <path_to_plugins> be this path.
+    Let \<path_to_plugins\> be this path.
     
   - Step 3: New a ruby file under the sketchup plugin driectory, for example, "nplab.rb"
 
