@@ -4,7 +4,7 @@ file = File.open("#{File.dirname(__FILE__)}/parameters.txt", "r")
 args = file.readlines.collect{ |line| line.strip}
 file.close
 
-
+#Sketchup.send_action("showRubyPanel:")
 fn_skp     = args[0]
 dn_scripts = args[1]
 dn_outputs = args[2]

@@ -9,5 +9,6 @@ require "#{NPLAB_3DMOTION_PROJECT_PATH}/src/assembler.rb"
 require "#{NPLAB_3DMOTION_PROJECT_PATH}/src/autofocus.rb"
 
 require "#{NPLAB_3DMOTION_PROJECT_PATH}/src/shoot_script_generator.rb"
+require "#{NPLAB_3DMOTION_PROJECT_PATH}/src/shoot_script_validation.rb"
 
 require "#{NPLAB_3DMOTION_PROJECT_PATH}/src/render.rb"

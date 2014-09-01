@@ -10,7 +10,7 @@ end
 # 
 # Parse arguments
 # 
-required = ["dn_skps", "dn_scripts" "dn_outputs"]
+required = ["dn_skps", "dn_scripts", "dn_outputs"]
 
 args = CLIUtil.parse_args(required, ARGV)
 unless args
@@ -21,6 +21,10 @@ args.each_pair{ |key, value|
   puts "#{key}:#{value}"
 }
 
+dn_skps = args["dn_skps"]
+dn_scripts = args["dn_scripts"]
+dn_outputs = args["dn_outputs"]
+
 fn_ruby = "#{File.dirname(File.absolute_path(__FILE__))}/su_validate_shoot_scripts.rb"
 
 skp_files= Dir[File.join(dn_skps, "*.skp")]
@@ -29,8 +33,8 @@ skp_files.each{ |fn_skp|
   dn_cur_scripts = File.join(dn_scripts, model_name)
   dn_cur_outputs = File.join(dn_outputs, model_name)
   
-  system('rm -r "' + dn_cur_output + '""')
-  system('mkdir -p "' + dn_cur_output + '"')
+  system('rm -r "' + dn_cur_outputs + '"')
+  system('mkdir -p "' + dn_cur_outputs + '"')
   
   cur_args = [fn_skp, dn_cur_scripts, dn_cur_outputs]
   

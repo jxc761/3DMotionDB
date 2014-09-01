@@ -10,7 +10,7 @@ fn_conf     =args[0]
 dn_cts      =args[1]
 dn_outputs  =args[2]
 
-Sketchup.file_new
+#Sketchup.file_new
 model = Sketchup.active_model
 
 NPLAB::ShootScriptGenerator.generate_shoot_scripts(fn_conf, dn_cts, dn_outputs)

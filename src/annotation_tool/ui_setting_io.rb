@@ -48,10 +48,15 @@ module NPLAB
       return
     end
     
-    if self.get_camera_number() == 0 || self.get_target_number() == 0
+    if self.get_camera_number() == 0
       UI.messagebox("Nothing to save!")
       return
     end
+    
+    if self.get_target_number() == 0
+      UI.messagebox("Please note that there is no target in the scene")
+    end
+    
     
 		model     = Sketchup.active_model
 		# filename  = gen_file_name(model, "json")
@@ -72,6 +77,10 @@ module NPLAB
     if self.get_camera_number() == 0 || self.get_target_number() == 0
       UI.messagebox("Nothing to save!")
       return
+    end
+    
+    if self.get_target_number() == 0
+      UI.messagebox("Please note that there is no target in the scene")
     end
     
 		model = Sketchup.active_model
