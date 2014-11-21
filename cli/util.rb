@@ -71,12 +71,26 @@ module CLIUtil
     file=File.open(fn_tmp, "w")
     args.each{|a| file.puts a}
     file.close
-
-    app_name  = '"' + '/Applications/SketchUp 2013/SketchUp.app' + '"'
+    
+    
+    #app_name  = '"' + '/Applications/SketchUp 2013/SketchUp.app' + '"'
+    #cmd       = "open --wait-apps " + app_name + " --args -RubyStartup " + '"' + fn_ruby + '"'
+    #puts cmd
+    #system(cmd)
+    
+    # find sketchup
+    apps  = Dir.glob('/Applications/*/Sketchup.app')
+    if apps.length < 1
+      puts("Cannot find sketchup!")
+      exit()
+    end
+    
+    # run sketchup
+    app_name  = '"' + apps[0] + '"'
     cmd       = "open --wait-apps " + app_name + " --args -RubyStartup " + '"' + fn_ruby + '"'
-    puts cmd
+    puts(cmd)
     system(cmd)
-  
+    
   end
   
 
