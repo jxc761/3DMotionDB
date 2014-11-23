@@ -7,7 +7,7 @@ module NPLAB
     class CCircularMovement < CBasicMovement
       attr_accessor :origin, :axis
 
-      def initialize(options)
+      def initialize(options={})
         defaults={"p0"     => Geom::Transformation.new, 
                   "v0"     =>[1, 0, 0],
                   "origin" =>[0, 0, 0], 
@@ -48,6 +48,9 @@ module NPLAB
       end
  
       def rotation_axis
+        if @axis != nil
+          return @axis
+        end
          cp = center - @init_position.origin
          init_linear_velocity_direction.cross(cp).normalize
       end
@@ -57,7 +60,7 @@ module NPLAB
         @init_position  = Geom::Transformation.new(p0)
         @init_velocity  = Geom::Vector3d.new(v0)
         @origin         = Geom::Point3d.new(origin)
-        @axis           = axis ? Geom::Vector3d.new(axis) : nil
+        @axis           = axis != nil ? Geom::Vector3d.new(axis) : nil
         return self
       end
       
@@ -74,9 +77,9 @@ module NPLAB
       end
       
       def init_angular_speed
-        return init_linear_speed * rotation_radius
+        return init_linear_speed / rotation_radius
       end   
-      
+       
 #     def init_angular_speed=(w)
 #       speed = w / rotation_radius
 #       @init_velocity.length=speed
@@ -91,7 +94,7 @@ module NPLAB
       end
       
       def init_linear_velocity_direction
-        init_linear_velocity.noramlize
+        init_linear_velocity.normalize
       end
       #
       #def init_velocity=(v0)   
@@ -109,7 +112,7 @@ module NPLAB
       end
 
       def position(t)
-         if t == 0
+        if t == 0
           return @init_position
         end
         

@@ -1,5 +1,15 @@
 module NPLAB
   module ShootScriptGenerator
+    
+    def self.generate_shoot_scripts11(fn_conf, fn_cts, dn_output)
+      confs = CShootScriptGenerationConfs.load(fn_conf).confs
+      generator = build_shoot_script_generator(confs[0])
+      
+      cts = NPLAB::CoreIO::CCameraTargetSetting.load(fn_cts)
+      
+      gen_ss_for_one_cts(generator, cts, dn_output)
+    end
+    
     def self.generate_shoot_scripts(fn_conf, dn_cts, dn_outputs)
 
 
@@ -22,7 +32,6 @@ module NPLAB
           name = File.basename(fn_cts).sub(/\.cts\.json$/, "")
           cur_output_dir = File.join(sub_output_dir, name)
           system("mkdir #{cur_output_dir}")
-        
           cts = NPLAB::CoreIO::CCameraTargetSetting.load(fn_cts)
           gen_ss_for_one_cts(generator, cts, cur_output_dir)
         }

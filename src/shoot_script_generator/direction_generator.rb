@@ -165,14 +165,47 @@ module NPLAB
       def get_transformation(coordinate_system)
         return coordinate_system
       end
+      
     
-      def self.get_special_directions(directions, coord)
+      def get_special_directions(directions)
 
         origin= Geom::Point3d.new(0, 0, 0)
         uaxis = Geom::Vector3d.new([1, 0, 0])
         vaxis = Geom::Vector3d.new([0, 1, 0])
         waxis = Geom::Vector3d.new([0, 0, 1])
-        coord = Geom::Transformation.new(uaixs, vaxis, waxis, origin)
+        coord = Geom::Transformation.new(uaxis, vaxis, waxis, origin)
+    
+        vdirections = directions.collect{ |direction|
+          case direction
+          when Array
+            Geom::Vector3d.new(direction).normalize
+          when "left"
+            Geom::Vector3d.new([0, 1, 0])
+          when "right"
+            Geom::Vector3d.new([0, -1, 0])
+          when "up"
+            Geom::Vector3d.new([0, 0, 1])
+          when "down"
+            Geom::Vector3d.new([0, 0, -1])
+          when "forward"
+            Geom::Vector3d.new([1, 0, 0])
+          when "backward"
+            Geom::Vector3d.new([-1, 0, 0])
+          else
+            raise "unkonw special direction"
+          end
+        }
+        return vdirections
+      
+      end # get_special_directions
+=begin    
+      def get_special_directions(directions)
+
+        origin= Geom::Point3d.new(0, 0, 0)
+        uaxis = Geom::Vector3d.new([1, 0, 0])
+        vaxis = Geom::Vector3d.new([0, 1, 0])
+        waxis = Geom::Vector3d.new([0, 0, 1])
+        coord = Geom::Transformation.new(uaxis, vaxis, waxis, origin)
     
         vdirections = directions.collect{ |direction|
           case direction
@@ -194,10 +227,10 @@ module NPLAB
             raise "unkonw special direction"
           end
         }
-      
         return vdirections
       
       end # get_special_directions
+=end
     end #end CSpecificDirectionsGenerator
     
   end

@@ -1,0 +1,12 @@
+[
+  {
+    "motion_type" : "rotation_around_up_axis",
+    "direction"   : { 
+                      "direction_specifier" : "special_directions",
+                      "options"             : { "directions" : ["left","right"]}
+                    },
+    "speed"       : 0.25,
+    "duration"    : 1,
+    "sample_rate" : 30 
+  } 
+]

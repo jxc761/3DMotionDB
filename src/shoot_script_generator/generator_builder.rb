@@ -19,11 +19,10 @@ module NPLAB
       when "linear"
         mover = NPLAB::Motion::CLinearMovement.new
       when "rotation_around_target"
-        mover = NPLAB::Motion::CRoateAroudPoint.new
-      when "rotation_around_axis"
-        mover = NPLAB::Motion::CRoateAroudAxis.new
-      elserequire "generator_builder"
-      
+        mover = NPLAB::Motion::CRotateAroudPoint.new
+      when "rotation_around_up_axis"
+        mover = NPLAB::Motion::CRotateAroundAxis.new
+      else
         raise "unkown motion type"
       end
       return mover 

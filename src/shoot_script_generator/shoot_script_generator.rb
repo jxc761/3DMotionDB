@@ -21,15 +21,17 @@ module NPLAB
         
         # camera_coordinate_system
         ccs = CShootScriptGenerator.build_coordinate_system(camera_location, camera_up, target_location) 
-      
+        
         directions = @director.generate_directions(ccs)
         scripts = []
       
         directions.each{ |d0|
+
           speeds = @speedor.generate_speeds()
           sscripts = []
           speeds.each{ |s0|
-            CShootScriptGenerator.reset_mover(@mover, camera_location, camera_up, target_location, d0, s0)
+  
+            @mover = CShootScriptGenerator.reset_mover(@mover, camera_location, camera_up, target_location, d0, s0)
             
             camera_tr = CShootScriptGenerator.generate_trajectory(@mover, @duration, @sample_rate)
             
@@ -55,27 +57,27 @@ module NPLAB
  
            
       def self.reset_mover(mv, camera_location, camera_up, target_location, d0, s0)
-    
         p0 = Geom::Point3d.new(camera_location)
         v0 = Geom::Vector3d.new(d0)
         v0.length=s0
 
         if mv.instance_of? NPLAB::Motion::CLinearMovement
+          #puts("NPLAB::Motion::CLinearMovement")
           mv.set(p0, v0, 0)
         end
         
         if mv.instance_of? NPLAB::Motion::CRotateAroudPoint
+          #puts("NPLAB::Motion::CRotateAroudPoint")
           origin = Geom::Point3d.new(target_location)
           mv.set(p0, v0, origin)
         end
     
         if mv.instance_of? NPLAB::Motion::CRotateAroundAxis
-          
+          #puts("NPLAB::Motion::CRotateAroundAxis")
           origin = Geom::Point3d.new(target_location)
           axis   = Geom::Vector3d.new(camera_up)
           mv.set(p0, v0, origin, axis)
         end
-        
         return mv
       end
 

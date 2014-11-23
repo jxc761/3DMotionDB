@@ -186,7 +186,7 @@ module NPLAB
        end
        
        # this is an array
-       match = content.match(/\A\s\[/)
+       match = content.match(/\A\s*\[/)
        if match != nil
          return parse_array(content)
        end
@@ -217,6 +217,7 @@ module NPLAB
        end
 
        # no match
+       puts(content)
        raise("json format error")
     end 
     # end parse_value

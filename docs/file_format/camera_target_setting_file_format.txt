@@ -1,32 +1,35 @@
 # The format file to specify cameras and targets for a scene
 
 {
-  cameras:[ 
-    {
-      "id"        : <camera_id>, 
-      "position"  : <position> 
-    }, 
-  ],
-
-  targets:[ 
-    {
-      "id"        : <target_id>, 
-      "position"  : <position> 
-    }, 
-  ] 
-
-  pairs:[ 
-    [
-      <camera_id> : <target_id>
-    ]
-  ]
+  cameras: [ <camera> (, <camera>)* ],
+  targets: [ <target> (, <target>)* ],
+  pairs  : [ <pair> (,  <pair>)*]
 }
 
+<camera:object>
+{
+      "id"        : <camera_id>, 
+      "position"  : <position> 
+} 
 
-<position> :
-  {
-    "origin" :[x, y, z]
-    "xaxis"  :[x, y, z]
-    "yaxis"  :[x, y, z]
-    "zaxis"  :[x, y, z]
-  }
+<target:object>
+{
+  "id"        : <target_id>, 
+  "position"  : <position> 
+},
+
+<pair:object> 
+{ 
+  "camera_id" : <camera_id>,
+  "target_id" : <target_id>
+}
+
+<position:object> 
+{
+  "origin" :[x, y, z],
+  "xaxis"  :[x, y, z],
+  "yaxis"  :[x, y, z],
+  "zaxis"  :[x, y, z]
+}
+
+#Note that: the unit of position coordinate is inch not meter 
