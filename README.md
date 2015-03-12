@@ -1,7 +1,15 @@
 #3DMotionDB
 ==========
 
-Generate a motion dataset based on 3D models
+Generate a motion dataset based on 3D models.
+
+<div style="background-color:#E8E8E8; color:#FF00FF; padding:20px; fontsize=14; ">
+
+<p><b>I just test this tool on MAC with Sketchup 2013. But I'd like to make it work on Windows and other SketchUp versions.</b> </p>
+
+</div>
+
+
 
 ##Install the plugin
 ====================
@@ -9,7 +17,7 @@ Generate a motion dataset based on 3D models
   Run the script install_su_plugins.sh
   
 ###For windows:
-  - Step 1: Get the path of the file
+  - Step 1: Get the absolute path of this file
   	
   		./su_include/nplab_plugins.rb
   		   
@@ -41,4 +49,10 @@ Generate a motion dataset based on 3D models
 		./s2_autofocus.sh			
 		./s3_generate_shoot_scripts.sh
     	./s4_render.sh
+
+  
+##Use the annotation tool
+=======================
+1. Open Sketchup
+2. View-> Tool Palettes -> Annotation
 

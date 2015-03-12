@@ -7,8 +7,7 @@ require "#{File.dirname(__FILE__)}/ui_small_tools.rb"
 # this tool will assume there is less than one camera in the scene. If not so,
 # it will just working on the first camera
 module NPLAB
-     
-
+  
   class CTargetTool
     
     
@@ -34,10 +33,12 @@ module NPLAB
 			@active_camera = camera_def.instances[0]
 			
       # 
-      @cur_target = Sketchup.active_model.active_view.camera.target
+      # @cur_target = Sketchup.active_model.active_view.camera.target
+      @cur_target = Sketchup.active_model.active_view.guess_target
 			@cur_x      = nil
 			@cur_y      = nil
 			@cur_fov    = @org_fov
+      @cur_trans_time = 2
       
       Sketchup.set_status_text "#focal points: #{@target_number}"
       Sketchup.active_model.active_view.refresh
@@ -54,14 +55,24 @@ module NPLAB
 			
 			up = NPLAB.get_up(@active_camera)
 			eye = NPLAB.get_eye_position(@active_camera)
-			view.camera.set(eye, @cur_target, up)	
-			view.camera.fov=@cur_fov
+			camera = Sketchup::Camera.new(eye, @cur_target, up);
+      camera.fov=@cur_fov
+      if @cur_trans_time  > 0
+        view.camera=camera, @cur_trans_time
+        
+      else
+        view.camera=camera 
+      end
+      
+      #view.camera.set(eye, @cur_target, up)	
+			#view.camera.fov=@cur_fov
 			
 		end
 	
 		def onLButtonUp(flags, x, y, view)
 			Sketchup.active_model.start_operation("add target")
 			
+      
       new_target = add_target(x, y, view)
 			if new_target != nil
         @target_number += 1
@@ -224,6 +235,7 @@ module NPLAB
 			
 			transformation = NPLAB.get_transf(x, y, view)
 			new_target = NPLAB.new_instance(Sketchup.active_model, @target_def, transformation, NPLAB::LN_TARGETS)
+      @cur_trans_time = 0.5
 			return new_target
 		end
 	
@@ -238,6 +250,7 @@ module NPLAB
 			t2 	= Geom::Transformation.rotation eye, up, delta_h
 			@cur_target.transform!(t1)
 			@cur_target.transform!(t2)
+      @cur_trans_time = 0
 		end
 	
 		# if alpha > 0 zoom in
@@ -246,6 +259,7 @@ module NPLAB
 			@cur_fov= @cur_fov + alpha
 			@cur_fov = @cur_fov > 120 ? 120 : @cur_fov
 			@cur_fov = @cur_fov < 15 ? 15 : @cur_fov
+      @cur_trans_time = 0
 		end
 
 
