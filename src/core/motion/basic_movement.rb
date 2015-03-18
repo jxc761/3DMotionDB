@@ -12,9 +12,13 @@ module NPLAB
     # postion = movement.get_position(t)
     # location = movement.location(t)
     #
-    # == Note
+    # Note
+    # -------
+    #   You can see here init_position is an object of Transformation rather than Point3D. 
+    #   This is because we'd like to move a object rather than a point.  For example, while we are rotating an object
+    #   around an axis, then not only the location but also the direction of the object will change. 
+    #   
     # 
-
     class CBasicMovement
       
       # ---------------------------------------------------

@@ -1,14 +1,45 @@
 require "#{File.dirname(__FILE__)}/basic_movement.rb"
 
 
+# Notes 
+#  Geom::Transformation.rotation follows "right hand rule"
+#   Transformation.rotation(center, axis, angle)
+#   
+#   If your thumb points in the direction of rotation axis, the fingers point to the rotation direction 
+#   For example, say center is at the origin (0, 0, 0), axis is along z-axis (0, 0, 1)
+#   If the angle is positive, then the rotate direction will follow  x -> y 
+#   If the angle is negative, then the rotate direction will follow  x ->-y
+# 
+# 
+#To verify it, you can run following code
+#center = Geom::Point3d.new([0, 0, 0]);
+#axes  = [ [ 1,  0,  0], [-1,  0, 0],
+#          [ 0,  1,  0], [ 0, -1, 0],
+#          [ 0,  0,  1], [ 0,  0, -1]]
+#
+#angles = [ 3.14/4, -3.14/4]
+#point = Geom::Point3d.new([1, 1, 0])
+#
+#axes.each{ |axis| 
+#  angles.each{ |angle|
+#    transf = Geom::Transformation.rotation(center, axis, angle)
+#    pt = point.transform(transf)
+#
+#    puts("----------------")
+#    puts("angles: #{angle}" )
+#    puts("axis :  #{axis[0]}, #{axis[1]}, #{axis[2]} ")
+#    puts("pt   :  #{pt[0]}, #{pt[1]}, #{pt[2]} ")
+#  }
+#}
+
+
 module NPLAB
   module Motion
-    
     class CCircularMovement < CBasicMovement
       attr_accessor :origin, :axis
 
       def initialize(options={})
-        defaults={"p0"     => Geom::Transformation.new, 
+        defaults={"p0"     => Geom::Transformation.new,  
                   "v0"     =>[1, 0, 0],
                   "origin" =>[0, 0, 0], 
                   "axis"   =>nil}
@@ -76,8 +107,15 @@ module NPLAB
         return c
       end
       
-      def init_angular_speed
-        return init_linear_speed / rotation_radius
+      # if the rotation direction follows right-hand-rule, init_angular_velocity > 0, otherwise, init_angular_velocity < 0
+      def init_angular_velocity
+        z = rotation_axis()
+        v = init_linear_velocity_direction()
+        d = z.cross(v) # if d points to the center, init_anglar_velocity > 0, 
+        
+        to_c = center - @init_position.origin
+        sign_d =  to_c.dot(d) > 0 ?  1 : -1
+        return sign_d * init_linear_speed / rotation_radius
       end   
        
 #     def init_angular_speed=(w)
@@ -116,7 +154,7 @@ module NPLAB
           return @init_position
         end
         
-        phi = init_angular_speed * t
+        phi = init_angular_velocity * t
         rotation = Geom::Transformation.new(center, rotation_axis, phi)
         return rotation * @init_position
       end
