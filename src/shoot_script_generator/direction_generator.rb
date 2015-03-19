@@ -200,9 +200,9 @@ module NPLAB
           case direction.downcase
           when Array
             Geom::Vector3d.new(direction).normalize
-          when "left", "v"
+          when "right", "v"
             uvw.yaxis
-          when "right", "-v"
+          when "left", "-v"
             uvw.yaxis.reverse
           when "up", "u"
             uvw.xaxis

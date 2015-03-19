@@ -33,7 +33,7 @@ THE FILE FORMAT OF TRAJECTORIES GENERATION CONFIGURATION FILE
   
   (2) rand_directions_on_plane
       "direction_specifier" : "rand_directions_on_plane", 
-      "options"             : { "plane": "xy|yz|zx", "ndirections":int} 
+      "options"             : { "plane": "xy|yz|zx|uv|vw|wu", "ndirections":int} 
   
   (3) regular_directions_in_space
       "direction_specifier" : "regular_directions_in_space", 
@@ -41,8 +41,15 @@ THE FILE FORMAT OF TRAJECTORIES GENERATION CONFIGURATION FILE
   
   (4) regular_directions_in_plane
      "direction_specifier"  : "regular_directions_on_plane", 
-     "options"              : { "plane": "xy|yz|zx", "ndirections":int} 
+     "options"              : { "plane": "xy|yz|zx|uv|vw|wu", "ndirections":int} 
   
   (5) special_direction
       "direction_specifier" : "special_directions", 
-      "options"             : {"directions" : [[Vx:float, Vy:float, Vz: float]| "left|right|up|down|forward|backward"]}
+      "options"             : {"directions" : [[Vx:float, Vy:float, Vz: float]| "left|right|up|down|forward|backward|u|-u|v|-v|w|-w|x|-x|y|-y|z|-z"]}
+      
+      
+Notes:
+1. the unit of speed is m/s.
+2. the unit of duration is s.
+3. sample_rate refers to how many samples per second
+

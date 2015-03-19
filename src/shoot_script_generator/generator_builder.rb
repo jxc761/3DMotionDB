@@ -1,9 +1,8 @@
 module NPLAB
   module ShootScriptGenerator
 
-    
+    # CShootScriptGenerationConf conf
     def self.build_shoot_script_generator(conf)
-      
       mover       = build_mover(conf.motion_type)
       director    = build_direction_generator(conf.direction)
       speedor     = build_speed_generator(conf.speed)
@@ -18,9 +17,9 @@ module NPLAB
       case type
       when "linear"
         mover = NPLAB::Motion::CLinearMovement.new
-      when "rotation_around_target"
+      when "rotation_about_target"
         mover = NPLAB::Motion::CRotateAroudPoint.new
-      when "rotation_around_up_axis"
+      when "rotation_about_up_axis"
         mover = NPLAB::Motion::CRotateAroundAxis.new
       else
         raise "unkown motion type"

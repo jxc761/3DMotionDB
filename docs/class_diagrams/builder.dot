@@ -4,7 +4,7 @@ node [shape=record]
 CDirectionsGenerator[
 
 label="{{CDirectionsGenerator|
-+ generate_directions(coordinate_system:Transformation) : Array\l
++ generate_directions() : Array\l
 }}"
 
 ]

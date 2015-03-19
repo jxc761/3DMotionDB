@@ -1,0 +1,28 @@
+digraph class_diagram{
+rankdir=BT
+
+node [shape=box]
+CDirectionsGenerator[
+shape=none
+label=< <table border="1" CELLBORDER="0" align="LEFT" BALIGN="left">  
+<tr> <td> CDirectionsGenerator </td> </tr> <HR/>
+<tr> <td>
++ <B>generate_directions(eye, up, target) : Array</B> <BR />
++ <I>get_transformation(eye, up, target) : Array</I> <BR />
++ <I>get_canonical_directions(): Array </I> <BR />
+</td> </tr>
+</table>>
+]
+
+
+edge [arrowhead = "empty"]
+CDirectionsGeneratorOnPlane->CDirectionsGenerator
+CRegularDirectionsGeneratorOnPlane->CDirectionsGeneratorOnPlane
+CRandomDirectionsGeneratorOnPlane->CDirectionsGeneratorOnPlane
+CDirectionsGeneratorInSpace->CDirectionsGenerator
+CRegularDirectionsGeneratorInSpace->CDirectionsGeneratorInSpace
+CRandomDirectionsGeneratorInSpace->CDirectionsGeneratorInSpace
+CSpecialDirectionsGenerator->CDirectionsGenerator
+
+
+}

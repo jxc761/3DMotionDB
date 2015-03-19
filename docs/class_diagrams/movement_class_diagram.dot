@@ -53,14 +53,14 @@ digraph G {
   CircularMovement [
 
   label = "{CCircularMovement | 
-
-  - origin : Point3d \l
-  - center : Point3d \l|
-
+  + set(p0, v0, origin, axis=nil) \l
   + origin() : Point3d \l
   + center() : Point3d \l
-  + init_angular_speed() : float \l
-  + init_angular_speed=(w): void \l
+  
+  + init_angular_veloctiy() : float \l
+  + init_linear_velocity:Vector3d\l
+  + init_linear_speed: float\l
+  + init_linear_velocity_direction: Vector3d\l
   + init_veloctiy=(v0):Vector3d \l
   + rotation_radius():float\l
   + radius: float\l
@@ -79,4 +79,6 @@ digraph G {
   LinearMovement -> BasicMovement
   CircularMovement -> BasicMovement
   { rank = same; LinearMovement; CircularMovement}
+  CRotationAroundPoint -> CircularMovement
+  CRotateAroundAxis-> CircularMovement
 }

@@ -49,10 +49,20 @@ module NPLAB
         set(options["p0"], options["v0"], options["origin"], options["axis"])
       end
       
+      def set(p0, v0, origin, axis=nil)
+
+        @init_position  = Geom::Transformation.new(p0)
+        @init_velocity  = Geom::Vector3d.new(v0)
+        @origin         = Geom::Point3d.new(origin)
+        @axis           = axis != nil ? Geom::Vector3d.new(axis) : nil
+        return self
+      end
+      
       
       def motion_type
         return "circular movement"
       end
+      
       def to_hash()
         hash = {
           "motion_type"   => motion_type,
@@ -86,15 +96,7 @@ module NPLAB
          init_linear_velocity_direction.cross(cp).normalize
       end
       
-      def set(p0, v0, origin, axis=nil)
-
-        @init_position  = Geom::Transformation.new(p0)
-        @init_velocity  = Geom::Vector3d.new(v0)
-        @origin         = Geom::Point3d.new(origin)
-        @axis           = axis != nil ? Geom::Vector3d.new(axis) : nil
-        return self
-      end
-      
+    
       def center  
         if axis == nil
           c = @origin
