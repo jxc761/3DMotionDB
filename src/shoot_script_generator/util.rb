@@ -51,7 +51,7 @@ module NPLAB
       
       f1 = [v1, v2, v3, v4]
       f2 = [v1, v2, v6, v5]
-      f3 = [v1, v3, v8, v5]
+      f3 = [v1, v4, v8, v5]
       f4 = [v2, v3, v7, v6]
       f5 = [v3, v4, v8, v7]
       f6 = [v5, v6, v7, v8]

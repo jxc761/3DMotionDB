@@ -1,30 +1,57 @@
 module NPLAB
   module ShootScriptGenerator
     
+    
     class CDirectionsGenerator
       def initialize(options={})
         raise "Interface"
       end
     
-      def generate_directions(coordinate_system)
-        transf = get_transformation(coordinate_system)
+      def generate_directions(eye, up, target)
+        transf = get_transformation(eye, up, target)
         ds = get_canonical_directions().collect{ |direction|
           direction.transform(transf)
         }
         return ds
       end
     
-      def get_transformation(coordinate_system)
+      def get_transformation(eye, up, target)
         raise "Interface"
       end
     
       def get_canonical_directions()
         raise "Interface"
       end
-  
+      
+      
+      def build_uvw_coordinate_system(eye, up, target)
+        eye     = Geom::Point3d.new(eye)
+        target  = Geom::Point3d.new(target)
+        up      = Geom::Vector3d.new(up)
+        
+        w = (target - eye).normalize
+        v = w.cross(up).normalize
+        u = v.cross(w).normalize
+        return Geom::Transformation.new(u, v, w, eye)
+      end 
+      
+      
+      def build_xyz_coordinate_system(eye, up, target)
+        
+        eye     = Geom::Point3d.new(eye)
+        target  = Geom::Point3d.new(target)
+        up      = Geom::Vector3d.new(up)
+        
+        w = (target - eye).normalize
+        
+        x = up.cross(w).normalize
+        y = up.normalize
+        z = x.cross(y).normalize
+
+        return Geom::Transformation.new(x, y, z, eye)
+      end
+      
     end
-  
-  
   
     class CDirectionsGeneratorOnPlane < CDirectionsGenerator
       def initialize(options={})
@@ -32,80 +59,117 @@ module NPLAB
         options =  defaults.merge(options)
       
         @ndirections =  options["ndirections"]
-    
-        hash={"u"=>"x", "v" => "y", "w"=> "z"}
-        @plane  = options["plane"].gsub(/u|v|w/){|m| hash[m]}
-    
-        @canonical_directions  = CDirectionsGeneratorOnPlane.get_directions_on_plane(@ndirections)
+        
+        @plane = options["plane"]
+        
+        #hash={"u"=>"x", "v" => "y", "w"=> "z"}
+        #@plane  = options["plane"].gsub(/u|v|w/){|m| hash[m]}
       end
     
       def get_canonical_directions()
-        @canonical_directions
-      end
+        d_rad = 2 * Math::PI / @ndirections
     
-      def get_transformation(coordinate_system)
-        angle   = rand() * 2 * Math::PI
-        roation = Geom::Transformation.rotation([0, 0, 0], [0, 0, 1], angle)
-        transf  = get_coord_transformation(coordinate_system)
-        return transf * rotation
-      end
-    
-      def get_coord_transformation(coordinate_system)
-        cs = coordinate_system
-        origin = coordinate_system.origin
-        case @plane
-        when "xy", "yx"
-          transf = Geom::Transformation.new(origin, cs.xaxis, cs.yaxis )
-        when "yz", "zy"
-          transf = Geom::Transformation.new(origin, cs.yaxis, cs.zaxis )
-        when "xz", "zx"
-          transf = Geom::Transformation.new(origin, cs.zaxis, cs.xaxis )
-        else 
-          raise "unkown directions"
-        end
-        return transf
-      end
-
-
-      def self.get_directions_on_plane(nDirections)
-        d_rad = 2 * Math::PI / nDirections
-    
-        directions = (0...nDirections).collect{ |ni|
+        directions = (0...@ndirections).collect{ |ni|
           a = d_rad * ni  # angle
           x = Math::cos(a)
           y = Math::sin(a)
-          d = [x, y, 0]
+          d = Geom::Vector3d.new([x, y, 0])
           d.normalize
         }
         return directions
       end
-  
-    end # CPlaneDirectionGenerator
-  
-  
-  
-    class CRegularDirectionsGeneratorOnPlane < CDirectionsGeneratorOnPlane
-      def get_transformation(coordinate_system)
-        return get_coord_transformation(coordinate_system)
+
+      def get_transformation(eye, up, target)
+        return get_coord_transformation(eye, up, target)
       end
-  
+      
+      
+      def get_coord_transformation(eye, up, target)
+        xyz = build_xyz_coordinate_system(eye, up, target)
+        uvw = build_uvw_coordinate_system(eye, up, target)
+        
+        case @plane.downcase
+        when "xy", "yx"
+          transf = Geom::Transformation.new(xyz.origin, xyz.xaxis, xyz.yaxis).inverse
+        when "yz", "zy"
+          transf = Geom::Transformation.new(xyz.origin, xyz.yaxis, xyz.zaxis).inverse
+        when "xz", "zx"
+          transf = Geom::Transformation.new(xyz.origin, xyz.zaxis, xyz.xaxis).inverse
+        when "uv", "vu"
+          transf = Geom::Transformation.new(uvw.origin, uvw.xaxis, uvw.yaxis).inverse
+        when "vw", "wv"
+          transf = Geom::Transformation.new(uvw.origin, uvw.yaxis, uvw.zaxis).inverse
+        when "wu", "uw"
+          transf = Geom::Transformation.new(uvw.origin, uvw.zaxis, uvw.xaxis).inverse
+        else 
+          raise "unkown directions"
+        end
+        return transf.inverse
+      end
+
+    end # CPlaneDirectionGenerator
+
+    class CRegularDirectionsGeneratorOnPlane < CDirectionsGeneratorOnPlane  
     end
    
+    class CRandomDirectionsGeneratorOnPlane  < CDirectionsGeneratorOnPlane
+      
+      def get_transformation(eye, up, target)
+        # coordinate transform
+        transf  = get_coord_transformation(eye, up, target)
+        
+        # random rotation
+        angle   = rand() * 2 * Math::PI
+        puts angle
+        rotation = Geom::Transformation.rotation([0, 0, 0], [0, 0, 1], angle)
+        
+        return transf * rotation
+      end
+    end
+    
 
     class CDirectionsGeneratorInSpace < CDirectionsGenerator
       def initialize(options={})
         defaults = {"number" => 12}
         options =  defaults.merge(options)
         @ndirections = options["ndirections"]
-        @canonical_directions   = CDirectionsGeneratorInSpace.get_directions_in_space(@ndirections)
       end
 
       def get_canonical_directions()
-        @canonical_directions
+      
+        case @ndirections
+        when 4
+          ds = NPLAB::ShootScriptGenerator.get_tetrahedron_centers()
+        when 6
+          ds =  NPLAB::ShootScriptGenerator.get_cube_centers()
+        when 8
+          ds = NPLAB::ShootScriptGenerator.get_cube_vetices()
+        when 12
+          ds = NPLAB::ShootScriptGenerator.get_dodecahedron_centers()
+        when 20
+          ds = NPLAB::ShootScriptGenerator.get_dodecahedron_vetices()
+        else
+          raise "unsupported directions numbers"
+        end
+        
+        directions = ds.collect{|d| Geom::Vector3d.new(d)}
+        
+        return directions
       end
     
 
-      def get_transformation(coordinate_system)
+      def get_transformation(eye, up, target)
+        return  build_uvw_coordinate_system(eye, up, target).inverse
+      end
+  
+    end
+  
+    class CRegularDirectionsGeneratorInSpace < CDirectionsGeneratorInSpace  
+    end
+    
+    class CRandomDirectionsGeneratorInSpace < CDirectionsGeneratorInSpace
+      def get_transformation(eye, up, target)
+        transform = build_uvw_coordinate_system(eye, up, target).inverse
         xaxis = Geom::Vector3d.new([1, 0, 0])
         yaxis = Geom::Vector3d.new([0, 1, 0])
         zaxis = Geom::Vector3d.new([0, 0, 1])
@@ -115,122 +179,58 @@ module NPLAB
     
         transform1 = Geom::Transformation.rotation([0, 0, 0], xaxis, theta)
         transform2 = Geom::Transformation.rotation([0, 0, 0], zaxis, phi)
-        transf = coordinate_system * transform2 * transform1
+        transf = transform * transform2 * transform1
         return transf
       end
-      
-      
-      def self.get_directions_in_space(nDirections)
-        case nDirections
-        when 4
-          directions = NPLAB::ShootScriptGenerator.get_tetrahedron_centers()
-        when 6
-          directions = NPLAB::ShootScriptGenerator.get_cube_centers()
-        when 8
-          directions = NPLAB::ShootScriptGenerator.get_cube_vetices()
-        when 12
-          directions = NPLAB::ShootScriptGenerator.get_dodecahedron_centers()
-        when 20
-          directions = NPLAB::ShootScriptGenerator.get_dodecahedron_vetices()
-        else
-          raise "unsupported directions numbers"
-        end
-    
-        return directions
-  
-      end
-    
-  
     end
-  
-    class CRegularDirectionsGeneratorInSpace < CDirectionsGeneratorInSpace
-      def get_transformation(coordinate_system)
-        return coordinate_system
-      end
     
-    end
-
   
-    class CSpecificDirectionsGenerator < CDirectionsGenerator
+    class CSpecialDirectionsGenerator < CDirectionsGenerator
       def initialize(options={})
         defaults = {"directions" =>["left"]}
         options =  defaults.merge(options)
-        @canonical_directions  = get_special_directions(options["directions"])
-      end
-    
-      def get_canonical_directions()
-        @canonical_directions
-      end
-    
-      def get_transformation(coordinate_system)
-        return coordinate_system
+        @directions = options["directions"]
       end
       
-    
-      def get_special_directions(directions)
-
-        origin= Geom::Point3d.new(0, 0, 0)
-        uaxis = Geom::Vector3d.new([1, 0, 0])
-        vaxis = Geom::Vector3d.new([0, 1, 0])
-        waxis = Geom::Vector3d.new([0, 0, 1])
-        coord = Geom::Transformation.new(uaxis, vaxis, waxis, origin)
-    
-        vdirections = directions.collect{ |direction|
-          case direction
+      def generate_directions(eye, up, target)
+        xyz = build_xyz_coordinate_system(eye, up, target)
+        uvw = build_uvw_coordinate_system(eye, up, target)
+        
+        vdirections = @directions.collect{ |direction|
+          case direction.downcase
           when Array
             Geom::Vector3d.new(direction).normalize
-          when "left"
-            Geom::Vector3d.new([0, 1, 0])
-          when "right"
-            Geom::Vector3d.new([0, -1, 0])
-          when "up"
-            Geom::Vector3d.new([0, 0, 1])
-          when "down"
-            Geom::Vector3d.new([0, 0, -1])
-          when "forward"
-            Geom::Vector3d.new([1, 0, 0])
-          when "backward"
-            Geom::Vector3d.new([-1, 0, 0])
+          when "left", "v"
+            uvw.yaxis
+          when "right", "-v"
+            uvw.yaxis.reverse
+          when "up", "u"
+            uvw.xaxis
+          when "down", "-u"
+            uvw.xaxis.reverse
+          when "forward", "w"
+            uvw.zaxis
+          when "backward", "-w"
+            uvw.zaxis.reverse
+          when "x"
+            xyz.xaxis
+          when "-x"
+            xyz.xaxis.reverse
+          when "y"
+            xyz.yaxis
+          when "-y"
+            xyz.yaxis.reverse
+          when "z"
+            xyz.zaxis
+          when "-z"
+            xyz.zaxis.reverse
           else
             raise "unkonw special direction"
           end
         }
         return vdirections
-      
-      end # get_special_directions
-=begin    
-      def get_special_directions(directions)
-
-        origin= Geom::Point3d.new(0, 0, 0)
-        uaxis = Geom::Vector3d.new([1, 0, 0])
-        vaxis = Geom::Vector3d.new([0, 1, 0])
-        waxis = Geom::Vector3d.new([0, 0, 1])
-        coord = Geom::Transformation.new(uaxis, vaxis, waxis, origin)
-    
-        vdirections = directions.collect{ |direction|
-          case direction
-          when Array
-            direction.transform(coord).normalize
-          when "left"
-            uaxis
-          when "right"
-            origin-uaxis
-          when "up"
-            vaxis
-          when "down"
-            origin - vaxis
-          when "forward"
-            orign - waxis
-          when "backward"
-            waxis
-          else
-            raise "unkonw special direction"
-          end
-        }
-        return vdirections
-      
-      end # get_special_directions
-=end
+        
+      end
     end #end CSpecificDirectionsGenerator
     
   end

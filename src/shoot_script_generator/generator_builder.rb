@@ -37,15 +37,15 @@ module NPLAB
       
       case type
       when "rand_directions_in_space"
-        generator = CDirectionsGeneratorInSpace.new(opts)
+        generator = CRandomDirectionsGeneratorInSpace.new(opts)
       when "rand_directions_on_plane"
-        generator = CDirectionsGeneratorOnPlane.new(opts)
+        generator = CRandomDirectionsGeneratorOnPlane.new(opts)
       when "regular_directions_in_space"
         generator = CRegularDirectionsGeneratorInSpace.new(opts)
       when "regular_directions_on_plane"
         generator = CRegularDirectionsGeneratorOnPlane.new(opts)
       when "special_directions"
-        generator = CSpecificDirectionsGenerator.new(opts)
+        generator = CSpecialDirectionsGenerator.new(opts)
       end
       return generator
     end #end build_direction_generator

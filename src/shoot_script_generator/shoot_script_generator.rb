@@ -20,9 +20,10 @@ module NPLAB
         target_location     = target.position.origin
         
         # camera_coordinate_system
-        ccs = CShootScriptGenerator.build_coordinate_system(camera_location, camera_up, target_location) 
+        # ccs = CShootScriptGenerator.build_coordinate_system(camera_location, camera_up, target_location) 
         
-        directions = @director.generate_directions(ccs)
+        directions = @director.generate_directions(camera_location, camera_up, target_location)
+        
         scripts = []
       
         directions.each{ |d0|
@@ -42,20 +43,7 @@ module NPLAB
         }
         return scripts
       end
- 
-  
-      def self.build_coordinate_system(c, c_up, target)
-        co = Geom::Point3d.new(c)
-        pt = Geom::Point3d.new(target)
-        cz = Geom::Vector3d.new(c_up).normalize
-        
-        cy = cz.cross(pt-co).normalize
-        cx = cy.cross(cz).normalize
-        
-        return Geom::Transformation.new(cx, cy, cz, co)
-      end  
- 
-           
+      
       def self.reset_mover(mv, camera_location, camera_up, target_location, d0, s0)
         p0 = Geom::Point3d.new(camera_location)
         v0 = Geom::Vector3d.new(d0)
