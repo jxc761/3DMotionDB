@@ -5,20 +5,8 @@ require "#{File.dirname(__FILE__)}/annotation_tool/annotation_ui.rb"
 
 module NPLAB
   
-  view_menu=UI.menu "View"
-  view_menu.add_separator
-  sub_menu = view_menu.add_submenu("FOV Animation")
-  
-  start_zoom = sub_menu.add_item("Start FOV Animation") {
-    Sketchup.active_model.active_view.animation = CFOVAnimator.new
-  }
-  
-  
-  end_zoom = sub_menu.add_item("End Fov Animation") {
-    Sketchup.active_model.active_view.animation = nil
-  }
   #Sketchup.send_action("showRubyPanel:")
-
+  
   #---------------------------------------------------
   # clear annotation
   #---------------------------------------------------

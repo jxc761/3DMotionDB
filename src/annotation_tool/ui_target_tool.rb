@@ -9,12 +9,8 @@ require "#{File.dirname(__FILE__)}/ui_small_tools.rb"
 module NPLAB
   
   class CTargetTool
-    
-    
 		def activate()
 			store_status()   
-      
-      
       # show targets layer  
       @tlayer = Sketchup.active_model.layers[NPLAB::LN_TARGETS]
       unless @tlayer
@@ -262,15 +258,6 @@ module NPLAB
       @cur_trans_time = 0
 		end
 
-
-    
-
 	end
-  
-
-  
-  # Attach the observer
-  
-
   
 end

@@ -1,0 +1,217 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../style.css"/>
+    <link rel="stylesheet" href="../jquery-ui/jquery-ui.css"/>
+    <script type="text/javascript" src="../jquery-ui/external/jquery/jquery.js"></script>
+    <script type="text/javascript" src="../jquery-ui/jquery-ui.js"></script>
+<script>
+
+    function onSelectMotionType(val) {
+      $("#div_direction_specifier_for_linear_motion").hide();
+      $("#div_direction_specifier_for_rotation_axis").hide();
+      $("#div_direction_specifier_for_rotation_point").hide();
+      
+      switch(val){
+        case "linear" :  $("#div_direction_specifier_for_linear_motion").show("blind", 500); break;
+        case "rotation_about_up_axis" : $("#div_direction_specifier_for_rotation_axis").show("blind", 500); break;
+        case "rotation_about_target"  : $("#div_direction_specifier_for_rotation_point").show("blind", 500); break;
+      }
+             
+    }
+    
+$(document).ready(function(){
+    $("#div_direction_specifier_for_rotation_axis").hide();
+    $("#div_direction_specifier_for_rotation_point").hide();   
+    $("#div_directions_on_plane_options").hide();
+    $("#div_number_of_direction").hide();
+    $("#fs_special_directions").hide();
+    
+
+     
+    // spinner control with settings for min, max, step, and formatting
+    $("#number_of_direction").spinner({
+        min: 1,
+        step: 1,
+        page: 10,
+        spin: function(evt, elem) {
+            if (evt.metaKey)
+                return false;
+        }
+    });
+    
+    $("#number_of_direction").spinner("value", 5);
+    
+    
+    $("#duration").spinner({
+        min: 1,
+        step: 1,
+        page: 10,
+        spin: function(evt, elem) {
+            if (evt.metaKey)
+                return false;
+            
+                  
+                
+        }
+    });
+    
+    $("#duration").spinner("value", 1);
+    
+    
+    
+    $("#sample_rate").spinner({
+        min : 4,
+        step: 10,
+        spin: function(evt, elem) {
+            if (evt.metaKey)
+                return false;
+        }
+    });
+    
+    $("#sample_rate").spinner("value", 24);
+    
+    
+     $("group" ).buttonset();
+    
+    
+    $("select").selectmenu({
+        width: 400
+    });
+     $("#motion_type" ).on( "selectmenuchange", function( event, ui ) { alert(this.value); onSelectMotionType(this.value); } );
+     
+     
+});
+
+
+
+</script>
+
+
+
+</head>
+
+<body>
+
+<form >
+<div id="div_duration">
+<label for="duration"> Duration: </label>
+<input type="text" id="duration" />
+</div>
+
+
+<div id="div_sample_rate">
+<label for="sample_rate"> Sample Rate: </label>
+<input type="text" id="sample_rate"/>
+</div>
+
+  
+  
+<label for="motion_type">  Motion Type:</label>
+<select id="motion_type" >
+    <option value="linear">  linear motion </option>  
+    <option value="rotation_about_target">  rotation about the target</option>  
+    <option value="rotation_about_up_axis">  rotation about the up axis</option>  
+</select>
+
+
+<div id="div_direction_specifier_for_linear_motion">
+<label>How to sample directions: </label>
+
+
+<select id="direction_specifier_for_linear_motion">
+  <option>rand directions in space</option>
+  <option>rand directions on plane</option>
+  <option>normal directions in space</option>
+  <option>normal directions on plane</option>
+   <option>special directions</option>
+</select>
+
+
+</div>
+
+
+<div id="div_direction_specifier_for_rotation_axis">
+<label>How to sample directions: </label>
+
+
+<select id="direction_specifier_for_rotation_axis">
+  <option>clockwise</option>
+  <option>counterclockwise</option>
+  <option>both</option>
+</select>
+
+
+</div>
+
+
+<div id="div_direction_specifier_for_rotation_point">
+<label>How to sample directions: </label>
+
+<select id="direction_specifier_for_rotation_point">
+  <option>rand direction on tangent plane</option>
+  <option>special directions</option>
+</select>
+
+
+</div>
+
+
+
+
+
+<div id = "div_directions_in_space_options">
+<label>The number of directions:  </label>
+<select id="directions_in_space_options">
+  <option>4</option>
+  <option>6</option>
+  <option>8</option>
+  <option>12</option>
+  <option>20</option>
+</select>
+</div>
+
+
+<div id="div_directions_on_plane_options">
+<label for="directions_on_plane_options"> Sample on which plan:</label>
+<select id="directions_on_plane_options">
+  <option>xy</option>
+  <option>yz</option>
+  <option>zx</option>
+  <option>uv</option>
+  <option>vw</option>
+  <option>wu</option>
+</select>
+</div>
+
+
+<div id="div_number_of_direction">
+<label for="number_of_direction"> #directions: </label>
+<input type="text" id="number_of_direction" readonly/>
+</div>
+
+
+<fieldset id="fs_special_directions"> 
+  <legend>Special directions:</legend> 
+
+<input type="checkbox" name="" value="Left">Left</input>
+<input type="checkbox" name="" value="Right">Right</input>
+<input type="checkbox" name="" value="Forward">Forward</input>
+<input type="checkbox" name="" value="Backward">Backward</input>
+<input type="checkbox" name="" value="Upward">Upward</input>
+<input type="checkbox" name="" value="Downward">Downward</input>
+<input type="checkbox" name="" value="Others">Others</input>
+
+
+<label>
+vx: <input type="text" id="vx"> 
+vy: <input type="text" id="vy"> 
+vz: <input type="text" id="vz">
+</label>
+
+</fieldset>
+
+</form>
+</body>
+
+
+</html>

@@ -1,0 +1,29 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 12pt;
+}
+
+label {
+    display: block;
+}
+
+select {
+    width: 500px;
+}
+
+
+
+code {
+    background-color: #e8e8e8;
+    border: 1px solid #a8a8a8;
+    border-radius: 3px;
+    padding: 0 2pt;
+    margin: 2pt;
+    font-family: "source-code-pro", Consolas, monospace;
+    font-size: .8em;
+}
+
+.progressbar {
+    position: relative;
+    width: 500px;
+}

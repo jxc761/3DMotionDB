@@ -17,7 +17,7 @@ THE FILE FORMAT OF TRAJECTORIES GENERATION CONFIGURATION FILE
 }
 
 <motion_type:string>
-  "linear|rotation_around_target|rotation_around_up_axis|walking"
+  "linear|rotation_about_target|rotation_about_up_axis"
 
 <direction: object>
 {<direction_specifier>, <direction_options>}
