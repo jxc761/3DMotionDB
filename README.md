@@ -1,5 +1,5 @@
 #3DMotionDB
-==========
+-----------
 
 Generate a motion dataset based on 3D models.
 
@@ -11,7 +11,7 @@ Generate a motion dataset based on 3D models.
 
 
 ##Install the plugin
-====================
+--------------------
 ###For MAC:
   Run the script install_su_plugins.sh
   
@@ -37,7 +37,7 @@ Generate a motion dataset based on 3D models.
   
   
 ##Play with the scripts
-=======================
+-----------------------
 1. Go to folder: 
    	
    		./example/scripts
@@ -51,9 +51,15 @@ Generate a motion dataset based on 3D models.
 
   
 ##Use the annotation tool
-=======================
+-------------------------
 1. Open Sketchup
 2. View-> Tool Palettes -> Annotation
+
+
+## More documents
+------------------
+[1] https://www.dropbox.com/sh/lxhoy9h7g9pll2x/AAB1v1z2-hmbd66ni6RNUBV4a?dl=0
+
 
 
 

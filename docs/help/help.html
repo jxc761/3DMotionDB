@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Help</title>
+</head>
+
+<body>
+<h1>Description</h1>
+<p> "annotation_tool" is a plugin for SketchUp to manually set up a camera for a 3D model. The tool uses a <a href="http://help.sketchup.com/en/article/114523">SketchUp Component</a>, called &quot;nplab_camera&quot;, to mark where is the camera. </p>
+<p align="center"> <img src="images/nplab_camera.png" width="269" height="128" alt="nplab_camera" align="middle"/></p>
+<p> The component to mark the location of the focal point is called &quot;nplab_target&quot; and it looks like </p>
+<p align="center"><img src="images/nplab_target.png" width="269" height="128" align="middle"/></p>
+<p> The oldest version of this tool save the setting as a "TXT" file. The latest version still supports the "TXT" file. But it changes to use <a href="http://json.org"> JSON </a> file as the default output . 
+
+<h1>The basic workflow</h1>
+<ol>
+  <li>use <img src="../../src/annotation_tool/icons/clear_annotation.png" alt="clear_annotation" name="clear_tool" width="24" height="24" id="clear_tool2" /> tool to clear all setting</li>
+  <li>use  <img src="../../src/annotation_tool/icons/add_camera.png" alt="set camera" name="set_camera_tool" width="24" height="24" id="set_camera_tool2" /> tool to set up the camera</li>
+  <li>use <img src="../../src/annotation_tool/icons/add_target.png" alt="add target" name="add_target_tool" width="24" height="24" id="add_target_tool2" /> tool to set up focal points</li>
+  <li>use <img src="../../src/annotation_tool/icons/save_json.png" width="24" height="24" alt="save_json" />  or <img src="../../src/annotation_tool/icons/save_setting_as.png" name="save_setting_as_tool" width="24" height="24" id="save_setting_as_tool2" /> tool to save the setting</li>
+  <li>repeat this process to set up another camera for the scene</li>
+</ol>
+
+<p>Note that the tool requires that there is a single camera for a model. In order to set up more cameras for a model, you need to repeat the process. This means you need first save the current setting out, repeat the process and use the &quot;save as&quot; to save the new setting. </p>
+
+<h1>Tools</h1>
+You can open the  &quot;Annotation&quot; toolbar from the menu View->Tool Palettes-> Annotation. 
+<p align="center"><img src="images/tool_bar.png"  alt="tool_bar" /></p>
+<p>&nbsp;</p>
+
+<table border="2" align="center">
+	<tr>
+	 <td align="center" valign="middle"><img src="../../src/annotation_tool/icons/load_setting.png" alt="load_setting" name="load_setting" width="128" height="128" id="load_setting" /></td>
+	 <td align="left" valign="middle"><ul>
+      <li>Load an existing camera setting from a file.</li>
+    </ul></td>
+	</tr>
+  <tr>
+    <td align="center" valign="middle"><img src="../../src/annotation_tool/icons/clear_annotation.png" alt="clear_annotation" name="clear_annotation" width="128" height="128" id="clear_annotation" /></td>
+    <td align="left" valign="middle"><ul>
+      <li>Clear all annotations.</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle"><img src="../../src/annotation_tool/icons/add_camera.png" alt="set camera" name="set_camera_tool" width="128" height="128" id="set_camera_tool" /></td>
+    <td align="left" valign="middle"><ul>
+      <li>Click the position where you want to put the camera.  This tool will place an instance of compenent &quot;nplab_camera&quot; there.</li>
+      <li>ESC to deactivate this tool.</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle"><img src="../../src/annotation_tool/icons/add_target.png" alt="add target" name="add_target_tool" width="128" height="128" id="add_target_tool" /></td>
+    <td align="left" valign="middle"><ul>
+      <li>Select this tool. The view will change to the status - &quot;looking around&quot;.</li>
+      <li>Click the position that you want to pick as a focal point. This tool will add an instance of component &quot;nplab_target&quot; there.
+        
+        <br />
+      </li>
+    </ul><table border="1" align="center">
+          <tr>
+            <td>COMMAND + Mouse move </td>
+            <td> rotate view around the camera</td>
+          </tr>
+          <tr>
+            <td>COMMAND + OPTION + Mouse move</td>
+            <td>horizontally rotate the view around the camera</td>
+          </tr>
+          <tr>
+            <td>COMMAND + SHIFT + Mouse move</td>
+            <td> vertically rotate the view around the camera</td>
+          </tr>
+          <tr>
+            <td>COMMAND + UP</td>
+            <td>zoom out</td>
+          </tr>
+          <tr>
+          	<td> COMMAND + DOWN </td>
+            <td> zoom in </td> 
+          </tr>
+            <tr>
+          	<td> LEFT/RIGHT/UP/DOWN </td>
+            <td> rotate left/right/up/down </td> 
+          </tr>
+    </table></td>
+  </tr>
+  <tr>
+  <td><img src="../../src/annotation_tool/icons/save_setting.png" width="128" height="128" alt="save_setting" /></td>
+  <td><ul>
+    <li> Save setting to the default path. <p>For example, if the model path is ./test_model.skp, then the default path will be ./test_model.cts.json. </p>
+    </li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle"><img src="../../src/annotation_tool/icons/save_setting_as.png" name="save_setting_as_tool" width="128" height="128" id="save_setting_as_tool" /></td>
+    <td align="left" valign="middle"><ul>
+      <li>Save the annotation to a file</li>
+    </ul></td>
+  </tr>
+  
+    <tr>
+    <td align="center" valign="middle"><img src="../../src/annotation_tool/icons/show.png" name="show" width="128" height="128" id="show" /></td>
+    <td align="left" valign="middle"><ul>
+      <li>Show the camera and all focal points </li>
+    </ul></td>
+  </tr>
+	<tr>
+    <td align="center" valign="middle"><img src="../../src/annotation_tool/icons/hide.png" name="show" width="128" height="128" id="hide" /></td>
+    <td align="left" valign="middle"><ul>
+      <li>Hide the camera and all focal points </li>
+    </ul></td>
+  </tr>
+  
+  	<tr>
+    <td align="center" valign="middle"><img src="../../src/annotation_tool/icons/info.png" name="show" width="128" height="128" id="info" /></td>
+    <td align="left" valign="middle"><ul>
+      <li>Show the information about the number of cameras and the number of focal points</li>
+    </ul></td>
+  </tr>
+</table>
+<h1> Context Menu </h1>
+<p>The context menu item &quot;Flip Camera&quot; can be used to filp the camera vertically. Select the  &quot;nplab_camera &quot; component, then right click mouse, you can see the following context menu: </p> 
+<p align="center"><img src="images/context_menu.png" alt="flip_camera" height="600" /> </p>
+
+
+</body>
+</html>
