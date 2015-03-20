@@ -10,7 +10,6 @@ Generate a motion dataset based on 3D models.
 </div>
 
 
-
 ##Install the plugin
 ====================
 ###For MAC:
@@ -55,4 +54,6 @@ Generate a motion dataset based on 3D models.
 =======================
 1. Open Sketchup
 2. View-> Tool Palettes -> Annotation
+
+
 
