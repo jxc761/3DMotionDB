@@ -1,6 +1,7 @@
 module NPLAB
   module ShootScriptGenerator
-=begin    
+    
+
     def self.generate_shoot_scripts11(fn_conf, fn_cts, dn_output)
       confs = CShootScriptGenerationConfs.load(fn_conf).confs
       generator = build_shoot_script_generator(confs[0])
@@ -9,7 +10,8 @@ module NPLAB
       
       gen_ss_for_one_cts(generator, cts, dn_output)
     end
-=end
+
+
     def self.generate_shoot_scripts(fn_conf, dn_cts, dn_outputs)
 
 

@@ -32,7 +32,7 @@ module NPLAB
       when "["
         ret, remain = parse_array(content)
       else
-        raise "json format error"
+        raise "json format error #{content}" 
       end
       
       unless remain.strip.eql?("")

@@ -127,12 +127,10 @@ module NPLAB
     ui_show_setting_info()
     
   }
-    
   cmd_show_setting_info.small_icon  = "./annotation_tool/icons/info_16.png"
   cmd_show_setting_info.large_icon  = "./annotation_tool/icons/info_24.png"
   cmd_show_setting_info.menu_text   = "show setting info"
   cmd_show_setting_info.tooltip     = "show setting info"
-  
   
   
   annotation_toolbar = UI::Toolbar.new("Annotation")

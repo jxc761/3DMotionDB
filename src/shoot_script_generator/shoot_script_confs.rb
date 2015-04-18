@@ -44,6 +44,7 @@ module NPLAB
       def self.from_json(json)
         o = self.new
         json.each{|j|
+          
           o.confs << CShootScriptGenerationConf.from_json(j)
         }
         return o

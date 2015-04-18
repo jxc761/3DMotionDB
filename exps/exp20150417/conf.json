@@ -1,0 +1,13 @@
+[
+  { 
+    "motion_type"   : "linear" ,
+    "direction"     : {
+                        "direction_specifier" : "regular_directions_on_plane", 
+                         "options"            : {  "plane": "xz", "ndirections": 8}    
+                      },
+    "speed"         : 1.5,
+    "duration"      : 1  ,
+    "sample_rate"   : 120          
+  }
+  
+]
