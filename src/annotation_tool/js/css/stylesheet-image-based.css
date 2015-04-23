@@ -1,0 +1,69 @@
+body{
+  margin      : 0;
+  padding     : 1.5em;
+  font-family : Georgia,Utopia,Charter,serif;
+}
+
+.example{
+  margin-bottom : 1.5em;
+}
+
+input[type=checkbox]:not(old),
+input[type=radio   ]:not(old){
+  width   : 28px;
+  margin  : 0;
+  padding : 0;
+  opacity : 0;
+}
+
+input[type=checkbox]:not(old) + label{
+  display      : inline-block;
+  margin-left  : -28px;
+  padding-left : 28px;
+  background   : url('checks.png') no-repeat 0 0;
+  line-height  : 24px;
+}
+
+input[type=checkbox]:not(old):checked + label{
+  background-position : 0 -24px;
+}
+
+input[type=radio]:not(old):checked + label{
+  background-position : 0 -48px;
+}
+
+input[type=radio   ]:not(old) + label{
+  display      : inline-block;
+  margin-left  : -28px;
+  padding-left : 28px;
+  background   : url('radios.png') no-repeat 0 0;
+  line-height  : 24px;
+}
+.button{
+  margin      : 0;
+  padding     : 0;
+  border      : 0;
+  min-width   : 75px;
+  font-family : inherit;
+  font-size   : 1em;
+  cursor      : pointer;
+  border-radius : 4px;
+  text-align    : center;
+  background       : rgb(192,192,192);
+  background-image :    -moz-linear-gradient(rgb(224,224,224),rgb(160,160,160));
+  background-image :     -ms-linear-gradient(rgb(224,224,224),rgb(160,160,160));
+  background-image :      -o-linear-gradient(rgb(224,224,224),rgb(160,160,160));
+  background-image : -webkit-linear-gradient(rgb(224,224,224),rgb(160,160,160));
+  background-image :         linear-gradient(rgb(224,224,224),rgb(160,160,160));
+
+}
+
+.button::-moz-focus-inner{
+  padding : 0;
+  border  : 0;
+}
+
+.right {
+    float: right;
+}
+

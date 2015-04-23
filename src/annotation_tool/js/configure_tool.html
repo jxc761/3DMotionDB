@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ <link rel="stylesheet" href="css/stylesheet-image-based.css">
+ 
+
+</head>
+<body>
+<form>
+
+<!-- Path options -->
+<fieldset>
+
+	<legend> Set default path for cts files </legend>
+	<input class="radio" type="radio" id="auto_output" name="auto_output" onclick="HideOutputCtrl(true)" checked /> 
+	<label>Save to the same folder as the model </label> <br>
+	
+	<input class="radio" type="radio" id="not_auto_output"  name="auto_output" onclick="HideOutputCtrl(false)" />   
+	<label>Output</label> <br>
+
+	<div id="div_input_path" >
+		<input 	type="text" 	class="text" 	id="txt_path" style="margin-left:32px; width:260px" value=""> 
+		<button type="button" 	class="button"  id="btn_select_folder" 	onclick="onSelectFolder()" > <span> ...</span></button>
+	</div>
+
+</fieldset>
+
+<!-- Options -->
+<fieldset>
+	<legend> Options </legend> 
+	<div>
+		<input type="checkbox" class="checkbox" name="brelabel" id="brelabel" checked> 
+		<label>Relabel all cameras and targets before save out </label>
+	</div>
+	<div> 
+		<input type="checkbox" class="checkbox" name="bsingle" id="bsingle" checked> 
+		<label> Single cts file for each model </label>
+	</div>
+</fieldset>
+
+<!-- Submit or Cancel -->
+<div class="right">
+	<button type="button" class="button"  id="btn_ok" onclick="onOk()" > <span> OK </span></button> 
+	<button type="button" class="button"  id="btn_cancle" onclick="onCancel()"> <span> Cancel </span></button>
+</div>
+
+</form>
+
+
+
+</body>
+
+<script>
+
+
+	function onOk(){
+		var options = {};
+
+		// same as model or other path
+		var id = "auto_output";
+		options[id]= document.getElementById(id).checked;
+
+		if(options[id] == false){
+			options["path"] = document.getElementById("txt_path").value;
+		}else{
+			options["path"] = "";
+		}
+
+		//brelabel
+		id="brelabel";
+		options[id] = document.getElementById(id).checked;		
+	
+
+		//bsingle
+		id="bsingle";
+		options[id] = document.getElementById(id).checked;
+		
+		//alert( JSON.stringify(options) );
+
+		// send data to ruby
+		query = "skp:onOk@" + JSON.stringify(options);
+		window.location.href= query;
+	}
+	
+	function HideOutputCtrl(val){
+		var input_div = document.getElementById("div_input_path");
+		
+		if(val == true){
+			input_div.style.display = 'none';
+		} else{
+			input_div.style.display = 'block';
+		}
+		
+	}
+
+	//call ruby
+	function onSelectFolder() {
+		// need to call sketchup method
+		query = 'skp:select_folder@' ;
+		window.location.href= query;
+	}
+
+	function onLoad(){
+		query = 'skp:onReady@' ;
+		window.location.href= query;
+	}
+
+	function onCancel(){
+		query = 'skp:onCancel@';
+		window.location.href= query;
+	}
+	//call from ruby
+	function onSelectedFolder(path){
+		document.getElementById("txt_path").value=path;
+	}
+
+
+	function initialize(options){
+		//alert("hello");
+		//alert(options["auto_output"]);
+		//alert(options);
+		//var options = JSON.parse(strJson);
+
+		var id = "auto_output";
+		document.getElementById(id).checked=options[id];
+
+		if(options[id] == false){
+			document.getElementById("not_auto_output").checked=true;
+			document.getElementById("txt_path").value = options["path"];
+		}
+		HideOutputCtrl(options[id]);
+
+		//brelabel
+		id="brelabel";
+		document.getElementById(id).checked=options[id];		
+	
+
+		//bsingle
+		id="bsingle";
+		document.getElementById(id).checked=options[id];	
+	}
+
+	//var defaults=' { "auto_output":true, "txt_path":"", "brelabel":false, "bsingle":false}';
+
+	window.onload=onLoad();
+</script>
+
+</html>

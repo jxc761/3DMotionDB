@@ -78,7 +78,7 @@ module NPLAB
     nt = NPLAB.get_target_number()
     msg = "#Cameras: #{nc}\r\n#Targets: #{nt}\r\n"
     UI.messagebox(msg)
-    Sketchup.active_model.select_tool(nil)
+    #Sketchup.active_model.select_tool(nil)
   end
   
   
@@ -122,8 +122,6 @@ module NPLAB
 		newt = Geom::Transformation.new(origin, zaxis) 
 		instance.transformation= newt	
 	end
-	
-
 	
 end
 

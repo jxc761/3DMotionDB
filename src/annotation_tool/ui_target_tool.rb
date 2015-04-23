@@ -1,17 +1,19 @@
 require "#{File.dirname(__FILE__)}/annotation.rb"
 require "#{File.dirname(__FILE__)}/ui_small_tools.rb"
-# load('/Users/Jing/OneDrive/3DMotionDB/src/annotation_tool/ui_target_tool.rb')
+
 ########################
 
 ########################
-# this tool will assume there is less than one camera in the scene. If not so,
-# it will just working on the first camera
 module NPLAB
-  
+
   class CTargetTool
-		def activate()
-			store_status()   
-      # show targets layer  
+
+    def activate()
+      puts("activate")
+      Sketchup.active_model.start_operation("active edit target")
+
+      store_status()   
+      # show targets layer
       @tlayer = Sketchup.active_model.layers[NPLAB::LN_TARGETS]
       unless @tlayer
         @tlayer = Sketchup.active_model.layers.add(NPLAB::LN_TARGETS)
@@ -21,7 +23,7 @@ module NPLAB
       
 			@target_def         = NPLAB.get_definition(Sketchup.active_model, NPLAB::CN_TARGET, NPLAB::FN_TARGET)
       @org_target_number  = NPLAB.get_target_number()
-      @target_number      = NPLAB.get_target_number()
+      #@target_number      = NPLAB.get_target_number()
 
 			# initialize the status 
 			@clayer.visible= false	 # clayer : camera_layer
@@ -34,31 +36,27 @@ module NPLAB
 			@cur_x      = nil
 			@cur_y      = nil
 			@cur_fov    = @org_fov
-      @cur_trans_time = 2
-      
-      Sketchup.set_status_text "#focal points: #{@target_number}"
+      #@cur_trans_time = 0.5
+      @redostate = false
       Sketchup.active_model.active_view.refresh
-		  
+		  Sketchup.active_model.commit_operation
 		end
 	
 		def draw(view)
 			# for debug
 			if @active_camera == nil
-				UI::messagebox("error")
+				#UI::messagebox("error")
 				return
 			end	
-			# end for debug 
-			
+			# end for debug
+      
+      camera = Sketchup::Camera.new
 			up = NPLAB.get_up(@active_camera)
 			eye = NPLAB.get_eye_position(@active_camera)
-			camera = Sketchup::Camera.new(eye, @cur_target, up);
+      camera.set(eye, @cur_target, up);
       camera.fov=@cur_fov
-      if @cur_trans_time  > 0
-        view.camera=camera, @cur_trans_time
-        
-      else
-        view.camera=camera 
-      end
+      view.camera=camera
+
       
       #view.camera.set(eye, @cur_target, up)	
 			#view.camera.fov=@cur_fov
@@ -66,20 +64,16 @@ module NPLAB
 		end
 	
 		def onLButtonUp(flags, x, y, view)
-			Sketchup.active_model.start_operation("add target")
-			
       
+			Sketchup.active_model.start_operation("add target")
       new_target = add_target(x, y, view)
 			if new_target != nil
-        @target_number += 1
+        #@target_number += 1
 				@cur_target = NPLAB.get_target_position(new_target)	
-			end
+      end
+      Sketchup.set_status_text "#focal points: #{NPLAB.get_target_number()}"
+  		view.refresh
       
-      Sketchup.set_status_text "#focal points: #{@target_number}"
-  		
-      Sketchup.active_model.commit_operation
-      
-      view.refresh
 		end
 	
 		def onMouseMove(flags, x, y, view)
@@ -93,7 +87,7 @@ module NPLAB
 			if (flags & VK_COMMAND) == 0
 				@cur_x = x
 				@cur_y = y
-				return
+			  return
 			end
 			
 			dx = x - @cur_x
@@ -155,42 +149,43 @@ module NPLAB
     # exit tool case
     #--------------------------------------------------------------------------------
 		def deactivate(view)
-      exit_tool(view)
-		end
-    
-    def onCancel(reason, view)
-      puts "onCancel"
-      if reason == 2 && @org_target_number < @target_number
-        @target_number = @target_number - 1
-        Sketchup.set_status_text "#focal points: #{@target_number}"
-        return
+      puts("deactivate")
+      
+      Sketchup.active_model.start_operation("exit target tool")
+		  Sketchup.active_model.active_view.camera.set(@org_eye, @org_target, @org_up)
+		  Sketchup.active_model.active_view.camera.fov= @org_fov
+
+      unless @clayer.deleted? 
+         @clayer.visible= true
       end
       
-      # exit tool
+      unless @tlayer.deleted? 
+        @tlayer.visible= true
+      end
+      Sketchup.active_model.commit_operation
+
+		end
+    
+		def onCancel(reason, view)
+      puts("onCancel")
+      if reason == 0
+			  Sketchup.active_model.select_tool(nil)
+      end
       
-      exit_tool(view)
-    
-    end
-    
+      if reason == 2 && @org_target_number < NPLAB.get_target_number()
+            Sketchup.set_status_text "#focal points: #{NPLAB.get_target_number() - 1}"
+            return
+      end
+          
+		end
+#    
     def suspend(view)
-      puts "suspend"
-      exit_tool(view)
-    end
-    
-    def resume(view)
-      puts "resume"
-      exit_tool(view)
-    end
-    
-    def exit_tool(view)
-      restore_status()
-      @clayer.visible= true
-      @tlayer.visible= true
+      puts("suspend")
       Sketchup.active_model.select_tool(nil)
-      view.refresh
-      
     end
-		#--------------------------------------------------------------------------------
+    
+    
+    #----------------------------------------------------------------------------
 		# store & restore the status
 		#-------------------------------------------------------------------------------
 		def store_status()
@@ -207,16 +202,8 @@ module NPLAB
 			#if @clayer == nil
 			#	@clayer	= model.layers.add(NPLAB::LN_CAMERAS)
 			#end
-			#@is_camera_layer_visible = @clayer.visible?
 		end
-	
-	
-		def restore_status()
-		
-			Sketchup.active_model.active_view.camera.set(@org_eye, @org_target, @org_up)
-			Sketchup.active_model.active_view.camera.fov= @org_fov
-			 #@is_camera_layer_visible
-		end
+
 		
 		#--------------------------------------------------------------------------------
 		# add a target at the 3d position corresponding to (view, x, y)
@@ -231,7 +218,7 @@ module NPLAB
 			
 			transformation = NPLAB.get_transf(x, y, view)
 			new_target = NPLAB.new_instance(Sketchup.active_model, @target_def, transformation, NPLAB::LN_TARGETS)
-      @cur_trans_time = 0.5
+      #@cur_trans_time = 0
 			return new_target
 		end
 	
@@ -246,16 +233,13 @@ module NPLAB
 			t2 	= Geom::Transformation.rotation eye, up, delta_h
 			@cur_target.transform!(t1)
 			@cur_target.transform!(t2)
-      @cur_trans_time = 0
+      #@cur_trans_time = 0
 		end
 	
-		# if alpha > 0 zoom in
-		# if alpha < 0 zoom out
 		def zoom(alpha)
 			@cur_fov= @cur_fov + alpha
 			@cur_fov = @cur_fov > 120 ? 120 : @cur_fov
 			@cur_fov = @cur_fov < 15 ? 15 : @cur_fov
-      @cur_trans_time = 0
 		end
 
 	end

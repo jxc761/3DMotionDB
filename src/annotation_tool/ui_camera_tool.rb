@@ -19,6 +19,8 @@ module NPLAB
 	
 		def activate()
 			model = Sketchup.active_model
+      
+      model.start_operation("Enter camera editing mode")
 			@camera_def = NPLAB.get_definition(Sketchup.active_model, NPLAB::CN_CAMERA, NPLAB::FN_CAMERA)
 			@active_camera = @camera_def.instances.size == 0 ? nil : @camera_def.instances[0]	
 			
@@ -27,10 +29,11 @@ module NPLAB
 				clayer	= model.layers.add(NPLAB::LN_CAMERAS)
 			end
 			clayer.visible=true
+      model.commit_operation
 		end
 	
 		def onLButtonUp(flags, x, y, view)
-			status = Sketchup.active_model.start_operation('set_camera', true)
+			status = Sketchup.active_model.start_operation('Set Camera', true)
       
       # not pick the camera itself  
       ph = view.pick_helper

@@ -14,21 +14,23 @@ module NPLAB
   
   def self.json_to_cameras(model, json)
     camera_definition = self.get_definition(model, CN_CAMERA, FN_CAMERA)
-    json.each{ |j|
+    cameras = json.collect{ |j|
       id     = j["id"]
       tr     = Utils.hash_to_transf(j["position"])
       transf = Utils.to_instance_transformation(tr)
       new_instance(model, camera_definition, transf, LN_CAMERAS, id)
     }
+		return cameras
   end
   
   def self.json_to_targets(model, json)
     target_definition = self.get_definition(model, CN_TARGET, FN_TARGET)
-    json.each{ |j|
+    targets = json.collect{ |j|
       id     = j["id"]
       transf = Utils.hash_to_transf(j["position"])
       new_instance(model, target_definition, transf, LN_TARGETS, id)
     }
+		return targets
   end
   
   def self.json_to_pairs(model, json)
