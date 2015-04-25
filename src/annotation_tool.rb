@@ -2,8 +2,7 @@ require "#{File.dirname(__FILE__)}/core.rb"
 require "#{File.dirname(__FILE__)}/annotation_tool/annotation_ui.rb"
 module NPLAB
   #Sketchup.send_action("showRubyPanel:")
-  @@tool_config_file = "#{File.dirname(__FILE__)}/annotation_tool/js/config.json"
-  @@tool_config = BasicJson.load(  @@tool_config_file )
+
 
   pz_icons = "#{File.dirname(__FILE__)}/annotation_tool/icons"
 
@@ -46,6 +45,8 @@ module NPLAB
       Sketchup.active_model.select_tool(CTargetTool.new)
     end
   }
+
+
  
   cmd_add_target.small_icon = "#{pz_icons}/add_target_16.png"
   cmd_add_target.large_icon = "#{pz_icons}/add_target_24.png"
@@ -136,21 +137,13 @@ module NPLAB
 
   cmd_config = UI::Command.new("Customize Tools"){
 
-    dlgConf = UI::WebDialog.new("Configuration", true, "NPLAB_TOOL_CONFIGURATION", 500, 300, 200, 200, true)
+    dlgConf = UI::WebDialog.new("Configuration", true, "NPLAB_TOOL_CONFIGURATION", 480, 300, 200, 200, true)
     dlgConf.set_file("#{File.dirname(__FILE__)}/annotation_tool/js/configure_tool.html")
 
 
     dlgConf.add_action_callback("onOk") do |web_dialog, value|
-       @@tool_config = BasicJson.parse(value)
-       web_dialog.close
-
-       puts("onOK")
-       puts("value:")
-       puts(value)
-       puts("@@tool_config:")
-       puts(@@tool_config)
-      
-
+       set_tool_config(value)
+       web_dialog.close      
     end
 
     dlgConf.add_action_callback("onCancel") do |web_dialog, value|
@@ -159,35 +152,25 @@ module NPLAB
 
     dlgConf.add_action_callback("select_folder") do  |web_dialog, value|
 
-      puts ("select_folder()")
-
       directory = File.dirname( Sketchup.active_model.path )
       path = UI.select_directory( title: "Select Directory", directory: directory)
       
       if path 
         script = "onSelectedFolder('"  + path +  "')";
         web_dialog.execute_script(script)
-        
-        puts("execute_script: " )
-        puts(script)
       end
   
-
     end
 
     dlgConf.add_action_callback("onReady") do  |web_dialog, value|
-      json = BasicJson.to_json(@@tool_config)
-      script = "initialize(" + json + ")"
+      script = "initialize(" + get_tool_config() + ")"
       web_dialog.execute_script(script)
-
-      puts ("onReady()")
-      puts("execute_script: " )
-      puts(script)
     end
     
     dlgConf.set_on_close{
-        BasicJson.save(@@tool_config_file, @@tool_config)
+        save_tool_config()
     }
+
     dlgConf.show_modal()
 
   }
@@ -228,6 +211,14 @@ module NPLAB
     }
     context_menu.set_validation_proc(item){ ui_flip_camera_validation }
   end
+
+  UI.add_context_menu_handler do |context_menu|
+    item = context_menu.add_item("New page from camera") {
+      NPLAB.ui_new_page_from_camera()
+    }
+    context_menu.set_validation_proc(item){ ui_new_page_from_camera_validation }
+  end
+
 
 
 

@@ -17,7 +17,7 @@ module NPLAB
 		normal = Geom::Vector3d.new [0, 0, 1]
 		if inputpoint.face != nil 
 			 normal = inputpoint.face.normal
-       transf = inputpoint.transformation
+       		 transf = inputpoint.transformation
 			 normal.transform! transf
 		end
 				
@@ -48,4 +48,26 @@ module NPLAB
 		
 		return 0
 	end
+
+	def self.relabel_annotation
+  		if get_target_number() > 0
+  			# relabel targets
+  			instances = Sketchup.active_model.definitions[NPLAB::CN_TARGET].instances
+  			(0...instances.size).each{ |i|
+  				instances[i].set_attribute(NPLAB::DICT_NAME, "id", "#{i}")
+
+  			}
+  		end
+
+  		if get_camera_number() > 0
+  			# relabel cameras
+  			instances = Sketchup.active_model.definitions[NPLAB::CN_CAMERA].instances
+  			(0...instances.size).each{ |i|
+  				instances[i].set_attribute(NPLAB::DICT_NAME, "id", "#{i}")
+
+  			}
+  		end
+  	end
+
+
 end

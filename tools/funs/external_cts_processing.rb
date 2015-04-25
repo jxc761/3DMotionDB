@@ -5,8 +5,8 @@ module NPLAB
 			filenames = inputs
 			if File.directory?(input)
 				# print input arguments
-				puts("Input			  : #{input_dir}")
-				puts("Output			: #{output_dir}")
+				puts("Input		  : #{input_dir}")
+				puts("Output	  : #{output_dir}")
 				puts("?Recursively: #{recursively}")
 
 				# list all files
@@ -71,43 +71,42 @@ module NPLAB
 				dst_cts.save(dst_file)
 		end
 
-		def self.relabel_cts(cts)
-			cameras0 = cts.cameras # old
-			targets0 = cts.targets # old 
-			pairs0	 = cts.pairs		 # old
-	
-			cmap = Hash.new()
-			cameras = []
-			cameras0.each_index{ |i|
-				cur = cameras0[i]
-				oldId = cur.id
-				newId = i.to_s
-				cmap[oldId] = newId
-				cameras << NPLAB::CoreIO::CInstance.new(newId, cur.position)
-			}
+    def self.relabel_cts(cts)
+      cameras0 = cts.cameras # old
+      targets0 = cts.targets # old 
+      pairs0   = cts.pairs     # old
+  
+      cmap = Hash.new()
+      cameras = []
+      cameras0.each_index{ |i|
+        cur = cameras0[i]
+        oldId = cur.id
+        newId = i.to_s
+        cmap[oldId] = newId
+        cameras << NPLAB::CoreIO::CInstance.new(newId, cur.position)
+      }
  
-			tmap = Hash.new()
-			targets = []
-			targets0.each_index{ |i|
+      tmap = Hash.new()
+      targets = []
+      targets0.each_index{ |i|
 
-				cur = targets0[i]
-				oldId = cur.id
-				newId = i.to_s
-				tmap[oldId] = newId
-		
-				targets << NPLAB::CoreIO::CInstance.new(newId, cur.position)
-			}
-	
-	
-			pairs = pairs0.collect{|pair|
-				cid = cmap[pair.camera_id]
-				tid = tmap[pair.target_id]
-				NPLAB::CoreIO::CPair.new(cid, tid)
-			}
-	
-			return	NPLAB::CoreIO::CCameraTargetSetting.new(cameras, targets, pairs)
-		end
-
+        cur = targets0[i]
+        oldId = cur.id
+        newId = i.to_s
+        tmap[oldId] = newId
+    
+        targets << NPLAB::CoreIO::CInstance.new(newId, cur.position)
+      }
+  
+  
+      pairs = pairs0.collect{|pair|
+        cid = cmap[pair.camera_id]
+        tid = tmap[pair.target_id]
+        NPLAB::CoreIO::CPair.new(cid, tid)
+      }
+  
+      return  NPLAB::CoreIO::CCameraTargetSetting.new(cameras, targets, pairs)
+    end
 
 
 		def self.export_previews_for_cts(fn_cts, dn_output, width = 512, height = 512, fov=nil)
@@ -117,7 +116,8 @@ module NPLAB
 	
 	
 			cts  	=  NPLAB::CoreIO::CCameraTargetSetting.from_json(fn_cts)
-	
+			pairs = cts.paris
+
 			model.start_operation("export previews")
 	
 			if fov

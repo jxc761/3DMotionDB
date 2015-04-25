@@ -42,7 +42,8 @@ module NPLAB
 	#
 	#----------------------------------------------------------------	
 	def self.ui_save_setting()
-		
+
+    # pre-test for stupid user.
     if Sketchup.active_model.path.empty?
       UI.messagebox("Please save the scene file first!")
       return
@@ -57,25 +58,42 @@ module NPLAB
       UI.messagebox("Please note that there is no target in the scene")
     end
     
+    # where to save
+    model = Sketchup.active_model
+    model_dir   = File.dirname(model.path)
+    model_name  = File.basename(model.path, '.skp')
     
-    model     = Sketchup.active_model
-        
-		# filename  = gen_file_name(model, "json")
-    # filename = get_default_filename(model, "json")
-    filename = model.path.sub(/\.skp$/,".cts.json")
 
+    dn_output  = ( NPLAB.auto_path? ) ? model_dir : NPLAB.path_to_output()
+    puts("NPLAB.auto_path?:#{NPLAB.auto_path?}");
+    puts("model_dir: #{model_dir}")
+  
+    filename =  File.join(dn_output, "#{model_name}.cts.json")
+    puts("dn_output: #{dn_output}")
+    puts("filename: #{filename}")
+    unless NPLAB.single_cts?
+      index = 1
+      while !File.file?(filename)
+        filename =  File.join(dn_output, "#{model_name}_#{index}.cts.json")
+        index += 1
+      end
+    end
+
+    #save out
     model.start_operation "Save Annotation"
+
+    if NPLAB.relabel?
+      NPLAB.relabel_annotation()
+    end
     NPLAB.full_pairs(model)
-		save_setting_to_json(model, filename)
+		
+    save_setting_to_json(model, filename)
+    
     model.commit_operation 
     
     Sketchup.active_model.select_tool(nil)
     Sketchup.set_status_text "The setting have been saved to: #{filename}"
-    
-		
     # Sketchup.active_model.select_tool(nil)
-   
-    
 	end
 
 
@@ -119,44 +137,40 @@ module NPLAB
 		Sketchup.set_status_text "The setting have been saved to: #{filename}"    
   end
   
-  def self.gen_file_name(model, ext="cts.json")
+  def self.gen_file_name(model, ext=".cts.json")
   		prefix = model.path.sub(/\.skp$/,"")
-  		i = 1
-  		while true
-  			filename = prefix + "_" + i.to_s + "." + ext
-  			if !File.file?(filename)
-  				break
-  			end
-  			i += 1
-  		end
+  		
   		return filename
   	end
 
-  	def self.reset_all_setting()
-  		model = Sketchup.active_model
+	def self.reset_all_setting()
+		model = Sketchup.active_model
+
+		# clear model
+		NPLAB.set_pairs_in_text(model, "")
+		NPLAB.remove_all_instances(model, NPLAB::CN_CAMERA)
+		NPLAB.remove_all_instances(model, NPLAB::CN_TARGET)
+
+
+		# load in component definitions
+		NPLAB.get_definition(model, NPLAB::CN_CAMERA, NPLAB::FN_CAMERA)
+		NPLAB.get_definition(model, NPLAB::CN_TARGET, NPLAB::FN_TARGET)
+
+		# add two layers into 
+		if  model.layers[NPLAB::LN_CAMERAS] == nil
+			model.layers.add(NPLAB::LN_CAMERAS)
+		end
+
+		if model.layers[NPLAB::LN_TARGETS] == nil
+			model.layers.add(NPLAB::LN_TARGETS)
+		end
+
+		# set both layer
+		model.layers[NPLAB::LN_CAMERAS].visible= true
+		model.layers[NPLAB::LN_TARGETS].visible= true
 	
-  		# clear model
-  		NPLAB.set_pairs_in_text(model, "")
-  		NPLAB.remove_all_instances(model, NPLAB::CN_CAMERA)
-  		NPLAB.remove_all_instances(model, NPLAB::CN_TARGET)
-	
-	
-  		# load in component definitions
-  		NPLAB.get_definition(model, NPLAB::CN_CAMERA, NPLAB::FN_CAMERA)
-  		NPLAB.get_definition(model, NPLAB::CN_TARGET, NPLAB::FN_TARGET)
-	
-  		# add two layers into 
-  		if  model.layers[NPLAB::LN_CAMERAS] == nil
-  			model.layers.add(NPLAB::LN_CAMERAS)
-  		end
-	
-  		if model.layers[NPLAB::LN_TARGETS] == nil
-  			model.layers.add(NPLAB::LN_TARGETS)
-  		end
-	
-  		# set both layer
-  		model.layers[NPLAB::LN_CAMERAS].visible= true
-  		model.layers[NPLAB::LN_TARGETS].visible= true
-		
-  	end
+	end
+
+
+
 end

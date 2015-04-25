@@ -69,7 +69,7 @@ module NPLAB
 
   # Get the position of the eye
   #
-  def self.get_eye_position(camera)
+  def self.get_eye_location(camera)
     if camera == nil
       return nil
     end
@@ -102,6 +102,91 @@ module NPLAB
   def self.get_target_up(target)
     t = target.transformation
     return t.zaxis
+  end
+
+
+
+  def self.guess_target(camera)
+    eye   = get_eye_location(camera)
+    up    = get_up(camera)
+    axes  = up.axes
+
+    vx = axes[0]
+    vy = axes[1]
+
+
+    bhidden = camera.hidden?
+
+    camera.hidden=true
+
+    # directions = [ []]
+
+    hit = nil
+    while not hit
+      theta = rand * 2 * Math::PI
+      vd = Geom::Vector3d.linear_combination(Math.cos(theta), vx, Math.sin(theta), vy)
+      hit =Sketchup.active_model.raytest([eye, vd])
+    end
+    target = hit[0]
+
+    camera.hidden = bhidden
+    return target
+  end
+
+  def self.guess_direction(old_camera, camera)
+    bhidden = camera.hidden?
+    camera.hidden=true
+
+    eye = get_eye_location(camera)
+    up = get_up(camera)
+    
+    axes  = up.axes
+    
+    
+    vx = axes[0]
+    vy = axes[1]
+
+    
+    n = 16
+
+    maxDist = 0;
+    guess = vx;
+    (0...n).each{|i| 
+      theta = i * 2 * Math::PI / n 
+      vd    = Geom::Vector3d.linear_combination(Math.cos(theta), vx, Math.sin(theta), vy)
+      hit   = Sketchup.active_model.raytest([eye, vd])
+      if hit != nil 
+        dist = hit[0].distance(eye) 
+
+        guess   = dist > maxDist ? vd : guess
+        maxDist = dist > maxDist ? dist : maxDist 
+      end
+    }
+    
+    camera.hidden=bhidden
+    return guess
+  end
+
+  def self.change_to_camera_view(old_camera, camera)
+    #old_target = old_camera.target
+    #old_eye    = old_camera.eye
+    #old_fov    = old_camera.fov
+    #old_f      = old_camera.focal_length
+
+    #puts(old_f)
+    
+    eye  = get_eye_location(camera)
+    up   = get_up(camera)
+
+    # guess target 
+    vd     = guess_direction(old_camera, camera)
+    dist   = old_camera.eye.distance(old_camera.target)
+    target = eye.offset(vd, dist)
+
+
+    new_view_camera = Sketchup::Camera.new(eye, target, up)
+
+    return new_view_camera; 
   end
   
 end

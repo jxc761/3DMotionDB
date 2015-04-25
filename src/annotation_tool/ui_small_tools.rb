@@ -11,8 +11,8 @@ module NPLAB
     model.start_operation "Clear Annotation"
 
     # clear all related instances
-		NPLAB.remove_all_instances(model, NPLAB::CN_CAMERA)
-		NPLAB.remove_all_instances(model, NPLAB::CN_TARGET)
+	NPLAB.remove_all_instances(model, NPLAB::CN_CAMERA)
+	NPLAB.remove_all_instances(model, NPLAB::CN_TARGET)
     
     # clear pairs setting
     model.attribute_dictionaries.delete(NPLAB::DICT_NAME)
@@ -86,32 +86,30 @@ module NPLAB
   # ------------------------------------------------
   # flip camera
   # ------------------------------------------------
+  def self.is_selecting_a_camera
+
+  	selection = Sketchup.active_model.selection
+  	return (   (selection.length == 1) \
+  			&& (selection[0].typename == "ComponentInstance") \
+  			&& (selection[0].definition.name == NPLAB::CN_CAMERA) )
+
+  end
+
 	def self.ui_flip_camera_validation()
-		
-		model = Sketchup.active_model
-		selection = model.selection
-		if model.selection.length != 1
-			return MF_GRAYED
-		end
-		
-		if model.selection[0].typename != "ComponentInstance" || model.selection[0].definition.name != NPLAB::CN_CAMERA
-			return MF_GRAYED
-		end
-		
-		return MF_ENABLED
+		return is_selecting_a_camera() ? MF_ENABLED : MF_GRAYED
 	end
 	
 	def self.ui_flip_camera()
 		model = Sketchup.active_model
     
-    model.start_operation "Flip camera"
+    	model.start_operation "Flip camera"
     
 		instance= model.selection[0]	
 		orgt = instance.transformation
 		newt = Geom::Transformation.new(orgt.origin, Geom::Vector3d.new([0,0,0]) - orgt.zaxis)
 		instance.transformation= newt
-    
-    model.commit_operation
+ 
+    	model.commit_operation
     
 	end
 	
@@ -122,6 +120,33 @@ module NPLAB
 		newt = Geom::Transformation.new(origin, zaxis) 
 		instance.transformation= newt	
 	end
+
+	def self.ui_new_page_from_camera_validation()
+		return is_selecting_a_camera() ? MF_ENABLED : MF_GRAYED
+	end
+
+
+	def self.ui_new_page_from_camera()
+		model = Sketchup.active_model
+		view = Sketchup.active_model.active_view
+
+		model.start_operation("create page from camera")
+		
+		
+		instance =  model.selection[0]
+		id = get_id(instance)
+
+		eye = get_eye_location(instance)
+		up  = get_up(instance)
+		target = view.guess_target
+		page = model.pages.add(id)
+		page.camera.set(eye, target, up)
+		layer = model.pages[NPLAB::LN_CAMERAS]
+		page.set_visibility(layer, false)
+		model.pages.selected_page=page
+		model.commit_operation
+	end
+
 	
 end
 

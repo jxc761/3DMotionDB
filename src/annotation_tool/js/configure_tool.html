@@ -13,10 +13,10 @@
 <fieldset>
 
 	<legend> Set default path for cts files </legend>
-	<input class="radio" type="radio" id="auto_output" name="auto_output" onclick="HideOutputCtrl(true)" checked /> 
+	<input class="radio" type="radio" id="auto_path" name="auto_path" onclick="HideOutputCtrl(true)" checked /> 
 	<label>Save to the same folder as the model </label> <br>
 	
-	<input class="radio" type="radio" id="not_auto_output"  name="auto_output" onclick="HideOutputCtrl(false)" />   
+	<input class="radio" type="radio" id="not_auto_path"  name="auto_path" onclick="HideOutputCtrl(false)" />   
 	<label>Output</label> <br>
 
 	<div id="div_input_path" >
@@ -58,7 +58,7 @@
 		var options = {};
 
 		// same as model or other path
-		var id = "auto_output";
+		var id = "auto_path";
 		options[id]= document.getElementById(id).checked;
 
 		if(options[id] == false){
@@ -118,15 +118,15 @@
 
 	function initialize(options){
 		//alert("hello");
-		//alert(options["auto_output"]);
+		//alert(options["auto_path"]);
 		//alert(options);
 		//var options = JSON.parse(strJson);
 
-		var id = "auto_output";
+		var id = "auto_path";
 		document.getElementById(id).checked=options[id];
 
 		if(options[id] == false){
-			document.getElementById("not_auto_output").checked=true;
+			document.getElementById("not_auto_path").checked=true;
 			document.getElementById("txt_path").value = options["path"];
 		}
 		HideOutputCtrl(options[id]);
@@ -141,7 +141,7 @@
 		document.getElementById(id).checked=options[id];	
 	}
 
-	//var defaults=' { "auto_output":true, "txt_path":"", "brelabel":false, "bsingle":false}';
+	//var defaults=' { "auto_path":true, "txt_path":"", "brelabel":false, "bsingle":false}';
 
 	window.onload=onLoad();
 </script>

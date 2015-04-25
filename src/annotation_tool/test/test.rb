@@ -37,38 +37,3 @@ end
   
 test()
 
-
-=begin
-
-require "#{File.dirname(__FILE__)}/constants.rb"
-require "#{File.dirname(__FILE__)}/instances.rb"
-require "#{File.dirname(__FILE__)}/pairs.rb"
-require "#{File.dirname(__FILE__)}/txtio.rb.rb"
-	
-    get_pairs()
-    str_pairs = model.get_attribute("nplab", "pairs")
-    puts "after add two pairs into the model"
-    puts str_pairs
-   
-   
-    # find_instance
-    # get_camera_position
-    # get_up
-    # get_target_position
-    camera = find_instance(model, camera_def, "1234") 
-    camera_position = get_camera_position(camera)
-    up = get_up(camera)
-    
-    target = find_instance(model, target_def, "5678")
-    target_position(target)
-    
-    puts camera_position
-    puts up
-    puts target_position
-    
-    # after delete one entity 
-    str_pairs = model.get_attribute("nplab", "pairs")
-    puts "after add two pairs into the model"
-    puts str_pairs
-    
-=end 

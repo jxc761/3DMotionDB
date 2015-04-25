@@ -8,96 +8,81 @@ module NPLAB
 
   class CTargetTool
 
-    def activate()
-      puts("activate")
-      Sketchup.active_model.start_operation("active edit target")
 
-      store_status()   
-      # show targets layer
-      @tlayer = Sketchup.active_model.layers[NPLAB::LN_TARGETS]
-      unless @tlayer
-        @tlayer = Sketchup.active_model.layers.add(NPLAB::LN_TARGETS)
-      end
-      @tlayer.visible=true
-      
-      
-			@target_def         = NPLAB.get_definition(Sketchup.active_model, NPLAB::CN_TARGET, NPLAB::FN_TARGET)
-      @org_target_number  = NPLAB.get_target_number()
-      #@target_number      = NPLAB.get_target_number()
+  	def activate()
+  		puts "activate"
+  		Sketchup.active_model.start_operation "pick targets"
 
-			# initialize the status 
-			@clayer.visible= false	 # clayer : camera_layer
-      camera_def     = NPLAB.get_definition(Sketchup.active_model, NPLAB::CN_CAMERA, NPLAB::FN_CAMERA)
-			@active_camera = camera_def.instances[0]
+  		@cur_x = nil
+  		@cur_y = nil
+
+  		# save current setting
+  		camera = Sketchup.active_model.definitions[NPLAB::CN_CAMERA].instances[0]
+			view 		= Sketchup.active_model.active_view
+			vc = view.camera
 			
-      # 
-      # @cur_target = Sketchup.active_model.active_view.camera.target
-      @cur_target = Sketchup.active_model.active_view.guess_target
-			@cur_x      = nil
-			@cur_y      = nil
-			@cur_fov    = @org_fov
-      #@cur_trans_time = 0.5
-      @redostate = false
-      Sketchup.active_model.active_view.refresh
-		  Sketchup.active_model.commit_operation
-		end
-	
-		def draw(view)
-			# for debug
-			if @active_camera == nil
-				#UI::messagebox("error")
-				return
-			end	
-			# end for debug
-      
-      camera = Sketchup::Camera.new
-			up = NPLAB.get_up(@active_camera)
-			eye = NPLAB.get_eye_position(@active_camera)
-      camera.set(eye, @cur_target, up);
-      camera.fov=@cur_fov
-      view.camera=camera
+  		@old_camera=Sketchup::Camera.new(vc.eye, vc.target, vc.up, vc.perspective?, vc.fov)
+  		@org_target_numb=NPLAB.get_target_number()
+  		@b_visible=Sketchup.active_model.layers[NPLAB::LN_CAMERAS].visible?
+  	
 
-      
-      #view.camera.set(eye, @cur_target, up)	
-			#view.camera.fov=@cur_fov
-			
-		end
-	
-		def onLButtonUp(flags, x, y, view)
-      
-			Sketchup.active_model.start_operation("add target")
-      new_target = add_target(x, y, view)
-			if new_target != nil
-        #@target_number += 1
-				@cur_target = NPLAB.get_target_position(new_target)	
-      end
-      Sketchup.set_status_text "#focal points: #{NPLAB.get_target_number()}"
+			# change to camera view
+			camera.layer.visible=false
+  		new_view_camera = NPLAB.change_to_camera_view(view.camera , camera)
+  		view.camera=new_view_camera, 1
+  		view.refresh()
+
+			Sketchup.active_model.commit_operation
+  	end
+
+  	def add_target(x, y, view)
+  		inputpoint = view.inputpoint x,y
+			 # the target must be on a face 
+
+			if inputpoint.face == nil # && inputpoint.edge == nil && inputpoint.vertex == nil
+			 	return nil
+			end
+
+			transformation = NPLAB.get_transf(x, y, view)
+			definition     = NPLAB.get_definition(Sketchup.active_model, NPLAB::CN_TARGET, NPLAB::FN_TARGET)
+			new_target 		= NPLAB.new_instance(Sketchup.active_model, definition, transformation, NPLAB::LN_TARGETS)
+  	end
+
+
+  	def onLButtonDoubleClick(flags, x, y, view)
+  		Sketchup.active_model.start_operation("add target")
+  		@cur_x = x
+			@cur_y = y
+			 	
+			add_target(x, y, view)
+			Sketchup.set_status_text "#focal points: #{NPLAB.get_target_number()}"
+			Sketchup.active_model.commit_operation
   		view.refresh
-      
-		end
-	
+  	end
+
+
 		def onMouseMove(flags, x, y, view)
+				
 			
 			if @cur_x == nil || @cur_y == nil
 				@cur_x = x
 				@cur_y = y
 				return
 			end
-			
-			if (flags & VK_COMMAND) == 0
-				@cur_x = x
-				@cur_y = y
+
+			if ( flags & MK_LBUTTON == 0) # left button doesn't donw
+			 	@cur_x = x
+			 	@cur_y = y
 			  return
 			end
 			
 			dx = x - @cur_x
 			dy = y - @cur_y
 		
-			delta 	= 0.005
+			delta 	= 0.002
 			thresh	= 5.0
-		
-		
-			delta_h = (dx > 0 ? delta : -delta) * (dx.abs > thresh ? thresh : dx.abs)
+				
+			delta_h = (dx < 0 ? delta : -delta) * (dx.abs > thresh ? thresh : dx.abs)
 			delta_z = (dy > 0 ? delta : -delta) * (dy.abs > thresh ? thresh : dy.abs)
 		
 			if (flags & VK_ALT != 0)
@@ -106,11 +91,11 @@ module NPLAB
 				delta_h = 0
 			end
 
-			rotate(delta_h, delta_z)
-		
 			@cur_x = x 
 			@cur_y = y 
-			view.refresh
+			rotate(delta_h, delta_z, view)
+			view.invalidate
+		
 		end
 	
 		def onKeyDown(key, repeat, flags, view)
@@ -125,7 +110,7 @@ module NPLAB
 					delata_fov = -5
 				end
 				#puts alpha 
-				zoom(delata_fov)
+				zoom(delata_fov, view)
 			else
 				case key
 				when VK_LEFT
@@ -133,12 +118,12 @@ module NPLAB
 				when VK_RIGHT
 					delta_h = -0.025
 				when VK_UP
-					delta_z = 0.025
-				when VK_DOWN
 					delta_z = -0.025
+				when VK_DOWN
+					delta_z = 0.025
 				else
 				end
-				rotate(delta_h, delta_z)
+				rotate(delta_h, delta_z, view)
 			end
 		
 			view.refresh
@@ -148,98 +133,67 @@ module NPLAB
     #--------------------------------------------------------------------------------
     # exit tool case
     #--------------------------------------------------------------------------------
-		def deactivate(view)
-      puts("deactivate")
-      
-      Sketchup.active_model.start_operation("exit target tool")
-		  Sketchup.active_model.active_view.camera.set(@org_eye, @org_target, @org_up)
-		  Sketchup.active_model.active_view.camera.fov= @org_fov
-
-      unless @clayer.deleted? 
-         @clayer.visible= true
-      end
-      
-      unless @tlayer.deleted? 
-        @tlayer.visible= true
-      end
-      Sketchup.active_model.commit_operation
-
+    # The deactivate method is called when the tool is deactivated because a different tool was selected.
+		def deactivate(view) 
+			puts("deactivate")
+			#view.camera=@old_camera
+			#Sketchup.active_model.layers[NPLAB::LN_CAMERAS].visible=@b_visible
+			#view.refresh	
 		end
     
-		def onCancel(reason, view)
-      puts("onCancel")
-      if reason == 0
-			  Sketchup.active_model.select_tool(nil)
-      end
-      
-      if reason == 2 && @org_target_number < NPLAB.get_target_number()
-            Sketchup.set_status_text "#focal points: #{NPLAB.get_target_number() - 1}"
-            return
-      end
-          
-		end
-#    
+    def onCancel(reason, view)
+    	puts("OnCancel:#{reason}")
+    	
+    	if reason == 2 && NPLAB.get_target_number() == @org_target_numb
+    		UI.messagebox("Please check the undo action", MB_OK);
+    		Sketchup.active_model.select_tool(nil)
+    	end
+
+    	if reason == 0
+    		Sketchup.active_model.select_tool(nil)
+    	end
+
+    end
+
+		#def onCancel(reason, view)
+    #  puts("onCancel")
+		#end
+
+
     def suspend(view)
       puts("suspend")
       Sketchup.active_model.select_tool(nil)
     end
-    
-    
-    #----------------------------------------------------------------------------
-		# store & restore the status
-		#-------------------------------------------------------------------------------
-		def store_status()
-			# store the camera information
-			model =  Sketchup.active_model
-			camera = Sketchup.active_model.active_view.camera
-			@org_eye 	  = Geom::Point3d.new(camera.eye)
-			@org_up  	  = Geom::Vector3d.new(camera.up)
-			@org_target = Geom::Point3d.new(camera.target)
-			@org_fov    = camera.fov
-		
-			# store the layer visibility information
-			@clayer = model.layers[NPLAB::LN_CAMERAS]
-			#if @clayer == nil
-			#	@clayer	= model.layers.add(NPLAB::LN_CAMERAS)
-			#end
-		end
 
-		
-		#--------------------------------------------------------------------------------
-		# add a target at the 3d position corresponding to (view, x, y)
-		#--------------------------------------------------------------------------------
-		def add_target(x, y, view)
-			inputpoint = view.inputpoint x,y
+	
+		def rotate(delta_h, delta_z, view)
+			camera = view.camera
+
+			eye 		= camera.eye
+			target  = camera.target 
+			up 				= camera.up
+
+
+			direction	= camera.direction
+			axis      = up.cross(direction)
+			direct_up = NPLAB.get_up(Sketchup.active_model.definitions[NPLAB::CN_CAMERA].instances[0])
+
+			t1 = Geom::Transformation.rotation(eye,       axis, delta_z)
+			t2 = Geom::Transformation.rotation(eye, direct_up, delta_h)
 			
-			# the target must be on a face 
-			if inputpoint.face == nil # && inputpoint.edge == nil && inputpoint.vertex == nil
-				return nil
-			end
-			
-			transformation = NPLAB.get_transf(x, y, view)
-			new_target = NPLAB.new_instance(Sketchup.active_model, @target_def, transformation, NPLAB::LN_TARGETS)
-      #@cur_trans_time = 0
-			return new_target
+
+			new_up = up.transform(t2 * t1)
+			new_target = target.transform(t2 * t1)
+			view.camera.set(eye, new_target, new_up)
+
 		end
 	
-	
-		def rotate(delta_h, delta_z)
-			eye = NPLAB.get_eye_position(@active_camera)
-			up 	= NPLAB.get_up(@active_camera)
-			w 	= eye - @cur_target
-			u 	= up * w 
-			u.normalize!
-			t1	= Geom::Transformation.rotation eye, u, delta_z 
-			t2 	= Geom::Transformation.rotation eye, up, delta_h
-			@cur_target.transform!(t1)
-			@cur_target.transform!(t2)
-      #@cur_trans_time = 0
-		end
-	
-		def zoom(alpha)
-			@cur_fov= @cur_fov + alpha
-			@cur_fov = @cur_fov > 120 ? 120 : @cur_fov
-			@cur_fov = @cur_fov < 15 ? 15 : @cur_fov
+		def zoom(alpha, view)
+			fov= view.camera.fov + alpha
+			fov= fov > 120 ? 120 : fov
+			fov= fov < 15 ? 15 :  fov
+			view.camera.fov= fov
+
 		end
 
 	end
