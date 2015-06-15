@@ -46,6 +46,7 @@ module NPLAB
 			transformation = NPLAB.get_transf(x, y, view)
 			definition     = NPLAB.get_definition(Sketchup.active_model, NPLAB::CN_TARGET, NPLAB::FN_TARGET)
 			new_target 		= NPLAB.new_instance(Sketchup.active_model, definition, transformation, NPLAB::LN_TARGETS)
+			return new_target
   	end
 
 
@@ -54,7 +55,15 @@ module NPLAB
   		@cur_x = x
 			@cur_y = y
 			 	
-			add_target(x, y, view)
+			new_target = add_target(x, y, view)
+			if new_target
+				camera = Sketchup.active_model.definitions[NPLAB::CN_CAMERA].instances[0]
+				direct_up = NPLAB.get_up(camera)
+				eye = NPLAB.get_eye_location(camera)
+				target = NPLAB.get_target_position(new_target)
+				view.camera.set(eye, target, direct_up)
+			end	
+
 			Sketchup.set_status_text "#focal points: #{NPLAB.get_target_number()}"
 			Sketchup.active_model.commit_operation
   		view.refresh
@@ -167,11 +176,12 @@ module NPLAB
 
 	
 		def rotate(delta_h, delta_z, view)
+
 			camera = view.camera
 
 			eye 		= camera.eye
 			target  = camera.target 
-			up 				= camera.up
+			up 		  = camera.up
 
 
 			direction	= camera.direction

@@ -2,7 +2,7 @@ module NPLAB
   module ShootScriptGenerator
     
 
-    def self.generate_shoot_scripts11(fn_conf, fn_cts, dn_output)
+    def self.generate_shoot_script(fn_conf, fn_cts, dn_output)
       confs = CShootScriptGenerationConfs.load(fn_conf).confs
       generator = build_shoot_script_generator(confs[0])
       

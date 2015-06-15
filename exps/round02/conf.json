@@ -1,0 +1,13 @@
+[
+  { 
+    "motion_type"   : "linear" ,
+    "direction"     : {
+                        "direction_specifier" : "special_directions", 
+                         "options"            : { "directions" : ["left", "right", "forward", "backward", "up"] }
+                      },
+    "speed"         : 0.8,
+    "duration"      : 1  ,
+    "sample_rate"   : 60          
+  }
+  
+]

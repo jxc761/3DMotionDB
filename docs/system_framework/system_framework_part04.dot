@@ -43,7 +43,7 @@ style="rounded"
 color=blue
 shape=box 
 height="1"
-label="Render"
+label="batch render"
 ]
 
 images[ 

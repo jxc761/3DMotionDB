@@ -45,6 +45,22 @@ module NPLAB
       
     end
     
+    def self.autofocus_in_model_with_cameras(model, camera, numb)
+      
+
+      objects   = CoreIO.get_spotted_objects(model) # Array<ComponentInstance>
+     
+      targets   = []
+      pairs     = []
+
+      camera_location = camera.position.origin
+      targets  = autofocus_on_objects(model, camera_location, objects, numb, 0 )
+      pairs = targets.collect{ |t| NPLAB::CoreIO::CPair.new(camera.id, t.id) }
+      cameras = [camera]
+
+      return NPLAB::CoreIO::CCameraTargetSetting.new(cameras, targets, pairs)
+    end
+
     def self.autofocus_on_each_object(model, camera_location, objects, numb, begin_id=Time.now.to_i)
       targets = []
       objects.each{|target_object|

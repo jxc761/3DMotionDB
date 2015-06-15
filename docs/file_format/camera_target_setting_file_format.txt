@@ -1,9 +1,9 @@
 # The format file to specify cameras and targets for a scene
 
 {
-  cameras: [ <camera> (, <camera>)* ],
-  targets: [ <target> (, <target>)* ],
-  pairs  : [ <pair> (,  <pair>)*]
+  "cameras": [ <camera> (, <camera>)* ],
+  "targets": [ <target> (, <target>)* ],
+  "pairs"  : [ <pair> (,  <pair>)*]
 }
 
 <camera:object>

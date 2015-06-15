@@ -58,7 +58,32 @@ module NPLAB
       return objects
       
     end
+ 
+    def self.assemble_on_plane(model, plane, dn_objects, nobjects)
+  
+      # prepare plane
+      transf = Geom::Transformation.new()
+
+      # load in the definitions of objects
+      fn_objects = Dir[File.join(dn_objects, "*.skp")]
+      definitions = fn_objects.collect{ |fn_object|  model.definitions.load(fn_object)}
+      
+      # find feasible combination
+      selected, centers = find_fesible_layout(definitions, plane, nobjects)
+
+      # assemble objects
+      objects = assemble_objects(model, selected, centers, plane, transf)
+     
+      # set spots 
+      CoreIO.set_spotted_objects(model, objects)
+      
+      # purge unused
+      model.definitions.purge_unused
     
+      return objects
+
+    end
+
     def self.clear_assemble(model)
     
     end
@@ -135,6 +160,9 @@ module NPLAB
     
       return objects
     end
+
+
+
 
   end
 end

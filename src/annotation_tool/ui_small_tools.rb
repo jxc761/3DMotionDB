@@ -96,7 +96,8 @@ module NPLAB
   end
 
 	def self.ui_flip_camera_validation()
-		return is_selecting_a_camera() ? MF_ENABLED : MF_GRAYED
+		# return is_selecting_a_camera() ? MF_ENABLED : MF_GRAYED
+		return MF_ENABLED
 	end
 	
 	def self.ui_flip_camera()

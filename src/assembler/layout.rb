@@ -5,10 +5,15 @@ module NPLAB
     # The interface of core alogrithms of placing objects onto a face.
     class CLayout
       # Any subclass must implement this interface.
-      def self.place(plane, radii, opts)
+      # 
+      # place (plane, radii, opts)
+      # place (bound_pts, radii, opts)
+      #
+      def self.place(bound, radii, opts)
         raise "this is a abstract method"
       end
       
+
       # For testing place()
       def self.testPlace()
         depth = 3.m
@@ -47,6 +52,10 @@ module NPLAB
       end
 
 
+      # test the the circle with center c and radius r is not out the bounds
+      # c : center
+      # r : radius 
+      # pts: bounds 
       def self.notOutBound(c, r, pts)
         n = pts.size
         (0...n).each{ |k|
@@ -59,10 +68,10 @@ module NPLAB
         return true
       end
 
+      # test the circle with center c and radius r is not intersect with circles with parameters (centers and radii)
       def self.notIntersect(c, r, centers, radii)
         n=centers.size
        
-
         # test whether circle i intersects other circles
         (0...n).each{ |i|
           next unless centers[i]
@@ -82,13 +91,19 @@ module NPLAB
 
     class CRandomLayout < CLayout
       
-      
-      def self.place(face, radii, opts={"maxIt"=> 100000})
+
+
+      def self.place(bound, radii, opts={"maxIt"=> 100000})
    
         maxIt = opts["maxIt"]
-    
+
         # get all bounding vertcies(points)
-        points = get_bound_vertices(face)
+        if bound.kind_of?(Array)
+          points = bound
+        else
+          points = get_bound_vertices(bound)
+        end
+        
     
         # intial centers of all circles
         n = radii.size
@@ -111,7 +126,7 @@ module NPLAB
             end
                
           end
-          
+
           # have not found any fesible position for the i-th circle
           if centers[i] == nil
             return nil

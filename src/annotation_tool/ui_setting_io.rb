@@ -65,15 +65,16 @@ module NPLAB
     
 
     dn_output  = ( NPLAB.auto_path? ) ? model_dir : NPLAB.path_to_output()
-    puts("NPLAB.auto_path?:#{NPLAB.auto_path?}");
-    puts("model_dir: #{model_dir}")
+    #UI.messagebox("NPLAB.auto_path?:#{NPLAB.auto_path?}");
+    #UI.messagebox("model_dir: #{model_dir}")
   
     filename =  File.join(dn_output, "#{model_name}.cts.json")
-    puts("dn_output: #{dn_output}")
-    puts("filename: #{filename}")
+    #UI.messagebox("dn_output: #{dn_output}")
+    #UI.messagebox("filename: #{filename}")
     unless NPLAB.single_cts?
       index = 1
-      while !File.file?(filename)
+      while File.file?(filename)
+        #UI.messagebox("#{filename}: #{File.file?(filename)}")
         filename =  File.join(dn_output, "#{model_name}_#{index}.cts.json")
         index += 1
       end
