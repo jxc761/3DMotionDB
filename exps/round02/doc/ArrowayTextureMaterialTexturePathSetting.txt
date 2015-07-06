@@ -1,0 +1,728 @@
+
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Boards/Maxwell Render 2.x/boards-001.mxm
+boards-001_b030.png
+boards-001_s100-g100.png
+boards-001_s100-g100.png
+boards-001_s100-g100.png
+boards-001_s100-g100.png
+boards-001_d100.png
+boards-001_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Boards/Maxwell Render 2.x/boards-002.mxm
+boards-002_b030.png
+boards-002_s100-g100.png
+boards-002_s100-g100.png
+boards-002_s100-g100.png
+boards-002_s100-g100.png
+boards-002_d100.png
+boards-002_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Boards/Maxwell Render 2.x/boards-003.mxm
+boards-003_b030.png
+boards-003_s100-g100.png
+boards-003_s100-g100.png
+boards-003_s100-g100.png
+boards-003_s100-g100.png
+boards-003_d100.png
+boards-003_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Boards/Maxwell Render 2.x/boards-004.mxm
+boards-004_b030.png
+boards-004_s050-g050.png
+boards-004_s050-g050.png
+boards-004_s050-g050.png
+boards-004_s050-g050.png
+boards-004_d100.png
+boards-004_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Boards/Maxwell Render 2.x/boards-005.mxm
+boards-005_b030.png
+boards-005_s100-(g015).png
+boards-005_s100-(g015).png
+boards-005_s100-(g015).png
+boards-005_d100.png
+boards-005_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-001.mxm
+bricks-001_b020.png
+bricks-001_s100-(g030).png
+bricks-001_s100-(g030).png
+bricks-001_s100-(g030).png
+bricks-001_d100.png
+bricks-001_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-002.mxm
+bricks-002_b030.png
+bricks-002_s100-g100.png
+bricks-002_s100-g100.png
+bricks-002_s100-g100.png
+bricks-002_s100-g100.png
+bricks-002_d100.png
+bricks-002_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-003.mxm
+bricks-003_b010.png
+bricks-003_s100-(g020).png
+bricks-003_s100-(g020).png
+bricks-003_s100-(g020).png
+bricks-003_d100.png
+bricks-003_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-004.mxm
+bricks-004_d100-(s015)-(g000).png
+bricks-004_d100-(s015)-(g000).png
+bricks-004_b030.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-005.mxm
+bricks-005_b030.png
+bricks-005_s100-(g000).png
+bricks-005_s100-(g000).png
+bricks-005_s100-(g000).png
+bricks-005_d100.png
+bricks-005_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-006.mxm
+bricks-006_b005.png
+bricks-006_s100-(g000).png
+bricks-006_s100-(g000).png
+bricks-006_s100-(g000).png
+bricks-006_d100.png
+bricks-006_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-007.mxm
+bricks-007_b030.png
+bricks-007_s100-(g030).png
+bricks-007_s100-(g030).png
+bricks-007_s100-(g030).png
+bricks-007_d100.png
+bricks-007_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-008.mxm
+bricks-008_b030.png
+bricks-008_d100-(s020)-(g040).png
+bricks-008_d100-(s020)-(g040).png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-009.mxm
+bricks-009_b015.png
+bricks-009_s050-g100.png
+bricks-009_s050-g100.png
+bricks-009_s050-g100.png
+bricks-009_s050-g100.png
+bricks-009_d100.png
+bricks-009_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-010.mxm
+bricks-010_b015.png
+bricks-010_s100-g100.png
+bricks-010_s100-g100.png
+bricks-010_s100-g100.png
+bricks-010_s100-g100.png
+bricks-010_d100.png
+bricks-010_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-011.mxm
+bricks-011_b030.png
+bricks-011_s025-(g000).png
+bricks-011_s025-(g000).png
+bricks-011_s025-(g000).png
+bricks-011_d100.png
+bricks-011_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-012.mxm
+bricks-012_b015.png
+bricks-012_s025-(g000).png
+bricks-012_s025-(g000).png
+bricks-012_s025-(g000).png
+bricks-012_d100.png
+bricks-012_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-013.mxm
+bricks-013_b010.png
+bricks-013_s025-g010.png
+bricks-013_s025-g010.png
+bricks-013_s025-g010.png
+bricks-013_s025-g010.png
+bricks-013_d100.png
+bricks-013_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-014.mxm
+bricks-014_b010.png
+bricks-014_s025-g010.png
+bricks-014_s025-g010.png
+bricks-014_s025-g010.png
+bricks-014_s025-g010.png
+bricks-014_d100.png
+bricks-014_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-015.mxm
+bricks-015_b020.png
+bricks-015_s025-(g000).png
+bricks-015_s025-(g000).png
+bricks-015_s025-(g000).png
+bricks-015_d100.png
+bricks-015_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-016.mxm
+bricks-016_b015.png
+bricks-016_s015-(g010).png
+bricks-016_s015-(g010).png
+bricks-016_s015-(g010).png
+bricks-016_d100.png
+bricks-016_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-017.mxm
+bricks-017_b015.png
+bricks-017_s025-(g010).png
+bricks-017_s025-(g010).png
+bricks-017_s025-(g010).png
+bricks-017_d100.png
+bricks-017_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-018.mxm
+bricks-018_b015.png
+bricks-018_s015-(g010).png
+bricks-018_s015-(g010).png
+bricks-018_s015-(g010).png
+bricks-018_d100.png
+bricks-018_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-019.mxm
+bricks-019_b010.png
+bricks-019_s025-g100.png
+bricks-019_s025-g100.png
+bricks-019_s025-g100.png
+bricks-019_s025-g100.png
+bricks-019_d100.png
+bricks-019_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Bricks/Maxwell Render 2.x/bricks-020.mxm
+bricks-020_b015.png
+bricks-020_s025-g050.png
+bricks-020_s025-g050.png
+bricks-020_s025-g050.png
+bricks-020_s025-g050.png
+bricks-020_d100.png
+bricks-020_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Concrete/Maxwell Render 2.x/concrete-001.mxm
+concrete-001_b010.png
+concrete-001_s050-g050.png
+concrete-001_s050-g050.png
+concrete-001_s050-g050.png
+concrete-001_s050-g050.png
+concrete-001_d100.png
+concrete-001_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Concrete/Maxwell Render 2.x/concrete-002.mxm
+concrete-002_b030.png
+concrete-002_s100-(g020).png
+concrete-002_s100-(g020).png
+concrete-002_s100-(g020).png
+concrete-002_d100.png
+concrete-002_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Concrete/Maxwell Render 2.x/concrete-003.mxm
+concrete-003_b030.png
+concrete-003_s050-g100.png
+concrete-003_s050-g100.png
+concrete-003_s050-g100.png
+concrete-003_s050-g100.png
+concrete-003_d100.png
+concrete-003_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-lattice-001.mxm
+metal-lattice-001_b015.png
+metal-lattice-001_o100.png
+metal-lattice-001_s100-g100.png
+metal-lattice-001_s100-g100.png
+metal-lattice-001_s100-g100.png
+metal-lattice-001_s100-g100.png
+metal-lattice-001_s100-g100.png
+metal-lattice-001_o100.png
+metal-lattice-001_d100.png
+metal-lattice-001_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-plate-001.mxm
+metal-plate-001_b005.png
+metal-plate-001_s100-(g025).png
+metal-plate-001_s100-(g025).png
+metal-plate-001_s100-(g025).png
+metal-plate-001_d100.png
+metal-plate-001_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-plate-002.mxm
+metal-plate-002_b005.png
+metal-plate-002_s100-(g025).png
+metal-plate-002_s100-(g025).png
+metal-plate-002_s100-(g025).png
+metal-plate-002_d100.png
+metal-plate-002_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-plate-003.mxm
+metal-plate-003_b030.png
+metal-plate-003_s100-(g050).png
+metal-plate-003_s100-(g050).png
+metal-plate-003_s100-(g050).png
+metal-plate-003_d100.png
+metal-plate-003_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-plate-004.mxm
+metal-plate-004_b030.png
+metal-plate-004_s100-(g050).png
+metal-plate-004_s100-(g050).png
+metal-plate-004_s100-(g050).png
+metal-plate-004_d100.png
+metal-plate-004_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-plate-005.mxm
+metal-plate-005_b015.png
+metal-plate-005_s100-(g050).png
+metal-plate-005_s100-(g050).png
+metal-plate-005_s100-(g050).png
+metal-plate-005_d100.png
+metal-plate-005_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-structure-001.mxm
+metal-structure-001_b030.png
+metal-structure-001_s100-(g020).png
+metal-structure-001_s100-(g020).png
+metal-structure-001_s100-(g020).png
+metal-structure-001_d100.png
+metal-structure-001_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-structure-002.mxm
+metal-structure-002_b025.png
+metal-structure-002_s100-(g020).png
+metal-structure-002_s100-(g020).png
+metal-structure-002_s100-(g020).png
+metal-structure-002_d100.png
+metal-structure-002_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-structure-002_flat.mxm
+metal-structure-002_b025_flat.png
+metal-structure-002_s100-(g020).png
+metal-structure-002_s100-(g020).png
+metal-structure-002_s100-(g020).png
+metal-structure-002_d100.png
+metal-structure-002_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-structure-003.mxm
+metal-structure-003_b010.png
+metal-structure-003_s100-(g020).png
+metal-structure-003_s100-(g020).png
+metal-structure-003_s100-(g020).png
+metal-structure-003_d100.png
+metal-structure-003_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-structure-004.mxm
+metal-structure-004_b030.png
+metal-structure-004_s100-g070.png
+metal-structure-004_s100-g070.png
+metal-structure-004_s100-g070.png
+metal-structure-004_s100-g070.png
+metal-structure-004_d100.png
+metal-structure-004_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-structure-005.mxm
+metal-structure-005_b030.png
+metal-structure-005_s100-g070.png
+metal-structure-005_s100-g070.png
+metal-structure-005_s100-g070.png
+metal-structure-005_s100-g070.png
+metal-structure-005_d100.png
+metal-structure-005_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-structure-006.mxm
+metal-structure-006_b030.png
+metal-structure-006_s100-(g010).png
+metal-structure-006_s100-(g010).png
+metal-structure-006_s100-(g010).png
+metal-structure-006_d100.png
+metal-structure-006_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-structure-006_flat.mxm
+metal-structure-006_s100-(g010).png
+metal-structure-006_s100-(g010).png
+metal-structure-006_s100-(g010).png
+metal-structure-006_d100_flat.png
+metal-structure-006_d100_flat.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Metal/Maxwell Render 2.x/metal-structure-007.mxm
+metal-structure-007_b030.png
+metal-structure-007_s075-(g020).png
+metal-structure-007_s075-(g020).png
+metal-structure-007_s075-(g020).png
+metal-structure-007_d100.png
+metal-structure-007_d100.png
+
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Misc/Maxwell Render 2.x/cardboard-001.mxm
+cardboard-001_b002.png
+cardboard-001_s005-(g020).png
+cardboard-001_s005-(g020).png
+cardboard-001_s005-(g020).png
+cardboard-001_d100.png
+cardboard-001_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Misc/Maxwell Render 2.x/cardboard-edge-001.mxm
+cardboard-edge-001_b010.png
+cardboard-edge-001_d100-(s000)-(g000).png
+cardboard-edge-001_d100-(s000)-(g000).png
+cardboard-edge-001_b010.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Misc/Maxwell Render 2.x/shutter-001.mxm
+misc-roller-shutter-001_b015.png
+misc-roller-shutter-001_s100-g100.png
+misc-roller-shutter-001_s100-g100.png
+misc-roller-shutter-001_s100-g100.png
+misc-roller-shutter-001_s100-g100.png
+misc-roller-shutter-001_d100.png
+misc-roller-shutter-001_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Misc/Maxwell Render 2.x/shutter-002.mxm
+misc-roller-shutter-002_b015.png
+misc-roller-shutter-002_s100-g100.png
+misc-roller-shutter-002_s100-g100.png
+misc-roller-shutter-002_s100-g100.png
+misc-roller-shutter-002_s100-g100.png
+misc-roller-shutter-002_d100.png
+misc-roller-shutter-002_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Misc/Maxwell Render 2.x/shutter-003.mxm
+misc-roller-shutter-003_b030.png
+misc-roller-shutter-003_s100-g100.png
+misc-roller-shutter-003_s100-g100.png
+misc-roller-shutter-003_s100-g100.png
+misc-roller-shutter-003_s100-g100.png
+misc-roller-shutter-003_d100.png
+misc-roller-shutter-003_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Misc/Maxwell Render 2.x/stamp-001.mxm
+cardboard-001_b002.png
+cardboard-001_s005-(g020).png
+cardboard-001_s005-(g020).png
+cardboard-001_s005-(g020).png
+stamp-001_o100.png
+cardboard-001_d100.png
+cardboard-001_d100.png
+
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Pavement/Maxwell Render 2.x/pavement-001.mxm
+pavement-001_b030.png
+pavement-001_s100.png
+pavement-001_s100.png
+pavement-001_s100.png
+pavement-001_d100.png
+pavement-001_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Pavement/Maxwell Render 2.x/pavement-002.mxm
+pavement-002_b050.png
+pavement-002_s100-g100.png
+pavement-002_s100-g100.png
+pavement-002_s100-g100.png
+pavement-002_s100-g100.png
+pavement-002_d100.png
+pavement-002_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Pavement/Maxwell Render 2.x/pavement-003.mxm
+pavement-003_b015.png
+pavement-003_s100-(g050).png
+pavement-003_s100-(g050).png
+pavement-003_s100-(g050).png
+pavement-003_d100.png
+pavement-003_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Pavement/Maxwell Render 2.x/pavement-004.mxm
+pavement-004_b030.png
+pavement-004_s100-(g015).png
+pavement-004_s100-(g015).png
+pavement-004_s100-(g015).png
+pavement-004_d100.png
+pavement-004_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Pavement/Maxwell Render 2.x/pavement-005.mxm
+pavement-005_b030.png
+pavement-005_s100-(g015).png
+pavement-005_s100-(g015).png
+pavement-005_s100-(g015).png
+pavement-005_d100.png
+pavement-005_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Pavement/Maxwell Render 2.x/pavement-006.mxm
+pavement-006_b030.png
+pavement-006_s100-(g015).png
+pavement-006_s100-(g015).png
+pavement-006_s100-(g015).png
+pavement-006_d100.png
+pavement-006_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-001.mxm
+plaster-001_b030-g100.png
+plaster-001_b030-g100.png
+plaster-001_d100-(s010).png
+plaster-001_d100-(s010).png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-002.mxm
+plaster-002_b030-g100.png
+plaster-002_b030-g100.png
+plaster-002_d100-(s020).png
+plaster-002_d100-(s020).png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-003.mxm
+plaster-003_b030-s100.png
+plaster-003_b030-s100.png
+plaster-003_b030-s100.png
+plaster-003_b030-s100.png
+plaster-003_d100-(g050).png
+plaster-003_d100-(g050).png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-004.mxm
+plaster-004_b015.png
+plaster-004_s050-(g000).png
+plaster-004_s050-(g000).png
+plaster-004_s050-(g000).png
+plaster-004_d100.png
+plaster-004_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-005.mxm
+plaster-005_b030-g100.png
+plaster-005_b030-g100.png
+plaster-005_d100-(s010).png
+plaster-005_d100-(s010).png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-006.mxm
+plaster-006_b030.png
+plaster-006_s100-(g050).png
+plaster-006_s100-(g050).png
+plaster-006_s100-(g050).png
+plaster-006_d100.png
+plaster-006_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-007.mxm
+plaster-007_b015-s015.png
+plaster-007_b015-s015.png
+plaster-007_b015-s015.png
+plaster-007_b015-s015.png
+plaster-007_d100-(g000).png
+plaster-007_d100-(g000).png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-008.mxm
+plaster-008_b030.png
+plaster-008_s100-g100.png
+plaster-008_s100-g100.png
+plaster-008_s100-g100.png
+plaster-008_s100-g100.png
+plaster-008_d100.png
+plaster-008_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-009.mxm
+plaster-009_b030.png
+plaster-009_s025-(g000).png
+plaster-009_s025-(g000).png
+plaster-009_s025-(g000).png
+plaster-009_d100.png
+plaster-009_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-010.mxm
+plaster-010_b030.png
+plaster-010_s050-(g000).png
+plaster-010_s050-(g000).png
+plaster-010_s050-(g000).png
+plaster-010_d100.png
+plaster-010_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-011.mxm
+plaster-011_b030.png
+plaster-011_s025-g100.png
+plaster-011_s025-g100.png
+plaster-011_s025-g100.png
+plaster-011_s025-g100.png
+plaster-011_d100.png
+plaster-011_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-012.mxm
+plaster-012_d100-(s000)-(g000).png
+plaster-012_d100-(s000)-(g000).png
+plaster-012_b030.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-013.mxm
+plaster-013_d100-(s000)-(g000).png
+plaster-013_d100-(s000)-(g000).png
+plaster-013_b030.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-014.mxm
+plaster-014_d100-(s000)-(g000).png
+plaster-014_d100-(s000)-(g000).png
+plaster-014_b020.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-015.mxm
+plaster-015_d100-(s000)-(g000).png
+plaster-015_d100-(s000)-(g000).png
+plaster-015_b030.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-016.mxm
+plaster-016_d100-(s000)-(g000).png
+plaster-016_d100-(s000)-(g000).png
+plaster-016_b030.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-017.mxm
+plaster-017_d100-(s000)-(g000).png
+plaster-017_d100-(s000)-(g000).png
+plaster-017_b030.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-018.mxm
+plaster-018_d100-(s000)-(g000).png
+plaster-018_d100-(s000)-(g000).png
+plaster-018_b030.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-019.mxm
+plaster-019_d100-(s000)-(g000).png
+plaster-019_d100-(s000)-(g000).png
+plaster-019_b050.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-020.mxm
+plaster-020_b050.png
+plaster-020_s100-(g030).png
+plaster-020_s100-(g030).png
+plaster-020_s100-(g030).png
+plaster-020_d100.png
+plaster-020_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-021.mxm
+plaster-021_d100-(s000)-(g000).png
+plaster-021_d100-(s000)-(g000).png
+plaster-021_b050.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-022.mxm
+plaster-022_b015.png
+plaster-022_s025.png
+plaster-022_s025.png
+plaster-022_s025.png
+plaster-022_s025.png
+plaster-022_d100.png
+plaster-022_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-023.mxm
+plaster-023_b015.png
+plaster-023_s025-g100.png
+plaster-023_s025-g100.png
+plaster-023_s025-g100.png
+plaster-023_s025-g100.png
+plaster-023_d100.png
+plaster-023_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-024.mxm
+plaster-024_b050.png
+plaster-024_s025-(g000).png
+plaster-024_s025-(g000).png
+plaster-024_s025-(g000).png
+plaster-024_d100.png
+plaster-024_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-025.mxm
+plaster-025_b020.png
+plaster-025_s025-(g000).png
+plaster-025_s025-(g000).png
+plaster-025_s025-(g000).png
+plaster-025_d100.png
+plaster-025_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Plaster/Maxwell Render 2.x/plaster-026.mxm
+plaster-026_d100.png
+plaster-026_d100.png
+plaster-026_b015.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Stone/Maxwell Render 2.x/stone-001_granite.mxm
+stone-001_granite_s100.png
+stone-001_granite_s100.png
+stone-001_granite_s100.png
+stone-001_granite_d100.png
+stone-001_granite_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Stone/Maxwell Render 2.x/stone-002_sandstone.mxm
+stone-002_sandstone_b015.png
+stone-002_sandstone_s100-(g010).png
+stone-002_sandstone_s100-(g010).png
+stone-002_sandstone_s100-(g010).png
+stone-002_sandstone_d100.png
+stone-002_sandstone_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Stone/Maxwell Render 2.x/stone-003_sandstone.mxm
+stone-003_sandstone_b010.png
+stone-003_sandstone_s100-(g010).png
+stone-003_sandstone_s100-(g010).png
+stone-003_sandstone_s100-(g010).png
+stone-003_sandstone_d100.png
+stone-003_sandstone_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-001.mxm
+tiles-001_b015.png
+tiles-001_s100-(g070).png
+tiles-001_s100-(g070).png
+tiles-001_s100-(g070).png
+tiles-001_d100.png
+tiles-001_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-002.mxm
+tiles-002_b030.png
+tiles-002_s100-g100.png
+tiles-002_s100-g100.png
+tiles-002_s100-g100.png
+tiles-002_s100-g100.png
+tiles-002_d100.png
+tiles-002_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-003.mxm
+tiles-003_b015.png
+tiles-003_s100-(g020).png
+tiles-003_s100-(g020).png
+tiles-003_s100-(g020).png
+tiles-003_d100.png
+tiles-003_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-004.mxm
+tiles-004_b0115.png
+tiles-004_s050-(g010).png
+tiles-004_s050-(g010).png
+tiles-004_s050-(g010).png
+tiles-004_d100.png
+tiles-004_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-005.mxm
+tiles-005_b010.png
+tiles-005_s050-g050.png
+tiles-005_s050-g050.png
+tiles-005_s050-g050.png
+tiles-005_s050-g050.png
+tiles-005_d100.png
+tiles-005_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-006.mxm
+tiles-006_b010.png
+tiles-006_s100-g100.png
+tiles-006_s100-g100.png
+tiles-006_s100-g100.png
+tiles-006_s100-g100.png
+tiles-006_d100.png
+tiles-006_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-007.mxm
+tiles-007_b030.png
+tiles-007_s100-(g070).png
+tiles-007_s100-(g070).png
+tiles-007_s100-(g070).png
+tiles-007_d100.png
+tiles-007_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-008.mxm
+tiles-008_b015.png
+tiles-008_s100-g100.png
+tiles-008_s100-g100.png
+tiles-008_s100-g100.png
+tiles-008_s100-g100.png
+tiles-008_d100.png
+tiles-008_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-009.mxm
+tiles-009_b020.png
+tiles-009_s100-g100.png
+tiles-009_s100-g100.png
+tiles-009_s100-g100.png
+tiles-009_s100-g100.png
+tiles-009_d100.png
+tiles-009_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-010.mxm
+tiles-010_b030.png
+tiles-010_s100-g100.png
+tiles-010_s100-g100.png
+tiles-010_s100-g100.png
+tiles-010_s100-g100.png
+tiles-010_d100.png
+tiles-010_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-011.mxm
+tiles-011_b015.png
+tiles-011_s050-g050.png
+tiles-011_s050-g050.png
+tiles-011_s050-g050.png
+tiles-011_s050-g050.png
+tiles-011_d100.png
+tiles-011_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-012.mxm
+tiles-012_b005.png
+tiles-012_s100-g050.png
+tiles-012_s100-g050.png
+tiles-012_s100-g050.png
+tiles-012_s100-g050.png
+tiles-012_d100.png
+tiles-012_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-013.mxm
+tiles-013_b015.png
+tiles-013_s100-(g025).png
+tiles-013_s100-(g025).png
+tiles-013_s100-(g025).png
+tiles-013_d100.png
+tiles-013_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-014.mxm
+tiles-014_b025.png
+tiles-014_s100-g100.png
+tiles-014_s100-g100.png
+tiles-014_s100-g100.png
+tiles-014_s100-g100.png
+tiles-014_d100.png
+tiles-014_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-015.mxm
+tiles-015_b030.png
+tiles-015_s100-g100.png
+tiles-015_s100-g100.png
+tiles-015_s100-g100.png
+tiles-015_s100-g100.png
+tiles-015_d100.png
+tiles-015_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-016.mxm
+tiles-016_b005.png
+tiles-016_s100-g100.png
+tiles-016_s100-g100.png
+tiles-016_s100-g100.png
+tiles-016_s100-g100.png
+tiles-016_d100.png
+tiles-016_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-017.mxm
+tiles-017_b005.png
+tiles-017_s100-g100.png
+tiles-017_s100-g100.png
+tiles-017_s100-g100.png
+tiles-017_s100-g100.png
+tiles-017_d100.png
+tiles-017_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-018.mxm
+tiles-018_b030.png
+tiles-018_s100-g100.png
+tiles-018_s100-g100.png
+tiles-018_s100-g100.png
+tiles-018_s100-g100.png
+tiles-018_d100.png
+tiles-018_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-019.mxm
+tiles-019_b020.png
+tiles-019_s100-g100.png
+tiles-019_s100-g100.png
+tiles-019_s100-g100.png
+tiles-019_s100-g100.png
+tiles-019_d100.png
+tiles-019_d100.png
+/Users/Jing/Dropbox/3DMotion/3DMotionDB/exps/round02/GroundTesting/res/materials/Tiles/Maxwell Render 2.x/tiles-020.mxm
+tiles-020_b010.png
+tiles-020_s100-g100.png
+tiles-020_s100-g100.png
+tiles-020_s100-g100.png
+tiles-020_s100-g100.png
+tiles-020_d100.png
+tiles-020_d100.png
