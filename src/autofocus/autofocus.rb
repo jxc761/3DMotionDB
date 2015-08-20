@@ -36,7 +36,7 @@ module NPLAB
       
       cameras.each{ |camera|
         camera_location = camera.position.origin
-        ts  = autofocus_on_objects(model, camera_location, objects, numb, 0 )
+        ts  = autofocus_on_objects(model, camera_location, objects, numb, targets.size() )
         ps  = ts.collect{ |t| NPLAB::CoreIO::CPair.new(camera.id, t.id) }
         targets.concat(ts)
         pairs.concat(ps)
@@ -75,14 +75,36 @@ module NPLAB
     def self.autofocus_on_objects(model, camera_location, objects, numb, begin_id=Time.now.to_i)
 
       targets = []
+
+      while targets.size < numb
+        puts "finding focus ....."
+        target_object = objects[rand(objects.size)];
+        bbox = target_object.bounds
+        points  = (0...8).collect{ |i| bbox.corner(i) } 
+        candidate  = Utils.rand_pick(points)
+        direction  = candidate - camera_location 
+        ray        = [camera_location, direction]
+
+        location, face, transf = raytest(model, ray, target_object)
+        next unless location
+
+        id       = (begin_id + targets.size).to_s
+        zaxis    = face.normal.transform(transf)
+        position = Geom::Transformation.new(location, zaxis)
       
-      picked_objects = Array.new(numb){objects[rand(objects.size)]}
+        target = NPLAB::CoreIO::CTarget.new(id, position)
+        targets << target
+
+      end
+
+
+      # picked_objects = Array.new(numb){objects[rand(objects.size)]}
       
-      picked_objects.each{ |target_object|
-        t = autofocus_on_object(model, camera_location, target_object, 1, begin_id)
-        begin_id += 1
-        targets.concat(t)
-      }  
+      # picked_objects.each{ |target_object|
+      #   t = autofocus_on_object(model, camera_location, target_object, 1, begin_id)
+      #   begin_id += 1
+      #   targets.concat(t)
+      # }  
  
       return targets
     end

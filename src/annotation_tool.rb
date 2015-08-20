@@ -6,6 +6,9 @@ module NPLAB
 
   pz_icons = "#{File.dirname(__FILE__)}/annotation_tool/icons"
 
+  annotation_toolbar = UI::Toolbar.new("Annotation")
+
+
 
   #---------------------------------------------------
   # clear annotation
@@ -133,59 +136,10 @@ module NPLAB
   cmd_show_setting_info.large_icon  = "#{pz_icons}/info_24.png"
   cmd_show_setting_info.menu_text   = "show setting info"
   cmd_show_setting_info.tooltip     = "show setting info"
-  
 
-  cmd_config = UI::Command.new("Customize Tools"){
-
-    dlgConf = UI::WebDialog.new("Configuration", true, "NPLAB_TOOL_CONFIGURATION", 480, 300, 200, 200, true)
-    dlgConf.set_file("#{File.dirname(__FILE__)}/annotation_tool/js/configure_tool.html")
-
-
-    dlgConf.add_action_callback("onOk") do |web_dialog, value|
-       set_tool_config(value)
-       web_dialog.close      
-    end
-
-    dlgConf.add_action_callback("onCancel") do |web_dialog, value|
-       web_dialog.close
-    end
-
-    dlgConf.add_action_callback("select_folder") do  |web_dialog, value|
-
-      directory = File.dirname( Sketchup.active_model.path )
-      path = UI.select_directory( title: "Select Directory", directory: directory)
-      
-      if path 
-        script = "onSelectedFolder('"  + path +  "')";
-        web_dialog.execute_script(script)
-      end
-  
-    end
-
-    dlgConf.add_action_callback("onReady") do  |web_dialog, value|
-      script = "initialize(" + get_tool_config() + ")"
-      web_dialog.execute_script(script)
-    end
-    
-    dlgConf.set_on_close{
-        save_tool_config()
-    }
-
-    dlgConf.show_modal()
-
-  }
-  cmd_config.small_icon = "#{pz_icons}/config_16.png"
-  cmd_config.large_icon = "#{pz_icons}/config_24.png"
-  cmd_config.menu_text  = "Configue this tool"
-
-
-  annotation_toolbar = UI::Toolbar.new("Annotation")
-  
- 
   annotation_toolbar.add_item(cmd_load)
-  
+
   annotation_toolbar.add_separator
-  
   annotation_toolbar.add_item(cmd_clear_annotation)
   annotation_toolbar.add_item(cmd_camera)
   annotation_toolbar.add_item(cmd_add_target)
@@ -199,7 +153,60 @@ module NPLAB
   annotation_toolbar.add_item(cmd_hide_setting)
   annotation_toolbar.add_item(cmd_show_setting_info)
 
-  annotation_toolbar.add_item(cmd_config)
+
+
+  # if Sketchup.version_number > 15000000
+  #   cmd_config = UI::Command.new("Customize Tools"){
+
+  #     dlgConf = UI::WebDialog.new("Configuration", true, "NPLAB_TOOL_CONFIGURATION", 480, 300, 200, 200, true)
+  #     dlgConf.set_file("#{File.dirname(__FILE__)}/annotation_tool/js/configure_tool.html")
+
+
+  #     dlgConf.add_action_callback("onOk") do |web_dialog, value|
+  #        set_tool_config(value)
+  #        web_dialog.close      
+  #     end
+
+  #     dlgConf.add_action_callback("onCancel") do |web_dialog, value|
+  #        web_dialog.close
+  #     end
+
+  #     dlgConf.add_action_callback("select_folder") do  |web_dialog, value|
+
+  #       directory = File.dirname( Sketchup.active_model.path )
+  #       path = UI.select_directory( title: "Select Directory", directory: directory)
+        
+  #       if path 
+  #         script = "onSelectedFolder('"  + path +  "')";
+  #         web_dialog.execute_script(script)
+  #       end
+    
+  #     end
+
+  #     dlgConf.add_action_callback("onReady") do  |web_dialog, value|
+  #       script = "initialize(" + get_tool_config() + ")"
+  #       web_dialog.execute_script(script)
+  #     end
+      
+  #     dlgConf.set_on_close{
+  #         save_tool_config()
+  #     }
+
+  #     dlgConf.show_modal()
+
+  #   }
+  #   cmd_config.small_icon = "#{pz_icons}/config_16.png"
+  #   cmd_config.large_icon = "#{pz_icons}/config_24.png"
+  #   cmd_config.menu_text  = "Configue this tool"
+
+  #   annotation_toolbar.add_item(cmd_config)
+  # end
+
+
+  
+ 
+ 
+
  
   if annotation_toolbar.get_last_state == 1
      annotation_toolbar.show

@@ -39,12 +39,12 @@ module NPLAB
       
     
       # load in the definitions of objects
-      definitions = fn_objects.collect{ |fn_object|  model.definitions.load(fn_object)}
+      # definitions = fn_objects.collect{ |fn_object|  model.definitions.load(fn_object)}
      
       
       # find feasible combination
-      selected, centers = find_fesible_layout(definitions, plane, nobjects)
- 
+      # selected, centers = find_fesible_layout(definitions, plane, nobjects)
+      selected, centers =  find_fesible(model, fn_objects, plane, nobjects)
       
       # assemble objects
       objects = assemble_objects(model, selected, centers, plane, transf)
@@ -54,7 +54,8 @@ module NPLAB
       
       # purge unused
       model.definitions.purge_unused
-      
+      model.materials.purge_unused
+
       return objects
       
     end
@@ -84,10 +85,7 @@ module NPLAB
 
     end
 
-    def self.clear_assemble(model)
-    
-    end
-    
+
     # ------------------------------------
     # Private
     # ------------------------------------
@@ -100,7 +98,42 @@ module NPLAB
       }
       return radii
     end
-    
+
+    def self.find_fesible(model, fn_objects, plane, nobjects)
+      centers = nil
+      selected = nil
+      
+      while centers == nil
+        puts "Finding fesible assemble, please wait....."
+        
+        # random select objects
+        selected_idx = Array.new(nobjects){ rand(fn_objects.size().to_i) }
+        
+        selected = selected_idx.collect{ |i|  
+          # model.definitions.load( fn_objects[i] )
+
+          load_definition(model,  fn_objects[i])
+        }
+
+         # compute their raddis layout
+        selected_r = get_radii(selected)
+        centers = CRandomLayout.place(plane, selected_r)
+      end
+      
+      return [selected, centers]
+    end
+
+    def self.load_definition(model, fn_comp)
+
+      model.definitions.each{ | componentdefinition | 
+        if componentdefinition.path == fn_comp
+          return componentdefinition
+        end
+      }
+      return model.definitions.load( fn_comp )
+    end
+
+
     def self.find_fesible_layout(definitions, plane, nobjects)
       # find feasible combination
       radii = get_radii(definitions)

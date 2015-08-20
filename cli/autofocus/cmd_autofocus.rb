@@ -18,9 +18,11 @@ unless args
   print_usage()
   exit()
 end
-args.each_pair{ |key, value|
-  puts "#{key}:#{value}"
-}
+
+
+# args.each_pair{ |key, value|
+#   puts "#{key}:#{value}"
+# }
 
 dn_inputs = args["dn_inputs"]
 dn_outputs = args["dn_outputs"]
@@ -35,6 +37,10 @@ skps = Dir[File.join(dn_inputs, "*.skp")]
 skps.each{ |fn_skp|
   skp_name  = File.basename(fn_skp).sub(/\.skp$/, "")
   fn_cts    = File.join(dn_outputs, "#{skp_name}.cts.json")
+  if (File.exist?(fn_cts))
+    next
+  end
+
   args      =[fn_skp, fn_cts, numb]
   CLIUtil.run_file(fn_ruby, args)
 }

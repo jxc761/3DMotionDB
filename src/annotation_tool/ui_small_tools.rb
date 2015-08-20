@@ -55,8 +55,8 @@ module NPLAB
   def self.ui_hide_setting()
     Sketchup.active_model.start_operation "Hide camera target setting"
     
-		layer = Sketchup.active_model.layers[NPLAB::LN_CAMERAS]
-		if layer
+	layer = Sketchup.active_model.layers[NPLAB::LN_CAMERAS]
+	if layer
       layer.visible=false
     end
     

@@ -47,6 +47,12 @@ module NPLAB
       
       return cameras
     end
+
+    def self.load_preset_cameras(filename)
+        json = NPLAB::BasicJson.load(filename)
+        cameras = json.collect{ |camera| CCamera.from_json(camera)}
+        return cameras
+    end
     
   end
 end

@@ -11,5 +11,10 @@ fn_cts = args[1]
 numb   = args[2].to_i
 
 NPLAB::Autofocus.autofocus(fn_skp, fn_cts, numb)
-exec("ps -clx | grep -i 'sketchup' | awk '{print $2}' | head -1 | xargs kill -9")
+
+if Sketchup.version_number > 14000000 
+	Sketchup.quit
+else
+	exec("ps -clx | grep -i 'sketchup' | awk '{print $2}' | head -1 | xargs kill -9")
+end 
 #system("osascript -e " + "'" + 'tell application "/Applications/SketchUp 2013/SketchUp.app" to quit' + "'")

@@ -38,22 +38,28 @@ nobjects    = args["nobjects"]
 fn_ruby = File.join( File.dirname(File.absolute_path(__FILE__)), "su_assemble.rb")
 
 
-# clear dn_outputs
 # system("mkdir #{dn_outputs}")
 
 studios = Dir[File.join(dn_studios, "*.skp")]
 
 studios.each{ |fn_studio|
   studio_name = File.basename(fn_studio).sub(/\.skp$/, "")
+  
   (0...nscenes).each{ |s|
     
     fn_output_skp   = File.join(dn_output_skps,     "#{studio_name}_#{s}.skp")
     fn_output_spot  = File.join(dn_output_spots,    "#{studio_name}_#{s}.spots.json")
-    fn_output_img   = File.join(dn_output_preview,  "#{studio_name}_#{s}.jpg")
+    fn_output_img   = File.join(dn_output_preview,  "#{studio_name}_#{s}.png")
     
+    if ( File.exist?(fn_output_skp) && File.exist?(fn_output_spot) && File.exist?(fn_output_img) )
+      next
+    else
+       system("rm #{fn_output_skp} #{fn_output_spot} #{fn_output_img}")
+    end
+
     system("cp #{fn_studio} #{fn_output_skp}")
     args = [fn_output_skp, fn_output_spot, fn_output_img, dn_objects, nobjects]  
     CLIUtil.run_file(fn_ruby, args)
   }  
-}
 
+}

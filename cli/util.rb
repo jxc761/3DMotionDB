@@ -84,15 +84,27 @@ module CLIUtil
       puts("Cannot find sketchup!")
       exit()
     end
+
+    apps.sort!
     
     # run sketchup
-    app_name  = '"' + apps[0] + '"'
+
+    app_name  = '"' + apps[-1] + '"'
+    # app_name  = '"' + '/Applications/SketchUp 2014/SketchUp.app' + '"'
     cmd       = "open --wait-apps " + app_name + " --args -RubyStartup " + '"' + fn_ruby + '"'
     puts(cmd)
     system(cmd)
     
   end
   
+
+  def exit_su
+    if Sketchup.version_number > 15000000 
+      Sketchup.quit
+    else
+      exec("ps -clx | grep -i 'sketchup' | awk '{print $2}' | head -1 | xargs kill -9")
+    end 
+  end
 
   
   def self.parse_args(required, real_args)

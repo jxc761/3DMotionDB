@@ -15,4 +15,8 @@ nobjects   = args[4].to_i
 
 NPLAB::Assembler.assemble(fn_skp, fn_spots, fn_img, dn_objects, nobjects)
 
-exec("ps -clx | grep -i 'sketchup' | awk '{print $2}' | head -1 | xargs kill -9")
+if Sketchup.version_number > 14000000 
+	Sketchup.quit
+else
+	exec("ps -clx | grep -i 'sketchup' | awk '{print $2}' | head -1 | xargs kill -9")
+end 

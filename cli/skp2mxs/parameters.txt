@@ -1,0 +1,2 @@
+/Users/Jing/Dropbox/dev/data-3D/data/object_level_scenes_v1/skps/scene_3.skp
+/Users/Jing/Dropbox/dev/data-3D/data/object_level_scenes_v1/mxs/scene_3

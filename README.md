@@ -5,7 +5,7 @@ Generate a motion dataset based on 3D models.
 
 <div style="background-color:#E8E8E8; color:#FF00FF; padding:20px; fontsize=14; ">
 
-<p><b>I just test this tool on MAC with Sketchup 2013. But I'd like to make it work on Windows and other SketchUp versions.</b> </p>
+<p><b>I just test this tool on MAC with Sketchup 2015. But I'd like to make it work on Windows and other SketchUp versions.</b> </p>
 
 </div>
 
@@ -56,9 +56,13 @@ Generate a motion dataset based on 3D models.
 2. View-> Tool Palettes -> Annotation
 
 
+
+
 ## More documents
 ------------------
 [1] https://www.dropbox.com/sh/lxhoy9h7g9pll2x/AAB1v1z2-hmbd66ni6RNUBV4a?dl=0
+
+
 
 
 

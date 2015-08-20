@@ -16,4 +16,8 @@ model = Sketchup.active_model
 NPLAB::ShootScriptGenerator.generate_shoot_scripts(fn_conf, dn_cts, dn_outputs)
 
 #system("osascript -e  "+ "'" + 'tell application "/Applications/SketchUp 2013/SketchUp.app" to quit'+"' ")
-exec("ps -clx | grep -i 'sketchup' | awk '{print $2}' | head -1 | xargs kill -9")
+if Sketchup.version_number > 14000000 
+	Sketchup.quit
+else
+	exec("ps -clx | grep -i 'sketchup' | awk '{print $2}' | head -1 | xargs kill -9")
+end 
